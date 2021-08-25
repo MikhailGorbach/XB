@@ -2,8 +2,6 @@ package com.example.firebasepicture;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -16,22 +14,16 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.*;
-import com.google.firebase.storage.StorageTask;
+
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements GetDataFromFragment
 {
     private StorageReference mStorageReference; // НЕ ТРОГАТЬ!!!!!!!!!!
 
@@ -48,28 +40,8 @@ public class MainActivity extends AppCompatActivity
         //!!!!!!!!!!!!!!   НЕ ТРОГРАТЬ         !!!!!!!!!!!! МАГИЯ   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! НАЧАЛО
 
         //Подключаем Firebase для картинки
-        mStorageReference = FirebaseStorage.getInstance().getReference().child("1597154303_00018.jpg");
-        try {
-            final File localFile = File.createTempFile("1597154303_00018", "jpg");
-            mStorageReference.getFile(localFile)
-                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(MainActivity.this, "Picture Retrieved", Toast.LENGTH_SHORT).show();
-                            Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                            ((ImageView)findViewById(R.id.imageView)).setImageBitmap(bitmap);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(MainActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+
+        initFirebase();
 
         //Подключаем Firebase для модельки
 
@@ -80,6 +52,10 @@ public class MainActivity extends AppCompatActivity
 
         ArFragment arFragment = (ArFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.arFragment);
+
+        GetDataFromFragment listener = (GetDataFromFragment) arFragment;
+        listener.GetData("  ");
+
 
         findViewById(R.id.downloadBtn)
                 .setOnClickListener(v -> {
@@ -114,6 +90,31 @@ public class MainActivity extends AppCompatActivity
     }
     private ModelRenderable renderable;
 
+    private void initFirebase(){
+        mStorageReference = FirebaseStorage.getInstance().getReference().child("1597154303_00018.jpg");
+        try {
+            final File localFile = File.createTempFile("1597154303_00018", "jpg");
+            mStorageReference.getFile(localFile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(MainActivity.this, "Picture Retrieved", Toast.LENGTH_SHORT).show();
+                            Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                            ((ImageView)findViewById(R.id.imageView)).setImageBitmap(bitmap);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(MainActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     private void buildModel(File file) {
         try {
             RenderableSource renderableSource = RenderableSource
@@ -137,6 +138,12 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
             Toast.makeText(MainActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void GetData(String data) {
+        //data - имя модели
+        Toast.makeText(this, ("Data from fragment: "+data), Toast.LENGTH_SHORT).show();
     }
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!  ТУТ МАГИЯ ЗАКОЧИЛАСЬ  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
