@@ -25,38 +25,44 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements GetDataFromFragment
 {
-    private StorageReference mStorageReference; // НЕ ТРОГАТЬ!!!!!!!!!!
+
+    private ModelRenderable renderable; //Переменная для работы с моделями
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // !!!!!!!! КНОПКА ФРАГМЕНТА !!!!!!!!!!!!
+        initComponents();
+    }
 
+    //Инициализация компонентов
+    private void initComponents(){
+
+        //Инициализиция кнопки фрагмента
         FragmentForButton fragmentForButton = new FragmentForButton();
         getSupportFragmentManager().beginTransaction().add(R.id.container, fragmentForButton).commit();
 
-        //!!!!!!!!!!!!!!   НЕ ТРОГРАТЬ         !!!!!!!!!!!! МАГИЯ   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! НАЧАЛО
-
         //Подключаем Firebase для картинки
-
-        initFirebase();
+        initFirebasePicture();
 
         //Подключаем Firebase для модельки
-
         FirebaseApp.initializeApp(this);
 
+        //Запуск фрагменты
+        initFragment();
+
+        //Переменные для работы с моделями
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference modelRef = storage.getReference().child("blasterH.glb");
 
-        ArFragment arFragment = (ArFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.arFragment);
+        //Инициализация кнопки Скачать
+        initBtnDownload(modelRef);
 
-        GetDataFromFragment listener = (GetDataFromFragment) arFragment;
-        listener.GetData("  ");
+    }
 
-
+    //Настройка кнопки Скачать
+    private void initBtnDownload(StorageReference modelRef){
         findViewById(R.id.downloadBtn)
                 .setOnClickListener(v -> {
 
@@ -79,18 +85,12 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                     }
 
                 });
-
-        arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
-
-            AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
-            anchorNode.setRenderable(renderable);
-            arFragment.getArSceneView().getScene().addChild(anchorNode);
-
-        });
     }
-    private ModelRenderable renderable;
 
-    private void initFirebase(){
+    //Инициализируем БД для картинки
+    private void initFirebasePicture(){
+        StorageReference mStorageReference;
+
         mStorageReference = FirebaseStorage.getInstance().getReference().child("1597154303_00018.jpg");
         try {
             final File localFile = File.createTempFile("1597154303_00018", "jpg");
@@ -115,6 +115,20 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         }
     }
 
+    //Работа с фрагментом
+    private void initFragment(){
+        ArFragment arFragment = (ArFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.arFragment);
+
+        arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
+            AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
+            anchorNode.setRenderable(renderable);
+            arFragment.getArSceneView().getScene().addChild(anchorNode);
+
+        });
+    }
+
+    //Инициализируем модель
     private void buildModel(File file) {
         try {
             RenderableSource renderableSource = RenderableSource
@@ -146,5 +160,4 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         Toast.makeText(this, ("Data from fragment: "+data), Toast.LENGTH_SHORT).show();
     }
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!  ТУТ МАГИЯ ЗАКОЧИЛАСЬ  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
