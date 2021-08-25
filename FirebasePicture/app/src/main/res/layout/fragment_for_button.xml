@@ -13,16 +13,24 @@
     android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/btnKek"
+        android:id="@+id/btnKek1"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:text="kek" />
+        android:text="kek1" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="aboba"
-        android:textSize="30dp" />
+    <Button
+        android:id="@+id/btnKek2"
+        android:layout_width="81dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Kek2" />
+
+    <Button
+        android:id="@+id/btnKek3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Kek3" />
 
 </LinearLayout>
 

@@ -43,9 +43,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         FragmentForButton fragmentForButton = new FragmentForButton();
         getSupportFragmentManager().beginTransaction().add(R.id.container, fragmentForButton).commit();
 
-        //Подключаем Firebase для картинки
-        initFirebasePicture();
-
         //Подключаем Firebase для модельки
         FirebaseApp.initializeApp(this);
 
@@ -85,34 +82,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                     }
 
                 });
-    }
-
-    //Инициализируем БД для картинки
-    private void initFirebasePicture(){
-        StorageReference mStorageReference;
-
-        mStorageReference = FirebaseStorage.getInstance().getReference().child("1597154303_00018.jpg");
-        try {
-            final File localFile = File.createTempFile("1597154303_00018", "jpg");
-            mStorageReference.getFile(localFile)
-                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(MainActivity.this, "Picture Retrieved", Toast.LENGTH_SHORT).show();
-                            Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                            ((ImageView)findViewById(R.id.imageView)).setImageBitmap(bitmap);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(MainActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     //Работа с фрагментом
