@@ -5,19 +5,17 @@ import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.assets.RenderableSource;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
+
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.android.gms.tasks.OnFailureListener;
 
-import android.graphics.BitmapFactory;
-import android.widget.ImageView;
-import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 
 import java.io.File;
@@ -39,15 +37,10 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     //Инициализация компонентов
     private void initComponents(){
 
-        //Инициализиция кнопки фрагмента
-        FragmentForButton fragmentForButton = new FragmentForButton();
-        getSupportFragmentManager().beginTransaction().add(R.id.container, fragmentForButton).commit();
-
-        //Подключаем Firebase для модельки
-        FirebaseApp.initializeApp(this);
-
-        //Запуск фрагменты
         initFragment();
+
+        //Инициализируем FireBase
+        FirebaseApp.initializeApp(this);
 
         //Переменные для работы с моделями
         FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -84,16 +77,21 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                 });
     }
 
-    //Работа с фрагментом
+    //Работа с фрагментами
     private void initFragment(){
+        //Инициализиция фрагмента с кнопками
+        FragmentForButton fragmentForButton = new FragmentForButton();
+        getSupportFragmentManager().beginTransaction().add(R.id.container, fragmentForButton).commit();
+
+        //Инициализицая фрагмента для камеры
         ArFragment arFragment = (ArFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.arFragment);
 
+        //При нажатии создать новую сцену с renderable обектом
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
             AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
             anchorNode.setRenderable(renderable);
             arFragment.getArSceneView().getScene().addChild(anchorNode);
-
         });
     }
 
@@ -129,4 +127,15 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         Toast.makeText(this, ("Data from fragment: "+data), Toast.LENGTH_SHORT).show();
     }
 
+}
+
+class DataBase{
+    final private String USER_KEY = "blasterH.glb";
+    private FirebaseStorage storage;                //Переменная для работы с БД
+    private StorageReference rootRef;               //Переменная указывающая на корневую папку БД
+
+    public DataBase(){
+        storage = FirebaseStorage.getInstance();
+        rootRef = storage.getReference();
+    }
 }
