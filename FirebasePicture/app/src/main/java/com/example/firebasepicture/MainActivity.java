@@ -4,6 +4,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import com.google.ar.sceneform.AnchorNode;
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
     //Инициализация компонентов
     private void initComponents(){
-        modelRef = FirebaseStorage.getInstance().getReference().child("blasterH.glb");
+        modelRef = FirebaseStorage.getInstance().getReference();
 
         //Подключаем фрагменты
         initFragment();
@@ -50,24 +52,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         initBtnDownload();
     }
 
-    //Новая модель по нажатию на кнопку
-    private void newModelByClick(String name){
-        try {
-            File file = File.createTempFile(name, "glb");
-            modelRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    buildModel(file);
-                    newModelOnScene();
-                }
-            });
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-
     //Собрать новую модель
     private void newModel(String name){
         try {
@@ -77,19 +61,17 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                     buildModel(file);
                 }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(MainActivity.this, "Error. Model hasn't founded.", Toast.LENGTH_SHORT).show();
+                }
             });
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
-    }
-
-    //Создаём новую модель на сцене по умолчанию
-    private void newModelOnScene(){
-        AnchorNode anchorNode = new AnchorNode(null);
-        anchorNode.setRenderable(renderable);
-        arFragment.getArSceneView().getScene().addChild(anchorNode);
     }
 
     //Настройка кнопки Скачать
@@ -145,10 +127,10 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     }
 
     @Override
-    public void GetData(String data) {
-        //data - имя модели например "blasterH"
-        newModelByClick(data);  //Создать по умолчанию
-        //newModel(data);       //Создать по нажатию на экран
+    public void GetData(String data) {//data - имя модели например "blasterH"
+        modelRef = modelRef.child(data+".glb");
+        newModel(data); //Создать по нажатию на экран
+        modelRef = FirebaseStorage.getInstance().getReference();
     }
 
 }
