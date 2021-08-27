@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 {
 
     private ModelRenderable renderable; //Переменная для работы с моделями
+    private StorageReference modelRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,47 +35,60 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         initComponents();
     }
 
+    private void newModel(String name){
+        try {
+            File file = File.createTempFile(name, "glb");
+
+            modelRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    buildModel(file);
+                }
+            });
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     //Инициализация компонентов
     private void initComponents(){
-
-        initFragment();
-
         //Инициализируем FireBase
         FirebaseApp.initializeApp(this);
 
         //Переменные для работы с моделями
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference modelRef = storage.getReference().child("blasterH.glb");
+        modelRef = storage.getReference().child("blasterH.glb");
+        
+        initFragment();
+
 
         //Инициализация кнопки Скачать
-        initBtnDownload(modelRef);
+        initBtnDownload();
 
     }
 
     //Настройка кнопки Скачать
-    private void initBtnDownload(StorageReference modelRef){
+    private void initBtnDownload(){
         findViewById(R.id.downloadBtn)
-                .setOnClickListener(v -> {
+        .setOnClickListener(v -> {
 
-                    try {
-                        File file = File.createTempFile("blasterH", "glb");
+            try {
+                File file = File.createTempFile("blasterH", "glb");
 
-                        modelRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-
-                                buildModel(file);
-
-                            }
-                        });
-
+                modelRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        buildModel(file);
                     }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-
                 });
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        });
     }
 
     //Работа с фрагментами
@@ -123,8 +137,8 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
     @Override
     public void GetData(String data) {
-        //data - имя модели
-        Toast.makeText(this, ("Data from fragment: "+data), Toast.LENGTH_SHORT).show();
+        //data - имя модели //"blasterH"
+        newModel(data);
     }
 
 }
@@ -138,4 +152,5 @@ class DataBase{
         storage = FirebaseStorage.getInstance();
         rootRef = storage.getReference();
     }
+
 }

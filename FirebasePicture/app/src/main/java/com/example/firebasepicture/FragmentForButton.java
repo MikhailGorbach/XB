@@ -45,7 +45,10 @@ public class FragmentForButton extends Fragment implements View.OnClickListener,
         String res = "Kek2";
 
         Button btn = (Button) v;
-        res = (String) btn.getText();
+
+        if(btn.getId()==R.id.btnKek1) res = "blasterH";
+        if(btn.getId()==R.id.btnKek2) res = "blasterH";
+        if(btn.getId()==R.id.btnKek3) res = "blasterH";
 
         GetDataFromFragment listener = (GetDataFromFragment) getActivity();
         listener.GetData(res);
