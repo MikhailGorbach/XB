@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 {
 
     private ModelRenderable renderable; //Переменная для работы с моделями
-    private StorageReference modelRef;
+    private StorageReference modelRef;  //Директория в БД
+    private ArFragment arFragment;      //Фрагмент с изображением
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,42 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         initComponents();
     }
 
+    //Инициализация компонентов
+    private void initComponents(){
+        modelRef = FirebaseStorage.getInstance().getReference().child("blasterH.glb");
+
+        //Подключаем фрагменты
+        initFragment();
+
+        //Инициализируем FireBase
+        FirebaseApp.initializeApp(this);
+
+        //Инициализация кнопки Скачать
+        initBtnDownload();
+    }
+
+    //Новая модель по нажатию на кнопку
+    private void newModelByClick(String name){
+        try {
+            File file = File.createTempFile(name, "glb");
+            modelRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    buildModel(file);
+                    newModelOnScene();
+                }
+            });
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    //Собрать новую модель
     private void newModel(String name){
         try {
             File file = File.createTempFile(name, "glb");
-
             modelRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
@@ -52,53 +85,29 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         }
     }
 
-    //Инициализация компонентов
-    private void initComponents(){
-        //Инициализируем FireBase
-        FirebaseApp.initializeApp(this);
-
-        //Переменные для работы с моделями
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        modelRef = storage.getReference().child("blasterH.glb");
-        
-        initFragment();
-
-
-        //Инициализация кнопки Скачать
-        initBtnDownload();
-
+    //Создаём новую модель на сцене по умолчанию
+    private void newModelOnScene(){
+        AnchorNode anchorNode = new AnchorNode(null);
+        anchorNode.setRenderable(renderable);
+        arFragment.getArSceneView().getScene().addChild(anchorNode);
     }
 
     //Настройка кнопки Скачать
     private void initBtnDownload(){
         findViewById(R.id.downloadBtn)
         .setOnClickListener(v -> {
-
-            try {
-                File file = File.createTempFile("blasterH", "glb");
-
-                modelRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        buildModel(file);
-                    }
-                });
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+            newModel("blasterH");
         });
     }
 
     //Работа с фрагментами
     private void initFragment(){
-        //Инициализиция фрагмента с кнопками
+        //Инициализиция фрагмента с кнопками (меню)
         FragmentForButton fragmentForButton = new FragmentForButton();
         getSupportFragmentManager().beginTransaction().add(R.id.container, fragmentForButton).commit();
 
         //Инициализицая фрагмента для камеры
-        ArFragment arFragment = (ArFragment) getSupportFragmentManager()
+        arFragment = (ArFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.arFragment);
 
         //При нажатии создать новую сцену с renderable обектом
@@ -109,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         });
     }
 
-    //Инициализируем модель
+    //Создаём модель
     private void buildModel(File file) {
         try {
             RenderableSource renderableSource = RenderableSource
@@ -137,8 +146,9 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
     @Override
     public void GetData(String data) {
-        //data - имя модели //"blasterH"
-        newModel(data);
+        //data - имя модели например "blasterH"
+        newModelByClick(data);  //Создать по умолчанию
+        //newModel(data);       //Создать по нажатию на экран
     }
 
 }
