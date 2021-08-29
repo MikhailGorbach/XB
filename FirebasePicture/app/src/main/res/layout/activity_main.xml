@@ -2,40 +2,48 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <fragment
-
         android:id="@+id/arFragment"
         android:name="com.google.ar.sceneform.ux.ArFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <LinearLayout
-
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">\
 
-    <FrameLayout
-        android:id="@id/container"
-        android:layout_width="match_parent"
-        android:layout_height="70sp">
-    </FrameLayout>
+        <Button
+            android:id="@+id/btnMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Каталог" />
+
+        <FrameLayout
+            android:id="@id/container"
+            android:layout_width="match_parent"
+            android:layout_height="70sp"></FrameLayout>
 
     </LinearLayout>
 
 
-
     <Button
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
         android:id="@+id/downloadBtn"
-        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
-        android:text="Download"/>
+        android:text="Download" />
+
+
+    <!--temp-->
+    <!--endtemp-->
 
     <!--<androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,4 +51,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-    </RelativeLayout>
+</RelativeLayout>

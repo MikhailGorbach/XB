@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
         //Инициализация кнопки Скачать
         initBtnDownload();
+
+        //Инициализация кнопки Каталога
+        initBtnMenu();
     }
 
     //Собрать новую модель
@@ -82,6 +85,16 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         });
     }
 
+    //Настройка кнопки Меню
+    private void initBtnMenu(){
+        findViewById(R.id.btnMenu)
+                .setOnClickListener(v -> {
+                    
+                    FragmentMenu menu = new FragmentMenu();
+                    getSupportFragmentManager().beginTransaction().add(R.id.arFragment, menu).commit();
+                });
+    }
+
     //Работа с фрагментами
     private void initFragment(){
         //Инициализиция фрагмента с кнопками (меню)
@@ -98,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
             anchorNode.setRenderable(renderable);
             arFragment.getArSceneView().getScene().addChild(anchorNode);
         });
+
+
     }
 
     //Создаём модель
