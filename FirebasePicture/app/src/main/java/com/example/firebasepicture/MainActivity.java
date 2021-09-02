@@ -2,6 +2,7 @@ package com.example.firebasepicture;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +26,7 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements GetDataFromFragment
 {
+    private static final String TAG = "FragmentDebag";
 
     private ModelRenderable renderable; //Переменная для работы с моделями
     private StorageReference modelRef;  //Директория в БД
@@ -143,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
     @Override
     public void GetData(String data) {//data - имя модели например "blasterH"
+        Log.d(TAG, "GetData at MainActivity: "+data );
         modelRef = modelRef.child(data+".glb");
         newModel(data); //Создать по нажатию на экран
         modelRef = FirebaseStorage.getInstance().getReference();

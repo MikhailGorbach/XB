@@ -31,7 +31,7 @@ public class FragmentMenu extends Fragment implements GetDataFromFragment{
 
     private void initComponents(View v){
         Log.d(TAG, "enter the initComponents");
-        dataList = v.findViewById(R.id.menuList);
+        dataList = (RecyclerView) v.findViewById(R.id.menuList);
         temp(v);
         Log.d(TAG, "out from initComponents");
     }
@@ -48,21 +48,25 @@ public class FragmentMenu extends Fragment implements GetDataFromFragment{
         strList.add("Des4");
         strList.add("Des5");
 
-        imgList.add(null);
-        imgList.add(null);
-        imgList.add(null);
-        imgList.add(null);
-        imgList.add(null);
+        imgList.add(R.drawable.ic_launcher_foreground);
+        imgList.add(R.drawable.ic_launcher_foreground);
+        imgList.add(R.drawable.ic_launcher_foreground);
+        imgList.add(R.drawable.ic_launcher_foreground);
+        imgList.add(R.drawable.ic_launcher_foreground);
 
-        btnList.add(null);
-        btnList.add(null);
-        btnList.add(null);
-        btnList.add(null);
-        btnList.add(null);
+        btnList.add("Des1");
+        btnList.add("Des2");
+        btnList.add("Des3");
+        btnList.add("Des4");
+        btnList.add("Des5");
 
         adapter = new CustomGridAdapter(v.getContext(), imgList, strList, btnList);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(v.getContext(), 2, GridLayoutManager.VERTICAL, false);
+        //Версия сверху вниз
+        //GridLayoutManager gridLayoutManager = new GridLayoutManager(v.getContext(), 2, GridLayoutManager.VERTICAL, false);
+        //Версия слева вправо
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(v.getContext(), 2, GridLayoutManager.HORIZONTAL, false);
+
         dataList.setLayoutManager(gridLayoutManager);
         dataList.setAdapter(adapter);
         Log.d(TAG, "out from temp");
@@ -70,6 +74,6 @@ public class FragmentMenu extends Fragment implements GetDataFromFragment{
 
     @Override
     public void GetData(String data) {
-        Log.d(TAG, "GetData: "+data );
+        Log.d(TAG, "GetData at FragmentMenu: "+data );
     }
 }

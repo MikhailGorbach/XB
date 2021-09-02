@@ -1,7 +1,9 @@
 package com.example.firebasepicture;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +20,12 @@ import org.w3c.dom.Text;
 import java.util.List;
 
 public class CustomGridAdapter extends RecyclerView.Adapter<CustomGridAdapter.ViewHolder> implements GetDataFromFragment {
+    private static final String TAG = "FragmentDebag";
 
     private List<Integer> picturesList;     //id картинки
     private List<String> descriptionsList;  //описание модели
     private List<String> buttonsTextList;   //Значение возращаемое кнопкой
+
     private Context context;
     private LayoutInflater inflater;
 
@@ -34,7 +38,6 @@ public class CustomGridAdapter extends RecyclerView.Adapter<CustomGridAdapter.Vi
         context = ctx;
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,13 +46,14 @@ public class CustomGridAdapter extends RecyclerView.Adapter<CustomGridAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.des.setText(descriptionsList.get(position));
         holder.pic.setImageResource(picturesList.get(position));
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetDataFromFragment listener = (GetDataFromFragment) context;
+                Log.d(TAG,"Click on btn");
+                GetDataFromFragment listener = (GetDataFromFragment) v.getContext();
                 listener.GetData(buttonsTextList.get(position));
             }
         });
@@ -57,7 +61,7 @@ public class CustomGridAdapter extends RecyclerView.Adapter<CustomGridAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return 0;
+        return descriptionsList.size();
     }
 
     @Override
