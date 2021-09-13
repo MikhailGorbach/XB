@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     private ModelRenderable renderable; //Переменная для работы с моделями
     private StorageReference modelRef;  //Директория в БД
     private ArFragment arFragment;      //Фрагмент с изображением
+    private FragmentMenu menu;          //menu - фрагмент
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     //Инициализация компонентов
     private void initComponents(){
         modelRef = FirebaseStorage.getInstance().getReference();
+        menu = null;
 
         //Подключаем фрагменты
         initFragment();
@@ -91,8 +93,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     private void initBtnMenu(){
         findViewById(R.id.btnMenu)
                 .setOnClickListener(v -> {
-                    
-                    FragmentMenu menu = new FragmentMenu();
+                    menu = new FragmentMenu();
                     getSupportFragmentManager().beginTransaction().add(R.id.arFragment, menu).commit();
                 });
     }
@@ -113,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
             anchorNode.setRenderable(renderable);
             arFragment.getArSceneView().getScene().addChild(anchorNode);
         });
-
 
     }
 
@@ -146,6 +146,10 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     @Override
     public void GetData(String data) {//data - имя модели например "blasterH"
         Log.d(TAG, "GetData at MainActivity: "+data );
+
+        if(menu != null)
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainLayout, menu).commit();
+
         modelRef = modelRef.child(data+".glb");
         newModel(data); //Создать по нажатию на экран
         modelRef = FirebaseStorage.getInstance().getReference();
