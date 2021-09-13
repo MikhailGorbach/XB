@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initComponents();
+     //   initComponents();
     }
 
     //Инициализация компонентов
