@@ -27,11 +27,6 @@ public class SettingsConnectionFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                com.example.int2.settings.SettingsFragment settingsFragment = new com.example.int2.settings.SettingsFragment();
-                FragmentTransaction transaction = getFragmentManager()
-                        .beginTransaction();
-                transaction.replace(R.id.fragment_container, settingsFragment);
-                transaction.commit();
             }
         });
         return v;

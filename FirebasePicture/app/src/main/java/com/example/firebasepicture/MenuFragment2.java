@@ -9,7 +9,6 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.int2.menu.proizv1.Proizv1Fragment;
 
 public class MenuFragment2 extends Fragment {
 
@@ -37,17 +36,6 @@ public class MenuFragment2 extends Fragment {
                 FragmentTransaction transaction = getFragmentManager()
                         .beginTransaction();
                 transaction.replace(R.id.fragment_container, menuFragment);
-                transaction.commit();
-            }
-        });
-
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Proizv1Fragment proizv1Fragment = new Proizv1Fragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, proizv1Fragment);
                 transaction.commit();
             }
         });

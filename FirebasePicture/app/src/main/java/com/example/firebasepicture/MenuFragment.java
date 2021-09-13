@@ -44,10 +44,6 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                MenuFragment3 menuFragment3 = new MenuFragment3();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, menuFragment3);
-                transaction.commit();
             }
         });
 

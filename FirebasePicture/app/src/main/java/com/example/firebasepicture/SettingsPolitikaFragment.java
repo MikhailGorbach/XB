@@ -27,7 +27,7 @@ public class SettingsPolitikaFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                com.example.int2.settings.SettingsFragment settingsFragment = new com.example.int2.settings.SettingsFragment();
+                com.example.firebasepicture.SettingsFragment settingsFragment = new com.example.firebasepicture.SettingsFragment();
                 FragmentTransaction transaction = getFragmentManager()
                         .beginTransaction();
                 transaction.replace(R.id.fragment_container, settingsFragment);

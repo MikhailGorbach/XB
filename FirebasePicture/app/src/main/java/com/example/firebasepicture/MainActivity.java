@@ -28,6 +28,8 @@ import com.google.ar.sceneform.ux.TransformableNode;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,48 +57,42 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     private void initComponents(){
         modelRef = FirebaseStorage.getInstance().getReference();
 
+        bottomNav = findViewById(R.id.bottom_nav_menu);
+        bottomNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int id) {
+                Fragment fragment = null;
+                switch (id) {
+
+                    case R.id.bottom_nav_settings:
+                        fragment = new SettingsFragment();
+                        break;
+                    case R.id.bottom_nav_main:
+                        fragment = new MenuFragment();
+                        break;
+                    case R.id.bottom_nav_ideas:
+                        fragment = new IdeasFragment();
+                        break;
+
+                }
+                if (fragment != null) {
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container, fragment)
+                            .commit();
+
+                } else {
+                    Log.e(TAG, "Error1");
+                }
+            }
+        });
         //Подключаем фрагменты
         initFragment();
 
         //Инициализируем FireBase
         FirebaseApp.initializeApp(this);
 
-        //Инициализация кнопки Скачать
-        initBtnDownload();
     }
-
-
-    bottomNav = findViewById(R.id.bottom_nav_menu);
-
-    bottomNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(int id) {
-            Fragment fragment = null;
-            switch (id) {
-
-                case R.id.bottom_nav_settings:
-                    fragment = new SettingsFragment();
-                    break;
-                case R.id.bottom_nav_main:
-                    fragment = new MenuFragment();
-                    break;
-                case R.id.bottom_nav_ideas:
-                    fragment = new IdeasFragment();
-                    break;
-
-            }
-            if (fragment != null) {
-                fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, fragment)
-                        .commit();
-
-            } else {
-                Log.e(TAG, "Error1");
-            }
-        }
-    });
-}
 
     //Собрать новую модель
     private void newModel(String name){
@@ -118,14 +114,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         {
             e.printStackTrace();
         }
-    }
-
-    //Настройка кнопки Скачать
-    private void initBtnDownload(){
-        findViewById(R.id.downloadBtn)
-        .setOnClickListener(v -> {
-            newModel("blasterH");
-        });
     }
 
     //Работа с фрагментами

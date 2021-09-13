@@ -7,14 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.int2.FurnitureItem;
-
-import java.util.ArrayList;
-
-
 public class IdeasFragment extends Fragment {
-
-    private ArrayList<FurnitureItem> furnitureItems = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

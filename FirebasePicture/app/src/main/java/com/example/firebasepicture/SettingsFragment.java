@@ -31,8 +31,7 @@ public class SettingsFragment extends Fragment {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                com.example.int2.settings.SettingsPolitikaFragment settingsPolitikaFragment = new com.example.int2.settings.SettingsPolitikaFragment();
+                com.example.firebasepicture.SettingsPolitikaFragment settingsPolitikaFragment = new com.example.firebasepicture.SettingsPolitikaFragment();
                 FragmentTransaction transaction = getFragmentManager()
                         .beginTransaction();
                 transaction.replace(R.id.fragment_container, settingsPolitikaFragment);
@@ -43,8 +42,7 @@ public class SettingsFragment extends Fragment {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                com.example.int2.settings.SettingsPravilaFragment settingsPravilaFragment = new com.example.int2.settings.SettingsPravilaFragment();
+                com.example.firebasepicture.SettingsPravilaFragment settingsPravilaFragment = new com.example.firebasepicture.SettingsPravilaFragment();
                 FragmentTransaction transaction = getFragmentManager()
                         .beginTransaction();
                 transaction.replace(R.id.fragment_container, settingsPravilaFragment);
@@ -58,7 +56,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                com.example.int2.settings.SettingsConnectionFragment settingsСonnectionFragment = new com.example.int2.settings.SettingsConnectionFragment();
+                com.example.firebasepicture.SettingsConnectionFragment settingsСonnectionFragment = new com.example.firebasepicture.SettingsConnectionFragment();
                 FragmentTransaction transaction = getFragmentManager()
                         .beginTransaction();
                 transaction.replace(R.id.fragment_container, settingsСonnectionFragment);
