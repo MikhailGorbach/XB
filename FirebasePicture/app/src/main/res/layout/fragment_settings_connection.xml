@@ -28,61 +28,38 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="120dp"
-            android:scrollbars="none">
+            android:layout_marginTop="120dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:scrollbars="none">
 
-                <Button
-                    android:id="@+id/button22"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="355dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="70dp"
-                    android:background="@color/colorTransparent"
-                    android:text="Политика конфиденциальности"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorBlue1"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="100dp"
+                    android:text="Если у вас возникнут вопросы в отношении нашего заявления о конфиденциальности или практической деятельности,а также если у вас есть предложение для сотрудничества, обратитесь к нам."
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
-                    android:id="@+id/button44"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="358dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorTransparent"
-                    android:text="Правила и условия использования"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorBlue1"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Вы можете связаться с нами по адресу ezhypex@yandex.ru"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button22" />
-
-                <Button
-                    android:id="@+id/button24"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="290dp"
-                    android:background="@color/colorTransparent"
-                    android:text="Как связаться?"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorBlue1"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button44" />
-
-
+                    app:layout_constraintTop_toBottomOf="@+id/textView12" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
 
     <ImageView
         android:id="@+id/imageView3"
@@ -102,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="74dp"
-        android:text="Настройки"
+        android:text="Связаться"
         android:textColor="@color/colorWhite"
         android:textSize="26sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,11 +91,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:text="Выбрать"
+        android:text="с Interior Estimate"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
+    <Button
+        android:id="@+id/button27"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bbback"
+        android:backgroundTint="@color/colorWhite"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".settings.SettingsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.scwang.smartrefresh.layout.header.FalsifyHeader
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.scwang.smartrefresh.layout.footer.FalsifyFooter
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="120dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="100dp"
+                    android:text="Последнее изменение: 2020-09-17"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="366dp"
+                    android:layout_height="1150dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Interior Estimate владеет и прямо оставляет за собой все права интеллектуальной собственности на это приложение и все 3D-модели, фотографии и другой контент на этом приложении. Несмотря на то, что вы можете делиться контентом на веб-сайтах социальных сетей, ссылки на которые предоставляет этот веб-сайт, Interior Estimate не предоставляет никакой лицензии, а также не уступает или иным образом отказывается от своего права собственности на контент ни вам, ни владельцу веб-сайта социальных сетей, ни любой другой третьей стороне. Присвоение права на совместное использование контента не включает в себя право изменять, преобразовывать или создавать производные произведения контента . Кроме того, он ограничен только некоммерческими целями. Любое использование контента, кроме совместного использования на веб-сайтах социальных сетей, требует явного предварительного письменного согласия, за исключением вашего личного некоммерческого использования.Interior Estimate оставляет за собой право отозвать в любое время и предпринять любые доступные юридические действия, чтобы запретить злоупотребление присвоением права на совместное использование контента, предоставленного настоящим документом Это приложение и информация, включенная в это приложение, были созданы и тщательно собраны компанией Interior Estimate. Interior Estimate не несет ответственности за любой ущерб, возникший в результате любого прямого или косвенного использования или невозможности использования этого приложения, или любой информации, доступной на этом приложении или через него."
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView25" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="412dp"
+        android:layout_height="305dp"
+        android:src="@drawable/upbcg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="74dp"
+        android:text="Правила и условия"
+        android:textColor="@color/colorWhite"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:text="Использования"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <Button
+        android:id="@+id/button26"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bbback"
+        android:backgroundTint="@color/colorWhite"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
