@@ -21,27 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imageView16"
-                android:layout_width="166dp"
-                android:layout_height="83dp"
-                android:layout_weight="1"
-                android:src="@drawable/avangard" />
-
-            <ImageView
-                android:id="@+id/imageView17"
-                android:layout_width="166dp"
-                android:layout_height="83dp"
-                android:layout_weight="1"
-                android:src="@drawable/anderssen" />
-
-            <ImageView
-                android:id="@+id/imageView18"
-                android:layout_width="166dp"
-                android:layout_height="83dp"
-                android:layout_weight="1"
-                android:src="@drawable/rival" />
-
         </LinearLayout>
     </HorizontalScrollView>
 
