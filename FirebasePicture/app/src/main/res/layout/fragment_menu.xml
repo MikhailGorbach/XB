@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".menu.MenuFragment">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="412dp"
+        android:layout_height="305dp"
+        android:src="@drawable/upbcg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="74dp"
+        android:text="Посмотреть"
+        android:textColor="@color/colorWhite"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:text="Категории"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="70dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="366dp"
+                android:layout_height="366dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/kreslo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="366dp"
+                android:layout_height="366dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/stol"
+                app:layout_constraintStart_toEndOf="@id/button1"
+                app:layout_constraintTop_toTopOf="@id/button1" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="366dp"
+                android:layout_height="366dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/stolgarnitur"
+                app:layout_constraintStart_toEndOf="@id/button2"
+                app:layout_constraintTop_toTopOf="@id/button2" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="366dp"
+                android:layout_height="366dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/divan"
+                app:layout_constraintStart_toEndOf="@id/button3"
+                app:layout_constraintTop_toTopOf="@id/button3" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="366dp"
+                android:layout_height="366dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/tv"
+                app:layout_constraintStart_toEndOf="@id/button4"
+                app:layout_constraintTop_toTopOf="@id/button4" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="366dp"
+                android:layout_height="366dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/pismslot"
+                app:layout_constraintStart_toEndOf="@id/button5"
+                app:layout_constraintTop_toTopOf="@id/button5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,13 @@
 package com.example.firebasepicture;
 
+import android.graphics.Color;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,13 +24,20 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import com.google.ar.sceneform.ux.TransformableNode;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+
 import androidx.annotation.NonNull;
 
 import java.io.File;
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity implements GetDataFromFragment
+public class MainActivity extends AppCompatActivity implements GetDataFromFragment, View.OnClickListener
 {
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    ChipNavigationBar bottomNav;
+    FragmentManager fragmentManager;
 
     private ModelRenderable renderable; //Переменная для работы с моделями
     private StorageReference modelRef;  //Директория в БД
@@ -51,6 +64,39 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         //Инициализация кнопки Скачать
         initBtnDownload();
     }
+
+
+    bottomNav = findViewById(R.id.bottom_nav_menu);
+
+    bottomNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(int id) {
+            Fragment fragment = null;
+            switch (id) {
+
+                case R.id.bottom_nav_settings:
+                    fragment = new SettingsFragment();
+                    break;
+                case R.id.bottom_nav_main:
+                    fragment = new MenuFragment();
+                    break;
+                case R.id.bottom_nav_ideas:
+                    fragment = new IdeasFragment();
+                    break;
+
+            }
+            if (fragment != null) {
+                fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .commit();
+
+            } else {
+                Log.e(TAG, "Error1");
+            }
+        }
+    });
+}
 
     //Собрать новую модель
     private void newModel(String name){
@@ -133,6 +179,10 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         modelRef = FirebaseStorage.getInstance().getReference();
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }
 
 class DataBase{

@@ -7,40 +7,66 @@
     tools:context=".MainActivity">
 
     <fragment
-
-        android:id="@+id/arFragment"
+        android:id="@+id/sceneform_ux_fragment"
         android:name="com.google.ar.sceneform.ux.ArFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <LinearLayout
+        android:layout_height="match_parent"/>
 
-        android:orientation="horizontal"
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="166dp"
+                android:layout_height="83dp"
+                android:layout_weight="1"
+                android:src="@drawable/avangard" />
+
+            <ImageView
+                android:id="@+id/imageView17"
+                android:layout_width="166dp"
+                android:layout_height="83dp"
+                android:layout_weight="1"
+                android:src="@drawable/anderssen" />
+
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="166dp"
+                android:layout_height="83dp"
+                android:layout_weight="1"
+                android:src="@drawable/rival" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
     <FrameLayout
-        android:id="@id/container"
-        android:layout_width="match_parent"
-        android:layout_height="70sp">
-    </FrameLayout>
-
-    </LinearLayout>
-
-
-
-    <Button
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:id="@+id/downloadBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="24dp"
-        android:text="Download"/>
-
-    <!--<androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    </FrameLayout>
 
-    </RelativeLayout>
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/bottom_nav_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cnb_menuResource="@menu/bottom_nav_menu"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/round_corners"
+        app:cnb_unselectedColor="@color/colorBlack"
+        app:cnb_radius="12dp"
+        app:cnb_iconSize="28dp"
+        app:cnb_orientationMode="horizontal"
+        android:layout_margin="20dp"
+        android:elevation="9dp"
+        />
+
+
+
+</RelativeLayout>

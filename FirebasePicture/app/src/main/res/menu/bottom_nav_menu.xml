@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bottom_nav_settings"
+        android:title="Настройки"
+        android:icon="@drawable/settings"
+        app:cnb_backgroundColor="@color/colorPrimary">
+    </item>
+    <item
+        android:id="@+id/bottom_nav_main"
+        android:title="Меню"
+        android:icon="@drawable/main"
+        app:cnb_backgroundColor="@color/colorPrimary">
+    </item>
+
+    <item
+        android:id="@+id/bottom_nav_ideas"
+        android:title="Идеи"
+        android:icon="@drawable/idea"
+        app:cnb_backgroundColor="@color/colorPrimary">
+
+    </item>
+
+</menu>
