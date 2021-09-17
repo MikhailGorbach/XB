@@ -50,20 +50,31 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-     //   initComponents();
+        initComponents();
     }
 
     //Инициализация компонентов
     private void initComponents(){
-        modelRef = FirebaseStorage.getInstance().getReference();
+        initBottomNavigation();
+        /*modelRef = FirebaseStorage.getInstance().getReference();
 
+
+        //Подключаем фрагменты
+        initFragment();
+
+        //Инициализируем FireBase
+        FirebaseApp.initializeApp(this);
+*/
+    }
+
+    //Инициализируем BottomNavigation
+    private void initBottomNavigation(){
         bottomNav = findViewById(R.id.bottom_nav_menu);
         bottomNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int id) {
                 Fragment fragment = null;
                 switch (id) {
-
                     case R.id.bottom_nav_settings:
                         fragment = new SettingsFragment();
                         break;
@@ -73,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                     case R.id.bottom_nav_ideas:
                         fragment = new IdeasFragment();
                         break;
-
                 }
                 if (fragment != null) {
                     fragmentManager = getSupportFragmentManager();
@@ -82,16 +92,10 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                             .commit();
 
                 } else {
-                    Log.e(TAG, "Error1");
+                    Log.e(TAG, "Ошибка.");
                 }
             }
         });
-        //Подключаем фрагменты
-        initFragment();
-
-        //Инициализируем FireBase
-        FirebaseApp.initializeApp(this);
-
     }
 
     //Собрать новую модель
