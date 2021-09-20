@@ -11,7 +11,7 @@ public class Model {
 
     }
 
-    public Model(Image picture, String title, String price) {
+    public Model(Image picture, String price, String title) {
         this.picture = picture;
         this.title = title;
         this.price = price;

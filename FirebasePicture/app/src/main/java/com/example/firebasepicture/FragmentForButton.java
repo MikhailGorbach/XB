@@ -2,6 +2,7 @@ package com.example.firebasepicture;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 interface GetDataFromFragment {
     void GetData(String data);
@@ -23,7 +26,7 @@ public class FragmentForButton extends Fragment{
     private AdapterToCards adapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_list, container, false);
 
         initComponents(v);
@@ -33,16 +36,20 @@ public class FragmentForButton extends Fragment{
 
     private void initComponents(View v){
         //Подключаем корневую папку с карточками
+
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        Query query = firebaseFirestore.collection("models");
+
         FirestoreRecyclerOptions<Model> options =
                 new FirestoreRecyclerOptions.Builder<Model>()
-                    .setQuery(FirebaseFirestore.getInstance().collection("Данные"), Model.class)
+                    .setQuery(query, Model.class)
                     .build();
 
-        adapter = new AdapterToCards(options);
+        FirestoreRecyclerAdapter adapter2 = new AdapterToCards(options);
 
         recyclerView = v.findViewById(R.id.recview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter2);
 
     }
 
@@ -57,19 +64,4 @@ public class FragmentForButton extends Fragment{
         super.onStop();
         adapter.stopListening();
     }
-
-    /* @Override
-    public void onClick(View v) {
-        //Возращаемые данные
-        String res = "Kek2";
-
-        Button btn = (Button) v;
-
-        if(btn.getId()==R.id.btnKek1) res = "blasterH";
-        if(btn.getId()==R.id.btnKek2) res = "Cyber";
-        if(btn.getId()==R.id.btnKek3) res = "Nyi myanmar force";
-
-        GetDataFromFragment listener = (GetDataFromFragment) getActivity();
-        listener.GetData(res);
-    }*/
 }
