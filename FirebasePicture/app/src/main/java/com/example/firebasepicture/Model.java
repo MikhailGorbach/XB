@@ -1,11 +1,14 @@
 package com.example.firebasepicture;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Icon;
 import android.media.Image;
 
 //Информация об записи в firebase
 public class Model {
     Image picture;
-    String title, price;
+    String title;
+    String price;
 
     public Model(){
 
