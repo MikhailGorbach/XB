@@ -44,7 +44,7 @@ public class MenuFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().add(R.id.frame_layout_on_menu, new FragmentForButton()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton()).commit();
             }
         });
 
