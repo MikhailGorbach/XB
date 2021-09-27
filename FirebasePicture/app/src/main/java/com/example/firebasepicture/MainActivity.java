@@ -33,6 +33,7 @@ import androidx.fragment.app.FragmentManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements GetDataFromFragment
 {
@@ -55,13 +56,14 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     private void initComponents(){
         initBottomNavigation();
 
+        fragmentManager = getSupportFragmentManager();
         modelRef = FirebaseStorage.getInstance().getReference();
 
         //Подключаем фрагменты для работы с моделями
         initFragment();
 
         //Инициализируем FireBase
-        //FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this);
 
     }
 
@@ -84,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                         break;
                 }
                 if (fragment != null) {
-                    fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction()
                             .replace(R.id.fragment_container, fragment)
                             .commit();
@@ -162,6 +163,9 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         modelRef = modelRef.child(data+".glb");
         newModel(data); //Создать по нажатию на экран
         modelRef = FirebaseStorage.getInstance().getReference();
+
+        fragmentManager.beginTransaction().
+                remove(Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.fragment_container))).commit();
     }
 
 }

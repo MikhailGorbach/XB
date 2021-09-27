@@ -13,14 +13,24 @@ public class Model {
     String pic;
     String title;
     String price;
+    String name;
 
     public Model(){
     }
 
-    public Model(String pic, String title, String price) {
+    public Model(String pic, String title, String price, String name) {
         this.pic = pic;
         this.title = title;
         this.price = price;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPic() {
