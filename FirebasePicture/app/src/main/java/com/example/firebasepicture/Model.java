@@ -3,29 +3,34 @@ package com.example.firebasepicture;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Icon;
 import android.media.Image;
+import android.net.Uri;
+import android.util.Log;
+
+import java.net.URL;
 
 //Информация об записи в firebase
 public class Model {
-    Image picture;
+    Image pic;
     String title;
     String price;
 
     public Model(){
-
     }
 
-    public Model(Image picture, String title, String price) {
-        this.picture = picture;
+    public Model(Image pic, String title, String price) {
+        Log.d("debug", "model: picUri = "+pic.toString()+"; title = "+title+"; price = "+ price +".");
+        this.pic = pic;
         this.title = title;
         this.price = price;
     }
 
-    public Image getPicture() {
-        return picture;
+    public Image getPic() {
+        Log.d("debug","model: picUri = "+pic.toString()+";");
+        return pic;
     }
 
-    public void setPicture(Image picture) {
-        this.picture = picture;
+    public void setPic(Image pic) {
+        this.pic = pic;
     }
 
     public String getTitle() {
