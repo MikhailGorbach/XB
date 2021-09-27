@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
         if(fragment != null)
             fragmentManager.beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.fragment_container)).commit();
-        findViewById(R.id.fragment_container).setBackgroundColor(R.);
+        //findViewById(R.id.fragment_container).setBackgroundColor(R.);
     }
 
 }
