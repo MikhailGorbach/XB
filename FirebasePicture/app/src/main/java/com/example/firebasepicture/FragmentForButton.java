@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
@@ -78,25 +79,20 @@ public class FragmentForButton extends Fragment{
 
              @Override
              protected void onBindViewHolder(@NonNull AdapterToCards holder, int position, @NonNull Model model) {
-                 Log.d("debug", "FragmentForButton -> initComponents -> FirestoreRecyclerAdapter -> onBindViewHolder");
                  holder.txtTitle.setText(model.getTitle());
                  holder.txtPrice.setText(model.getPrice());
-                 //holder.img1.setImageURI(Uri.parse(model.getPic()));
                  Glide.with(holder.img1.getContext()).load(model.getPic()).into(holder.img1);
-                 //Glide.with(context).load("http://i.imgur.com/DvpvklR.png").into(holder.img1);
-                 //Picasso.with(holder.imageView.getContext())
-                 //        .load(item.getUrl())
-                 //        .into(holder.imageView);
-
-                 //holder.img1.setImageURI(model.getpic());
-
-                 Log.d("debug", "FragmentForButton -> initComponents -> FirestoreRecyclerAdapter <- onBindViewHolder");
+                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForCard(model)).commit();
+                     }
+                 });
              }
         };
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
-        Log.d("debug", "FragmentForButton <- initComponents");
     }
 
 
@@ -113,7 +109,7 @@ public class FragmentForButton extends Fragment{
             img1 = itemView.findViewById(R.id.img1);
             txtTitle = itemView.findViewById(R.id.txtTitle);
             txtPrice = itemView.findViewById(R.id.txtPrice);
-            //relativeLayout = itemView.findViewById(R.id.backLayout);
+            relativeLayout = itemView.findViewById(R.id.backLayout);
         }
     }
 
