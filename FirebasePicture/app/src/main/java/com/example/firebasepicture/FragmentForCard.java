@@ -24,7 +24,16 @@ public class FragmentForCard extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_for_card, container, false);
-
+        initComponents(v);
         return v;
+    }
+
+    void initComponents(View v){
+        v.findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton()).commit();
+            }
+        });
     }
 }
