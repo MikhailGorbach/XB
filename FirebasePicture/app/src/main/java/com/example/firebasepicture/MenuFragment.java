@@ -10,25 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MenuFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.bumptech.glide.Glide;
+
 public class MenuFragment extends Fragment {
-
-    private ImageButton btn;
-
-    public MenuFragment() {
-
-    }
-
-    public static MenuFragment newInstance(String param1, String param2) {
-        MenuFragment fragment = new MenuFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,15 +23,17 @@ public class MenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_menu, container, false);
+        initComponenet(v);
+        return v;
+    }
 
-        btn = v.findViewById(R.id.imageButton);
-        btn.setOnClickListener(new View.OnClickListener() {
+    void initComponenet(View v){
+
+        v.findViewById(R.id.imageButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton()).commit();
             }
         });
-
-        return v;
     }
 }

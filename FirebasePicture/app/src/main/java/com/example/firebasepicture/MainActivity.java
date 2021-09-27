@@ -34,10 +34,8 @@ import androidx.fragment.app.FragmentManager;
 import java.io.File;
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity implements GetDataFromFragment, View.OnClickListener
+public class MainActivity extends AppCompatActivity implements GetDataFromFragment
 {
-    private static final String TAG = MainActivity.class.getSimpleName();
-
     ChipNavigationBar bottomNav;
     FragmentManager fragmentManager;
 
@@ -56,15 +54,15 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     //Инициализация компонентов
     private void initComponents(){
         initBottomNavigation();
-        /*modelRef = FirebaseStorage.getInstance().getReference();
 
+        modelRef = FirebaseStorage.getInstance().getReference();
 
-        //Подключаем фрагменты
+        //Подключаем фрагменты для работы с моделями
         initFragment();
 
         //Инициализируем FireBase
-        FirebaseApp.initializeApp(this);
-*/
+        //FirebaseApp.initializeApp(this);
+
     }
 
     //Инициализируем BottomNavigation
@@ -90,10 +88,9 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                     fragmentManager.beginTransaction()
                             .replace(R.id.fragment_container, fragment)
                             .commit();
+                } else
+                    Toast.makeText(MainActivity.this, "Error.",Toast.LENGTH_SHORT).show();
 
-                } else {
-                    Log.e(TAG, "Ошибка.");
-                }
             }
         });
     }
@@ -122,10 +119,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
     //Работа с фрагментами
     private void initFragment(){
-        //Инициализиция фрагмента с кнопками (меню)
-        FragmentForButton fragmentForButton = new FragmentForButton();
-        getSupportFragmentManager().beginTransaction().add(R.id.container, fragmentForButton).commit();
-
         //Инициализицая фрагмента для камеры
         arFragment = (ArFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.arFragment);
@@ -169,22 +162,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         modelRef = modelRef.child(data+".glb");
         newModel(data); //Создать по нажатию на экран
         modelRef = FirebaseStorage.getInstance().getReference();
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-}
-
-class DataBase{
-    final private String USER_KEY = "blasterH.glb";
-    private FirebaseStorage storage;                //Переменная для работы с БД
-    private StorageReference rootRef;               //Переменная указывающая на корневую папку БД
-
-    public DataBase(){
-        storage = FirebaseStorage.getInstance();
-        rootRef = storage.getReference();
     }
 
 }

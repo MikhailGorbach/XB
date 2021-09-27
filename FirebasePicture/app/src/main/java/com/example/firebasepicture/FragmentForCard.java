@@ -7,9 +7,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-public class FragmentForCard extends Fragment {
+import com.bumptech.glide.Glide;
+
+public class FragmentForCard extends Fragment implements GetDataFromFragment{
     private Model model;
+    private TextView txtTitle;
+    private TextView txtPrice;
+    private ImageView img;
 
     public FragmentForCard(Model model) {
         this.model = model;
@@ -29,11 +36,31 @@ public class FragmentForCard extends Fragment {
     }
 
     void initComponents(View v){
+        txtTitle    = v.findViewById(R.id.txtDaskTitle);
+        txtPrice    = v.findViewById(R.id.txtDaskPrice);
+        img         = v.findViewById(R.id.imgDaskAvatar);
+
+        txtTitle.setText(model.getTitle());
+        txtPrice.setText(model.getPrice());
+        Glide.with(v.getContext()).load(model.getPic()).into(img);
+
         v.findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton()).commit();
             }
         });
+        v.findViewById(R.id.btn3D).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GetDataFromFragment data = ( v.getContext().get)
+                getFragmentManager().beginTransaction().remove(FragmentForCard.this);
+            }
+        });
+    }
+
+    @Override
+    public void GetData(String data) {
+
     }
 }
