@@ -165,8 +165,9 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         newModel(data); //Создать по нажатию на экран
         modelRef = FirebaseStorage.getInstance().getReference();
 
-        //if(fragment != null)
-        //    fragmentManager.beginTransaction().remove(fragment).commit();
+        if(fragment != null)
+            fragmentManager.beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+        findViewById(R.id.fragment_container).setBackgroundColor(R.);
     }
 
 }

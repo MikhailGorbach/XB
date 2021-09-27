@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,11 +51,14 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton()).commit();
             }
         });
-        v.findViewById(R.id.btn3D).setOnClickListener(new View.OnClickListener() {
+        ((Button) v.findViewById(R.id.btn3D)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetDataFromFragment listener = (GetDataFromFragment)  getActivity();
-                listener.GetData(model.getName());
+                GetDataFromFragment listener;
+                listener = (GetDataFromFragment) getActivity();
+
+                String res = "Res";
+                if(res.length() == 0) listener.GetData("Модель"); else listener.GetData(res);
             }
         });
 
