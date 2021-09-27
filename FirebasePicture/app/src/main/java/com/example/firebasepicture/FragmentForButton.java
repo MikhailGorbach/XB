@@ -2,6 +2,7 @@ package com.example.firebasepicture;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,6 +28,10 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 interface GetDataFromFragment {
     void GetData(String data);
@@ -76,10 +81,15 @@ public class FragmentForButton extends Fragment{
                  Log.d("debug", "FragmentForButton -> initComponents -> FirestoreRecyclerAdapter -> onBindViewHolder");
                  holder.txtTitle.setText(model.getTitle());
                  holder.txtPrice.setText(model.getPrice());
+                 //holder.img1.setImageURI(Uri.parse(model.getPic()));
                  Glide.with(holder.img1.getContext()).load(model.getPic()).into(holder.img1);
+                 //Glide.with(context).load("http://i.imgur.com/DvpvklR.png").into(holder.img1);
+                 //Picasso.with(holder.imageView.getContext())
+                 //        .load(item.getUrl())
+                 //        .into(holder.imageView);
 
                  //holder.img1.setImageURI(model.getpic());
-                 
+
                  Log.d("debug", "FragmentForButton -> initComponents -> FirestoreRecyclerAdapter <- onBindViewHolder");
              }
         };

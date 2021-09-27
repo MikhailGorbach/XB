@@ -10,26 +10,24 @@ import java.net.URL;
 
 //Информация об записи в firebase
 public class Model {
-    Image pic;
+    String pic;
     String title;
     String price;
 
     public Model(){
     }
 
-    public Model(Image pic, String title, String price) {
-        Log.d("debug", "model: picUri = "+pic.toString()+"; title = "+title+"; price = "+ price +".");
+    public Model(String pic, String title, String price) {
         this.pic = pic;
         this.title = title;
         this.price = price;
     }
 
-    public Image getPic() {
-        Log.d("debug","model: picUri = "+pic.toString()+";");
+    public String getPic() {
         return pic;
     }
 
-    public void setPic(Image pic) {
+    public void setPic(String pic) {
         this.pic = pic;
     }
 
