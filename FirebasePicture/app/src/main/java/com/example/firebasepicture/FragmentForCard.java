@@ -53,7 +53,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         v.findViewById(R.id.btn3D).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetDataFromFragment listener = (GetDataFromFragment) getActivity();
+                GetDataFromFragment listener = (GetDataFromFragment)  getActivity();
                 listener.GetData(model.getName());
             }
         });

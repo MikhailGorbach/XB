@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     private ModelRenderable renderable; //Переменная для работы с моделями
     private StorageReference modelRef;  //Директория в БД
     private ArFragment arFragment;      //Фрагмент с изображением
+    private Fragment fragment;          //Фрагмент
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         bottomNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int id) {
-                Fragment fragment = null;
+                fragment = null;
                 switch (id) {
                     case R.id.bottom_nav_settings:
                         fragment = new SettingsFragment();
@@ -164,8 +165,8 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         newModel(data); //Создать по нажатию на экран
         modelRef = FirebaseStorage.getInstance().getReference();
 
-        fragmentManager.beginTransaction().
-                remove(Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.fragment_container))).commit();
+        //if(fragment != null)
+        //    fragmentManager.beginTransaction().remove(fragment).commit();
     }
 
 }
