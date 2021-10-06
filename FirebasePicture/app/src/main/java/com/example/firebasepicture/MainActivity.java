@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                         break;
                 }
                 if (fragment != null) {
+                    findViewById(R.id.fragment_container).setBackgroundColor(Color.WHITE);
                     fragmentManager.beginTransaction()
                             .replace(R.id.fragment_container, fragment)
                             .commit();
@@ -165,9 +166,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         newModel(data); //Создать по нажатию на экран
         modelRef = FirebaseStorage.getInstance().getReference();
 
-        if(fragment != null)
-            fragmentManager.beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.fragment_container)).commit();
-        //findViewById(R.id.fragment_container).setBackgroundColor(R.);
+        findViewById(R.id.fragment_container).setBackgroundColor(Color.TRANSPARENT);
     }
 
 }

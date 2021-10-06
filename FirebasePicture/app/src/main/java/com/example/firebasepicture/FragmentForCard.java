@@ -1,9 +1,12 @@
 package com.example.firebasepicture;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
     private TextView txtTitle;
     private TextView txtPrice;
     private ImageView img;
+    FragmentForCard ctx;
 
     public FragmentForCard(Model model) {
         this.model = model;
@@ -32,6 +36,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_for_card, container, false);
+        ctx = this;
         initComponents(v);
         return v;
     }
@@ -56,9 +61,11 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
             public void onClick(View v) {
                 GetDataFromFragment listener;
                 listener = (GetDataFromFragment) getActivity();
-
                 String res = "Res";
+                Log.d(model.name, "DEBUG");
+                getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
                 if(res.length() == 0) listener.GetData("Модель"); else listener.GetData(res);
+
             }
         });
 
