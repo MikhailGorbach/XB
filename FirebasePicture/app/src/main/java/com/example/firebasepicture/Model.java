@@ -18,7 +18,7 @@ public class Model {
     public Model(){
     }
 
-    public Model(String pic, String title, String price, String name) {
+    public Model(String nameString,String pic,String price, String title  ) {
         this.pic = pic;
         this.title = title;
         this.price = price;

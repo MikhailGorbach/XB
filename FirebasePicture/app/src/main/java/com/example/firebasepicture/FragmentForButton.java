@@ -85,6 +85,7 @@ public class FragmentForButton extends Fragment{
                  holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View v) {
+                         Log.d("debug", "Click on card: model(name,pic,price,title) = "+((model.name == null) ?"null" : model.name)+" "+model.pic+" "+model.price+" "+model.title);
                          getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForCard(model)).commit();
                      }
                  });
@@ -93,6 +94,7 @@ public class FragmentForButton extends Fragment{
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+        Log.d("debug", "FragmentForButton <- initComponents");
     }
 
 

@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
     //Инициализация компонентов
     private void initComponents(){
+        Toast.makeText(MainActivity.this, "WORK1", Toast.LENGTH_SHORT).show();
         initBottomNavigation();
 
         fragmentManager = getSupportFragmentManager();
@@ -65,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
         //Инициализируем FireBase
         FirebaseApp.initializeApp(this);
-
     }
 
     //Инициализируем BottomNavigation
@@ -125,6 +125,9 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         //Инициализицая фрагмента для камеры
         arFragment = (ArFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.arFragment);
+
+        modelRef = modelRef.child("blasterH"+".glb");
+        newModel("blasterH"); //Создать по нажатию на экран
 
         //При нажатии создать новую сцену с renderable обектом
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
