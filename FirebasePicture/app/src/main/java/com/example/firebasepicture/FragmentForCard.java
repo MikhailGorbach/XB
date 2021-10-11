@@ -61,10 +61,9 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
             public void onClick(View v) {
                 GetDataFromFragment listener;
                 listener = (GetDataFromFragment) getActivity();
-                String res = "Res";
-                Log.d(model.name, "DEBUG");
+
                 getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
-                if(res.length() == 0) listener.GetData("Модель"); else listener.GetData(res);
+                listener.GetData(model.getName());
             }
         });
 

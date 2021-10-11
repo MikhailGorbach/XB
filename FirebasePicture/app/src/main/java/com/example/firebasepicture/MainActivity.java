@@ -1,5 +1,6 @@
 package com.example.firebasepicture;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     private ArFragment arFragment;      //Фрагмент с изображением
     private Fragment fragment;          //Фрагмент
 
+    SharedPreferences mySharedPreferences;  //Объект для работы с внутренней бд
+    Boolean boolTmp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +59,11 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
     //Инициализация компонентов
     private void initComponents(){
-        Toast.makeText(MainActivity.this, "WORK1", Toast.LENGTH_SHORT).show();
+        boolTmp = false;
+        mySharedPreferences = getSharedPreferences("FS", this.MODE_PRIVATE);
+
+
+
         initBottomNavigation();
 
         fragmentManager = getSupportFragmentManager();
@@ -126,8 +134,8 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         arFragment = (ArFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.arFragment);
 
-        modelRef = modelRef.child("blasterH"+".glb");
-        newModel("blasterH"); //Создать по нажатию на экран
+        //modelRef = modelRef.child("blasterH"+".glb");
+        //newModel("blasterH"); //Создать по нажатию на экран
 
         //При нажатии создать новую сцену с renderable обектом
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
@@ -170,6 +178,8 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         modelRef = FirebaseStorage.getInstance().getReference();
 
         findViewById(R.id.fragment_container).setBackgroundColor(Color.TRANSPARENT);
+        bottomNav.setItemEnabled(R.id.bottom_nav_main, false);
+        bottomNav.setItemEnabled(R.id.bottom_nav_main, true);
     }
 
 }
