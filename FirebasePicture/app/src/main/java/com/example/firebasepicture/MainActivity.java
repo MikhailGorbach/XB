@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.firebasepicture.Menu.IdeasFragment;
+import com.example.firebasepicture.Menu.MenuFragment;
+import com.example.firebasepicture.Menu.SettingsFragment;
 import com.example.firebasepicture.Policy.PolicyFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

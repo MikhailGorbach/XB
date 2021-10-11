@@ -7,26 +7,26 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.example.firebasepicture.R;
 
 public class PrivatePolicyFragment extends Fragment {
     private ImageButton btnBack;
     private ScrollView scrlView;
-    private Button btnPrivatePolicyAccept;
-    private Boolean boolTmp;
+    private Fragment fragment;
 
-    public PrivatePolicyFragment(Button btnPrivatePolicyAccept_){
-        btnPrivatePolicyAccept = btnPrivatePolicyAccept_;
-        boolTmp = btnPrivatePolicyAccept.isEnabled();
-    }
+    private TextView txtPrivatePolicyName_1;
+    private TextView txtPrivatePolicyName_2;
+    private TextView txtPrivatePolicy;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private int tip;
+
+    public PrivatePolicyFragment(Fragment fragment, int tip){
+        this.fragment = fragment;
+        this.tip = tip;
     }
 
     @Override
@@ -40,21 +40,38 @@ public class PrivatePolicyFragment extends Fragment {
     }
 
     private void initComponents(View v){
-        btnPrivatePolicyAccept.setEnabled(false);
-
+        txtPrivatePolicy = v.findViewById(R.id.txtPrivatePolicy);
+        txtPrivatePolicyName_1 = v.findViewById(R.id.txtPrivatePolicyName_1);
+        txtPrivatePolicyName_2 = v.findViewById(R.id.txtPrivatePolicyName_2);
         btnBack = v.findViewById(R.id.btnPrivatePolicyBack);
         scrlView = v.findViewById(R.id.scrlViewOfMainText);
 
         scrlView.setVerticalScrollBarEnabled(false);
         scrlView.setHorizontalScrollBarEnabled(false);
 
+        type(tip);
+
         btnBack.setImageResource(R.drawable.bbback);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnPrivatePolicyAccept.setEnabled(boolTmp);
-                getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.infoFragmentContainer)).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
             }
         });
+    }
+
+    private void type(int i){
+        switch (i){
+            case 0:
+                txtPrivatePolicyName_1.setText(R.string.PrivatePolicyName_1);
+                txtPrivatePolicyName_2.setText(R.string.PrivatePolicyName_2);
+                txtPrivatePolicy.setText(R.string.PrivatePolicyText);
+                break;
+            case 1:
+                txtPrivatePolicyName_1.setText(R.string.TermsAndConditionsName_1);
+                txtPrivatePolicyName_2.setText(R.string.TermsAndConditionsName_2);
+                txtPrivatePolicy.setText(R.string.TermsAndConditionsText);
+                break;
+        }
     }
 }

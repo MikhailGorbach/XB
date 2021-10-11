@@ -1,6 +1,7 @@
 package com.example.firebasepicture.Policy;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,12 +26,12 @@ public class PolicyFragment extends Fragment {
     private TextView txtLinkTermsAndConditions;
     private Button btnPrivatePolicyAccept;
     private ChipNavigationBar bottomNav;
-
+    private PolicyFragment ctx;
 
     public PolicyFragment(ChipNavigationBar bottomNav_) {
         btnPrivatePolicyStatus = btnTermsAndPolicyStatus = false;
         bottomNav = bottomNav_;
-
+        ctx = this;
         bottomNav.setVisibility(View.INVISIBLE);
     }
 
@@ -90,14 +91,16 @@ public class PolicyFragment extends Fragment {
         txtLinkPrivatePolicy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().add(R.id.infoFragmentContainer, new PrivatePolicyFragment(btnPrivatePolicyAccept)).commit();
+                PrivatePolicyFragment f = new PrivatePolicyFragment(ctx,0);
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, f).commit();
             }
         });
 
         txtLinkTermsAndConditions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                PrivatePolicyFragment f = new PrivatePolicyFragment(ctx,1);
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, f).commit();
             }
         });
     }

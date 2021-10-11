@@ -1,4 +1,4 @@
-package com.example.firebasepicture;
+package com.example.firebasepicture.Menu;
 
 import android.os.Bundle;
 
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.bumptech.glide.Glide;
+import com.example.firebasepicture.FragmentForButton;
+import com.example.firebasepicture.R;
 
 public class MenuFragment extends Fragment {
 
