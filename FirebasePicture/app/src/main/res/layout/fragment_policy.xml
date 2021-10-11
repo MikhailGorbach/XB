@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/design_default_color_primary_variant"
     tools:context=".PolicyFragment">
 
@@ -11,60 +11,81 @@
         android:id="@+id/txtTitlePrivatePolicy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:text="Политика конфиденциальности, правила и условия использования"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="28sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
+        android:textSize="28sp" />
 
     <TextView
         android:id="@+id/txtWarningPrivatePolicy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txtTitlePrivatePolicy"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:text="Я ознакомился(лась) с политикой конфиденциальности и понял(а) её"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:layout_below="@+id/txtTitlePrivatePolicy"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/txtLinkPrivatePolicy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txtWarningPrivatePolicy"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:text="Политика конфиденциальности"
         android:textAlignment="center"
         android:textColor="@color/colorBlue1"
-        android:textSize="16sp"
-        android:layout_below="@+id/txtWarningPrivatePolicy"
+        android:textSize="16sp" />
+
+    <ImageButton
+        android:id="@+id/imgCheckPrivatePolicy"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/txtLinkPrivatePolicy"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
+        android:background="@color/colorTransparent"
+        android:scaleType="centerInside"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:src="@drawable/check_off" />
 
     <TextView
         android:id="@+id/txtWarningTermsAndConditions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/imgCheckPrivatePolicy"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
         android:text="Я принимаю правила и условия использования"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"/>
-    <!--tempText-->
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/txtLinkTermsAndConditions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txtWarningTermsAndConditions"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:text="Правила и условия использования"
         android:textAlignment="center"
-        android:textColor="@color/colorBlue1"
-        android:textSize="16sp"
+        android:textColor="#00B0FF" />
+
+    <ImageButton
+        android:id="@+id/imgCheckTermsAndPolicy"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/txtLinkTermsAndConditions"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/txtWarningTermsAndConditions"
-        android:layout_marginTop="10dp"/>
+        android:background="@color/colorTransparent"
+        android:scaleType="centerInside"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:src="@drawable/check_off" />
 
     <Button
         android:id="@+id/btnPrivatePolicyAccept"
@@ -74,11 +95,5 @@
         android:layout_centerHorizontal="true"
         android:text="Приступить" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CheckBox" />
 
 </RelativeLayout>
