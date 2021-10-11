@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/design_default_color_primary_variant"
-    tools:context=".PolicyFragment">
+    tools:context=".Policy.PolicyFragment">
 
     <TextView
         android:id="@+id/txtTitlePrivatePolicy"
@@ -39,7 +39,7 @@
         android:layout_marginTop="10dp"
         android:text="Политика конфиденциальности"
         android:textAlignment="center"
-        android:textColor="@color/colorBlue1"
+        android:textColor="#00B0FF"
         android:textSize="16sp" />
 
     <ImageButton
@@ -95,5 +95,11 @@
         android:layout_centerHorizontal="true"
         android:text="Приступить" />
 
+    <FrameLayout
+        android:id="@+id/infoFragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </RelativeLayout>

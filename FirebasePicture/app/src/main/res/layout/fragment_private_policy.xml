@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".Policy.PrivatePolicyFragment">
+
+    <ImageView
+        android:id="@+id/imgBlankA"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:background="@color/colorWhite"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/blank_a"
+        tools:srcCompat="@drawable/blank_a" />
+
+    <ImageButton
+        android:id="@+id/btnPrivatePolicyBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorTransparent"
+        android:scaleType="centerCrop"
+        app:tint="#2196F3"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:src="@drawable/bbback" />
+
+    <TextView
+        android:id="@+id/txtPrivatePolicyName_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnPrivatePolicyBack"
+        android:layout_marginLeft="15dp"
+        android:text="Политика"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/txtPrivatePolicyName_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPrivatePolicyName_1"
+        android:layout_marginLeft="15dp"
+        android:text="Конфиденциальности"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+    <ScrollView
+        android:id="@+id/scrlViewOfMainText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/imgBlankA"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="25dp"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <TextView
+            android:id="@+id/txtPrivatePolicy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="МногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекста"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </ScrollView>
+
+</RelativeLayout>

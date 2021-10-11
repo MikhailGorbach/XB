@@ -1,5 +1,6 @@
-package com.example.firebasepicture;
+package com.example.firebasepicture.Policy;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
+import com.example.firebasepicture.R;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class PolicyFragment extends Fragment {
     private Boolean btnPrivatePolicyStatus;
@@ -16,10 +21,17 @@ public class PolicyFragment extends Fragment {
 
     private ImageButton btnPrivatePolicy;
     private ImageButton btnTermsAndPolicy;
+    private TextView txtLinkPrivatePolicy;
+    private TextView txtLinkTermsAndConditions;
     private Button btnPrivatePolicyAccept;
+    private ChipNavigationBar bottomNav;
 
-    public PolicyFragment() {
+
+    public PolicyFragment(ChipNavigationBar bottomNav_) {
         btnPrivatePolicyStatus = btnTermsAndPolicyStatus = false;
+        bottomNav = bottomNav_;
+
+        bottomNav.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -37,10 +49,13 @@ public class PolicyFragment extends Fragment {
         return v;
     }
 
+    @SuppressLint("WrongConstant")
     private void initComponents(View v){
-        btnPrivatePolicy = v.findViewById(R.id.imgCheckPrivatePolicy);
-        btnTermsAndPolicy = v.findViewById(R.id.imgCheckTermsAndPolicy);
-        btnPrivatePolicyAccept = v.findViewById(R.id.btnPrivatePolicyAccept);
+        btnPrivatePolicy            = v.findViewById(R.id.imgCheckPrivatePolicy);
+        btnTermsAndPolicy           = v.findViewById(R.id.imgCheckTermsAndPolicy);
+        btnPrivatePolicyAccept      = v.findViewById(R.id.btnPrivatePolicyAccept);
+        txtLinkPrivatePolicy        = v.findViewById(R.id.txtLinkPrivatePolicy);
+        txtLinkTermsAndConditions   = v.findViewById(R.id.txtLinkTermsAndConditions);
 
         btnPrivatePolicy.setImageResource(R.drawable.check_off);
         btnTermsAndPolicy.setImageResource(R.drawable.check_off);
@@ -67,7 +82,22 @@ public class PolicyFragment extends Fragment {
         btnPrivatePolicyAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bottomNav.setVisibility(View.VISIBLE);
                 getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+            }
+        });
+
+        txtLinkPrivatePolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().add(R.id.infoFragmentContainer, new PrivatePolicyFragment(btnPrivatePolicyAccept)).commit();
+            }
+        });
+
+        txtLinkTermsAndConditions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

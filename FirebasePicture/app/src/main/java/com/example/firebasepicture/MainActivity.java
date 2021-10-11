@@ -2,16 +2,13 @@ package com.example.firebasepicture;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.firebasepicture.Policy.PolicyFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -25,7 +22,6 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import com.google.ar.sceneform.ux.TransformableNode;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import androidx.annotation.NonNull;
@@ -34,7 +30,6 @@ import androidx.fragment.app.FragmentManager;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements GetDataFromFragment
 {
@@ -77,8 +72,8 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         FirebaseApp.initializeApp(this);
 
         //temp
-        bottomNav.setVisibility(View.INVISIBLE);
-        PolicyFragment policyFragment = new PolicyFragment();
+
+        PolicyFragment policyFragment = new PolicyFragment(bottomNav);
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, policyFragment)
                 .commit();
