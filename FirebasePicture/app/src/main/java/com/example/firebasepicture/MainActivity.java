@@ -59,10 +59,16 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
     //Инициализация компонентов
     private void initComponents(){
+
+        //temp
+        PolicyFragment policyFragment = new PolicyFragment();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, policyFragment)
+                .commit();
+        //endtemp
+
         boolTmp = false;
         mySharedPreferences = getSharedPreferences("FS", this.MODE_PRIVATE);
-
-
 
         initBottomNavigation();
 

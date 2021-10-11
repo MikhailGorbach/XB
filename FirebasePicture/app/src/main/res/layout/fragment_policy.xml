@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,10 +8,77 @@
     tools:context=".PolicyFragment">
 
     <TextView
+        android:id="@+id/txtTitlePrivatePolicy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Политика конфендециальности"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="140dp" />
+        android:text="Политика конфиденциальности, правила и условия использования"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/txtWarningPrivatePolicy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Я ознакомился(лась) с политикой конфиденциальности и понял(а) её"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_below="@+id/txtTitlePrivatePolicy"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/txtLinkPrivatePolicy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Политика конфиденциальности"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlue1"
+        android:textSize="16sp"
+        android:layout_below="@+id/txtWarningPrivatePolicy"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/txtWarningTermsAndConditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Я принимаю правила и условия использования"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"/>
+    <!--tempText-->
+
+    <TextView
+        android:id="@+id/txtLinkTermsAndConditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Правила и условия использования"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlue1"
+        android:textSize="16sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txtWarningTermsAndConditions"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/btnPrivatePolicyAccept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Приступить" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CheckBox" />
+
+</RelativeLayout>
