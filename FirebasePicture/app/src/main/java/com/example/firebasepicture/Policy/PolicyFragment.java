@@ -1,9 +1,10 @@
 package com.example.firebasepicture.Policy;
 
 import android.annotation.SuppressLint;
+import android.app.UiModeManager;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -60,7 +61,9 @@ public class PolicyFragment extends Fragment {
 
         btnPrivatePolicy.setImageResource(R.drawable.check_off);
         btnTermsAndPolicy.setImageResource(R.drawable.check_off);
+
         btnPrivatePolicyAccept.setEnabled(false);
+        btnPrivatePolicyAccept.setBackgroundColor(Color.GRAY);
 
         btnPrivatePolicy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +71,11 @@ public class PolicyFragment extends Fragment {
                 btnPrivatePolicyStatus = !btnPrivatePolicyStatus;
                 btnPrivatePolicy.setImageResource(btnPrivatePolicyStatus ? R.drawable.check_on : R.drawable.check_off);
                 btnPrivatePolicyAccept.setEnabled((btnPrivatePolicyStatus && btnTermsAndPolicyStatus) ? true : false);
+
+                if (btnPrivatePolicyStatus && btnTermsAndPolicyStatus)
+                    btnPrivatePolicyAccept.setBackgroundColor(Color.BLUE);
+                else
+                    btnPrivatePolicyAccept.setBackgroundColor(Color.GRAY);
             }
         });
 
@@ -77,6 +85,11 @@ public class PolicyFragment extends Fragment {
                 btnTermsAndPolicyStatus = !btnTermsAndPolicyStatus;
                 btnTermsAndPolicy.setImageResource(btnTermsAndPolicyStatus ? R.drawable.check_on : R.drawable.check_off);
                 btnPrivatePolicyAccept.setEnabled((btnPrivatePolicyStatus && btnTermsAndPolicyStatus) ? true : false);
+
+                if (btnPrivatePolicyStatus && btnTermsAndPolicyStatus)
+                    btnPrivatePolicyAccept.setBackgroundColor(Color.BLUE);
+                else
+                    btnPrivatePolicyAccept.setBackgroundColor(Color.GRAY);
             }
         });
 
