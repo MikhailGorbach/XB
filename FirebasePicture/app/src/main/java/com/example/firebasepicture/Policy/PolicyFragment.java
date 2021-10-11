@@ -59,11 +59,16 @@ public class PolicyFragment extends Fragment {
         txtLinkPrivatePolicy        = v.findViewById(R.id.txtLinkPrivatePolicy);
         txtLinkTermsAndConditions   = v.findViewById(R.id.txtLinkTermsAndConditions);
 
-        btnPrivatePolicy.setImageResource(R.drawable.check_off);
-        btnTermsAndPolicy.setImageResource(R.drawable.check_off);
+        btnPrivatePolicy.setImageResource((!btnPrivatePolicyStatus) ? R.drawable.check_off : R.drawable.check_on);
+        btnTermsAndPolicy.setImageResource((!btnTermsAndPolicyStatus) ? R.drawable.check_off : R.drawable.check_on);
 
-        btnPrivatePolicyAccept.setEnabled(false);
-        btnPrivatePolicyAccept.setBackgroundColor(Color.GRAY);
+        if (btnPrivatePolicyStatus && btnTermsAndPolicyStatus) {
+            btnPrivatePolicyAccept.setBackgroundColor(Color.BLUE);
+            btnPrivatePolicyAccept.setEnabled(true);
+        }else {
+            btnPrivatePolicyAccept.setBackgroundColor(Color.GRAY);
+            btnPrivatePolicyAccept.setEnabled(false);
+        }
 
         btnPrivatePolicy.setOnClickListener(new View.OnClickListener() {
             @Override
