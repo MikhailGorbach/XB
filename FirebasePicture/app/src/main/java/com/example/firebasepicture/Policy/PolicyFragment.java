@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.firebasepicture.Policy.Welcom.Welcome;
 import com.example.firebasepicture.R;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
@@ -101,8 +102,9 @@ public class PolicyFragment extends Fragment {
         btnPrivatePolicyAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bottomNav.setVisibility(View.VISIBLE);
-                getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+                //bottomNav.setVisibility(View.VISIBLE);
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Welcome()).commit();
+                //remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
             }
         });
 

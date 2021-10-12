@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="WelcomePage1Title">Мы вас ждали!</string>
+    <string name="WelcomePage1Text">Начните выбирать любимую мебель прямо из меню</string>
+    <string name="WelcomePage2Title">Пространство</string>
+    <string name="WelcomePage2Text">Поставьте мебель в любое удобное место, прямо у Вас в помещении!</string>
+    <string name="WelcomePage3Title">Перемещение</string>
+    <string name="WelcomePage3Text">Передвигайте и поворачивайте модель, как Вам угодно.</string>
+</resources>
