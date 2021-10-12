@@ -1,5 +1,6 @@
 package com.example.firebasepicture.Policy.Welcom;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.firebasepicture.MainActivity;
 import com.example.firebasepicture.R;
 
 public class PageFragment extends Fragment {
@@ -53,6 +55,13 @@ public class PageFragment extends Fragment {
         btnWelcomAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences.Editor editor = MainActivity.mySharedPreferences.edit();
+                editor.putBoolean(MainActivity.PrivatePolicyKey, true);
+                editor.apply();
+
+                MainActivity.bottomNav.setEnabled(true);
+                MainActivity.bottomNav.setVisibility(View.VISIBLE);
+
                 getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
             }
         });

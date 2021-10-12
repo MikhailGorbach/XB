@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.firebasepicture.MainActivity;
 import com.example.firebasepicture.Policy.Welcom.Welcome;
 import com.example.firebasepicture.R;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -27,14 +28,14 @@ public class PolicyFragment extends Fragment {
     private TextView txtLinkPrivatePolicy;
     private TextView txtLinkTermsAndConditions;
     private Button btnPrivatePolicyAccept;
-    private ChipNavigationBar bottomNav;
     private PolicyFragment ctx;
 
-    public PolicyFragment(ChipNavigationBar bottomNav_) {
+    public PolicyFragment() {
+        MainActivity.bottomNav.setEnabled(false);
+        MainActivity.bottomNav.setVisibility(View.INVISIBLE);
+
         btnPrivatePolicyStatus = btnTermsAndPolicyStatus = false;
-        bottomNav = bottomNav_;
         ctx = this;
-        bottomNav.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -102,25 +103,21 @@ public class PolicyFragment extends Fragment {
         btnPrivatePolicyAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //bottomNav.setVisibility(View.VISIBLE);
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Welcome()).commit();
-                //remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
             }
         });
 
         txtLinkPrivatePolicy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PrivatePolicyFragment f = new PrivatePolicyFragment(ctx,0);
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, f).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new PrivatePolicyFragment(ctx,0)).commit();
             }
         });
 
         txtLinkTermsAndConditions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PrivatePolicyFragment f = new PrivatePolicyFragment(ctx,1);
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, f).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new PrivatePolicyFragment(ctx,1)).commit();
             }
         });
     }

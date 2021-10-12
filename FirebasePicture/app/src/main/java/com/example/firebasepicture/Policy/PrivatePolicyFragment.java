@@ -21,6 +21,7 @@ public class PrivatePolicyFragment extends Fragment {
     private TextView txtPrivatePolicyName_1;
     private TextView txtPrivatePolicyName_2;
     private TextView txtPrivatePolicy;
+    private TextView txtConnectInfo;
 
     private int tip;
 
@@ -43,11 +44,20 @@ public class PrivatePolicyFragment extends Fragment {
         txtPrivatePolicy = v.findViewById(R.id.txtPrivatePolicy);
         txtPrivatePolicyName_1 = v.findViewById(R.id.txtPrivatePolicyName_1);
         txtPrivatePolicyName_2 = v.findViewById(R.id.txtPrivatePolicyName_2);
+        txtConnectInfo = v.findViewById(R.id.txtConnectInfo);
+
         btnBack = v.findViewById(R.id.btnPrivatePolicyBack);
         scrlView = v.findViewById(R.id.scrlViewOfMainText);
 
         scrlView.setVerticalScrollBarEnabled(false);
         scrlView.setHorizontalScrollBarEnabled(false);
+
+        txtConnectInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Нажатие на ссылку
+            }
+        });
 
         type(tip);
 
@@ -61,6 +71,9 @@ public class PrivatePolicyFragment extends Fragment {
     }
 
     private void type(int i){
+        txtConnectInfo.setEnabled(false);
+        txtConnectInfo.setVisibility(View.INVISIBLE);
+
         switch (i){
             case 0:
                 txtPrivatePolicyName_1.setText(R.string.PrivatePolicyName_1);
@@ -71,6 +84,13 @@ public class PrivatePolicyFragment extends Fragment {
                 txtPrivatePolicyName_1.setText(R.string.TermsAndConditionsName_1);
                 txtPrivatePolicyName_2.setText(R.string.TermsAndConditionsName_2);
                 txtPrivatePolicy.setText(R.string.TermsAndConditionsText);
+                break;
+            case 2:
+                txtPrivatePolicyName_1.setText(R.string.ConnectName_1);
+                txtPrivatePolicyName_2.setText(R.string.ConnectName_2);
+                txtPrivatePolicy.setText(R.string.ConnectText);
+                txtConnectInfo.setEnabled(true);
+                txtConnectInfo.setVisibility(View.VISIBLE);
                 break;
         }
     }

@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".Menu.MenuFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:id="@+id/imageButton"
+        <ImageView
             android:layout_width="match_parent"
+            android:layout_height="226dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/upbcg"
+            tools:srcCompat="@drawable/upbcg" />
+
+        <TextView
+            android:id="@+id/txtSettingName_1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="100dp"
-            tools:ignore="SpeakableTextPresentCheck"
-            tools:src="@drawable/idea" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:text="Каталог"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
 
-        <FrameLayout
-            android:id="@+id/frame_layout_on_menu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txtSettingName_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtSettingName_1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Выбрать"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
-        </FrameLayout>
-    </LinearLayout>
-</FrameLayout>
+</RelativeLayout>

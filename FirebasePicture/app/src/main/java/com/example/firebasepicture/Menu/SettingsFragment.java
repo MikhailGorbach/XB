@@ -35,7 +35,7 @@ public class SettingsFragment extends Fragment {
         txtLinkSettingPrivatePolicy = v.findViewById(R.id.txtLinkSettingPrivatePolicy);
         txtLinkSettingTermsAndConditions = v.findViewById(R.id.txtLinkSettingTermsAndConditions);
         txtLinkSettingFeedBack = v.findViewById(R.id.txtLinkSettingFeedBack);
-        txtLinkSettingScenes = v.findViewById(R.id.txtLinkSettingScenes);
+        //txtLinkSettingScenes = v.findViewById(R.id.txtLinkSettingScenes);
 
         txtLinkSettingPrivatePolicy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +50,13 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 PrivatePolicyFragment f = new PrivatePolicyFragment(ctx,1);
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, f).commit();
+            }
+        });
+
+        txtLinkSettingFeedBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new PrivatePolicyFragment(ctx,2)).commit();
             }
         });
     }

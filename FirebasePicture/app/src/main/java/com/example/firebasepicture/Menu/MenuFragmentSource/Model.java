@@ -1,12 +1,4 @@
-package com.example.firebasepicture;
-
-import android.graphics.Bitmap;
-import android.graphics.drawable.Icon;
-import android.media.Image;
-import android.net.Uri;
-import android.util.Log;
-
-import java.net.URL;
+package com.example.firebasepicture.Menu.MenuFragmentSource;
 
 //Информация об записи в firebase
 public class Model {
