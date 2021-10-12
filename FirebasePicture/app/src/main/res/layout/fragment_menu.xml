@@ -34,4 +34,15 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listOfItemSetting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/txtSettingName_2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="70dp"
+            android:background="@drawable/background_recycler_view" />
+
 </RelativeLayout>

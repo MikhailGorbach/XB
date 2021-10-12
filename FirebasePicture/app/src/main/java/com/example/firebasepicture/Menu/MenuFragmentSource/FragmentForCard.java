@@ -51,7 +51,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         v.findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton("name")).commit();
             }
         });
         ((Button) v.findViewById(R.id.btn3D)).setOnClickListener(new View.OnClickListener() {

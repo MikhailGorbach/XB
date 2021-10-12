@@ -28,6 +28,11 @@ public class FragmentForButton extends Fragment{
     private RecyclerView recyclerView;
     private FirestoreRecyclerAdapter adapter;
     private Context context;
+    private String name;
+
+    public FragmentForButton(String name){
+        this.name = name;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,13 +69,13 @@ public class FragmentForButton extends Fragment{
 
              @Override
              protected void onBindViewHolder(@NonNull AdapterToCards holder, int position, @NonNull Model model) {
+
                  holder.txtTitle.setText(model.getTitle());
                  holder.txtPrice.setText(model.getPrice());
                  Glide.with(holder.img1.getContext()).load(model.getPic()).into(holder.img1);
                  holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View v) {
-                         Log.d("debug", "Click on card: model(name,pic,price,title) = "+((model.name == null) ?"null" : model.name)+" "+model.pic+" "+model.price+" "+model.title);
                          getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForCard(model)).commit();
                      }
                  });

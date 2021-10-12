@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">FirebasePicture</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="InfoAtFragmentMenuChairs">Chairs</string>
+    <string name="InfoAtFragmentMenuTables">Tables</string>
+    <string name="InfoAtFragmentMenuLights">Lights</string>
 </resources>
