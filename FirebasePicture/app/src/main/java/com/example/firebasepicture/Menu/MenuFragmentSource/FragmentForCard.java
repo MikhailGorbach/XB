@@ -19,10 +19,12 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
     private TextView txtTitle;
     private TextView txtPrice;
     private ImageView img;
-    FragmentForCard ctx;
 
-    public FragmentForCard(Model model) {
+    private Fragment fragment;
+
+    public FragmentForCard(Model model, Fragment fragment) {
         this.model = model;
+        this.fragment = fragment;
     }
 
     @Override
@@ -34,7 +36,6 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_for_card, container, false);
-        ctx = this;
         initComponents(v);
         return v;
     }
@@ -51,7 +52,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         v.findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton("name")).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
             }
         });
         ((Button) v.findViewById(R.id.btn3D)).setOnClickListener(new View.OnClickListener() {

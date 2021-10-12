@@ -68,6 +68,13 @@ public class MenuFragment extends Fragment{
         @Override
         public void onBindViewHolder(@NonNull UsersAdapter.UsersAdapterVh holder, int position) {
             holder.txtTitle.setText(userModelList.get(position));
+            holder.layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton(userModelList.get(position))).commit();
+                    //При нажатии на текст мы переходим на список элементов
+                }
+            });
         }
 
         @Override
@@ -75,21 +82,14 @@ public class MenuFragment extends Fragment{
             return userModelList.size();
         }
 
-        //Какая-та важная штука
         public class UsersAdapterVh extends RecyclerView.ViewHolder {
             public TextView txtTitle;
             public RelativeLayout layout;
 
             public UsersAdapterVh(@NonNull View itemView) {
                 super(itemView);
-                txtTitle = itemView.findViewById(R.id.uses_title);
-                ((RelativeLayout) itemView.findViewById(R.id.layout_title)).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton("name")).commit();
-                        //При нажатии на текст мы переходим на список элементов
-                    }
-                });
+                txtTitle = (TextView) itemView.findViewById(R.id.uses_title);
+                layout = (RelativeLayout) itemView.findViewById(R.id.layout_title);
             }
         }
     }

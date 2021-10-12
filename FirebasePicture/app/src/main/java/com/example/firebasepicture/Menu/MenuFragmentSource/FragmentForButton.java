@@ -28,10 +28,12 @@ public class FragmentForButton extends Fragment{
     private RecyclerView recyclerView;
     private FirestoreRecyclerAdapter adapter;
     private Context context;
-    private String name;
+    private int name;
+    private FragmentForButton fragment;
 
-    public FragmentForButton(String name){
+    public FragmentForButton(int name){
         this.name = name;
+        fragment = this;
     }
 
     @Override
@@ -76,7 +78,7 @@ public class FragmentForButton extends Fragment{
                  holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View v) {
-                         getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForCard(model)).commit();
+                         getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForCard(model, fragment)).commit();
                      }
                  });
              }
