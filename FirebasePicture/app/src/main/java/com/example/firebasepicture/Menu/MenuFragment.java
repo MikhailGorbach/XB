@@ -1,6 +1,6 @@
 package com.example.firebasepicture.Menu;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -53,7 +51,7 @@ public class MenuFragment extends Fragment{
     }
 
 
-    public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersAdapterVh>{
+    public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterViewHolder>{
         private List<Integer> userModelList;
 
         public UsersAdapter(List<Integer> userModelList) {
@@ -61,12 +59,12 @@ public class MenuFragment extends Fragment{
         }
 
         @Override
-        public UsersAdapter.UsersAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new UsersAdapterVh(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_uses,null));
+        public UserAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new UserAdapterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_uses,null));
         }
 
         @Override
-        public void onBindViewHolder(@NonNull UsersAdapter.UsersAdapterVh holder, int position) {
+        public void onBindViewHolder(@NonNull UserAdapterViewHolder holder, @SuppressLint("RecyclerView") int position) {
             holder.txtTitle.setText(userModelList.get(position));
             holder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -82,11 +80,11 @@ public class MenuFragment extends Fragment{
             return userModelList.size();
         }
 
-        public class UsersAdapterVh extends RecyclerView.ViewHolder {
+        public class UserAdapterViewHolder extends RecyclerView.ViewHolder {
             public TextView txtTitle;
             public RelativeLayout layout;
 
-            public UsersAdapterVh(@NonNull View itemView) {
+            public UserAdapterViewHolder(@NonNull View itemView) {
                 super(itemView);
                 txtTitle = (TextView) itemView.findViewById(R.id.uses_title);
                 layout = (RelativeLayout) itemView.findViewById(R.id.layout_title);
