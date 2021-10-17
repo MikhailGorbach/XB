@@ -5,16 +5,21 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.firebasepicture.Menu.MenuFragmentSource.FragmentForButton;
+import com.example.firebasepicture.Menu.MenuFragmentSource.FragmentForCard;
+import com.example.firebasepicture.Menu.MenuFragmentSource.Model;
 import com.example.firebasepicture.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +45,10 @@ public class MenuFragment extends Fragment{
     void initComponenet(View v){
         listOfItemSetting = v.findViewById(R.id.listOfItemSetting);
 
-        List<Integer> arrayList = new ArrayList<Integer>();
-        arrayList.add(R.string.InfoAtFragmentMenuTables);
-        arrayList.add(R.string.InfoAtFragmentMenuChairs);
-        arrayList.add(R.string.InfoAtFragmentMenuLights);
+        List<String> arrayList = new ArrayList<String>();
+        arrayList.add(getString(R.string.InfoAtFragmentMenuTables));
+        arrayList.add(getString(R.string.InfoAtFragmentMenuChairs));
+        arrayList.add(getString(R.string.InfoAtFragmentMenuLights));
         UsersAdapter adapter = new UsersAdapter(arrayList);
 
         listOfItemSetting.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -52,9 +57,9 @@ public class MenuFragment extends Fragment{
 
 
     public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterViewHolder>{
-        private List<Integer> userModelList;
+        private List<String> userModelList;
 
-        public UsersAdapter(List<Integer> userModelList) {
+        public UsersAdapter(List<String> userModelList) {
             this.userModelList = userModelList;
         }
 
@@ -70,7 +75,6 @@ public class MenuFragment extends Fragment{
                 @Override
                 public void onClick(View view) {
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton(userModelList.get(position))).commit();
-                    //При нажатии на текст мы переходим на список элементов
                 }
             });
         }

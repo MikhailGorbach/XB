@@ -1,9 +1,11 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,12 +18,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.firebasepicture.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentForButton extends Fragment{
+    private final int limit = 8;
     private FirebaseFirestore firebaseFirestore;
     private RecyclerView recyclerView;
     private ArrayList<Model> modelList;
@@ -38,10 +40,10 @@ public class FragmentForButton extends Fragment{
     private FirestoreRecyclerAdapter adapter;
     private DocumentSnapshot lastVisible;
     private FragmentForButton fragment;
-    private int name;
+    private String name;
     private Query query;
 
-    public FragmentForButton(int name){
+    public FragmentForButton(String name){
         this.name = name;
         fragment = this;
         modelList = new ArrayList<>();
@@ -57,15 +59,46 @@ public class FragmentForButton extends Fragment{
     }
 
     private void initComponents(View v){
-        initRecyclerView(v);
         firebaseFirestore = FirebaseFirestore.getInstance();
-        rvAdapter = new ModelRVAdapter(modelList, fragment.getContext());
-        recyclerView.setAdapter(rvAdapter);
+        rvAdapter = new ModelRVAdapter(modelList,fragment);
+
+        recyclerView = v.findViewById(R.id.recview);
+        recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
+        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
+            @Override
+            public void onLoadMore(int currentPage) {
+                Query nextQuery = firebaseFirestore.collection("models")
+                        .startAfter(lastVisible)
+                        .whereEqualTo("categories",name)
+                        .limit(limit);
+
+                nextQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d : list) {
+                                Model c = d.toObject(Model.class);
+                                modelList.add(c);
+                                lastVisible = d;
+                            }
+                            rvAdapter.notifyDataSetChanged();
+                        }
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+            }
+        });
 
         query = firebaseFirestore
                 .collection("models")
-                .whereEqualTo("categories",getString(name))
-                .limit(8);
+                .whereEqualTo("categories",name)
+                .limit(limit);
 
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -88,112 +121,15 @@ public class FragmentForButton extends Fragment{
                 Toast.makeText(fragment.getContext(), "Fail to get the data.", Toast.LENGTH_SHORT).show();
             }
         });
-        /*
-        query = firebaseFirestore.collection("models").whereEqualTo("categories",getString(name)).limit(6);
 
-        //Подключаем корневую папку с карточками
-        FirestoreRecyclerOptions<Model> options =
-                new FirestoreRecyclerOptions.Builder<Model>()
-                    .setQuery(query, Model.class)
-                    .build();
-
-        adapter = new FirestoreRecyclerAdapter<Model, AdapterToCards>(options) {
-             @NonNull
-             @Override
-             public AdapterToCards onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                 View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_disign, parent, false);
-                 return new AdapterToCards(v);
-             }
-
-             @Override
-             protected void onBindViewHolder(@NonNull AdapterToCards holder, int position, @NonNull Model model) {
-                 holder.txtTitle.setText(model.getTitle());
-                 holder.txtPrice.setText(model.getPrice());
-                 Glide.with(holder.img1.getContext()).load(model.getPic()).into(holder.img1);
-                 holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-                     @Override
-                     public void onClick(View v) {
-                         getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForCard(model, fragment)).commit();
-                     }
-                 });
-             }
-        };
-
-
-        recyclerView.setAdapter(adapter);
-*/
-    }
-
-    private void initRecyclerView(View v){
-        recyclerView = v.findViewById(R.id.recview);
-        recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
-        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
-            @Override
-            public void onLoadMore(int currentPage) {
-                Query nextQuery = firebaseFirestore.collection("models")
-                        .startAfter(lastVisible)
-                        .whereEqualTo("categories",getString(name))
-                        .limit(6);
-
-                nextQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if (!queryDocumentSnapshots.isEmpty()) {
-                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                            for (DocumentSnapshot d : list) {
-                                Model c = d.toObject(Model.class);
-                                modelList.add(c);
-                                lastVisible = d;
-                            }
-                            rvAdapter.notifyDataSetChanged();
-                        } else
-                            Toast.makeText(fragment.getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(fragment.getContext(), "Fail to get the data.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-    }
-
-/*    @Override
-    public void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }*/
-
-    public class AdapterToCards extends RecyclerView.ViewHolder {
-
-        public ImageView img1;
-        public TextView txtTitle;
-        public TextView txtPrice;
-        public RelativeLayout relativeLayout;
-
-        public AdapterToCards(@NonNull View itemView) {
-            super(itemView);
-
-            img1 = itemView.findViewById(R.id.img1);
-            txtTitle = itemView.findViewById(R.id.txtTitle);
-            txtPrice = itemView.findViewById(R.id.txtPrice);
-            relativeLayout = itemView.findViewById(R.id.backLayout);
-        }
+        recyclerView.setAdapter(rvAdapter);
     }
 
     public abstract static class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener {
         public static String TAG = "EndlessScrollListener";
 
-        private int previousTotal = 0; // The total number of items in the dataset after the last load
-        private boolean loading = true; // True if we are still waiting for the last set of data to load.
+        private int previousTotal = 0;      // The total number of items in the dataset after the last load
+        private boolean loading = true;     // True if we are still waiting for the last set of data to load.
         private int visibleThreshold = 1;   //Минимальное кол. элементов, вниз, после которых начётся загрузка
         int firstVisibleItem, visibleItemCount, totalItemCount;
 
@@ -218,17 +154,12 @@ public class FragmentForButton extends Fragment{
             }
             if (!loading && (totalItemCount - visibleItemCount)
                     <= (firstVisibleItem + visibleThreshold)) {
-                // End has been reached
-                // Do something
                 currentPage++;
-
                 onLoadMore(currentPage);
-
                 loading = true;
             }
         }
 
-        //Start loading
         public abstract void onLoadMore(int currentPage);
     }
 
@@ -249,58 +180,25 @@ public class FragmentForButton extends Fragment{
             return new RecyclerViewPositionHelper(recyclerView);
         }
 
-        /**
-         * Returns the adapter item count.
-         *
-         * @return The total number on items in a layout manager
-         */
         public int getItemCount() {
             return layoutManager == null ? 0 : layoutManager.getItemCount();
         }
 
-        /**
-         * Returns the adapter position of the first visible view. This position does not include
-         * adapter changes that were dispatched after the last layout pass.
-         *
-         * @return The adapter position of the first visible item or {@link RecyclerView#NO_POSITION} if
-         * there aren't any visible items.
-         */
         public int findFirstVisibleItemPosition() {
             final View child = findOneVisibleChild(0, layoutManager.getChildCount(), false, true);
             return child == null ? RecyclerView.NO_POSITION : recyclerView.getChildAdapterPosition(child);
         }
 
-        /**
-         * Returns the adapter position of the first fully visible view. This position does not include
-         * adapter changes that were dispatched after the last layout pass.
-         *
-         * @return The adapter position of the first fully visible item or
-         * {@link RecyclerView#NO_POSITION} if there aren't any visible items.
-         */
         public int findFirstCompletelyVisibleItemPosition() {
             final View child = findOneVisibleChild(0, layoutManager.getChildCount(), true, false);
             return child == null ? RecyclerView.NO_POSITION : recyclerView.getChildAdapterPosition(child);
         }
 
-        /**
-         * Returns the adapter position of the last visible view. This position does not include
-         * adapter changes that were dispatched after the last layout pass.
-         *
-         * @return The adapter position of the last visible view or {@link RecyclerView#NO_POSITION} if
-         * there aren't any visible items
-         */
         public int findLastVisibleItemPosition() {
             final View child = findOneVisibleChild(layoutManager.getChildCount() - 1, -1, false, true);
             return child == null ? RecyclerView.NO_POSITION : recyclerView.getChildAdapterPosition(child);
         }
 
-        /**
-         * Returns the adapter position of the last fully visible view. This position does not include
-         * adapter changes that were dispatched after the last layout pass.
-         *
-         * @return The adapter position of the last fully visible view or
-         * {@link RecyclerView#NO_POSITION} if there aren't any visible items.
-         */
         public int findLastCompletelyVisibleItemPosition() {
             final View child = findOneVisibleChild(layoutManager.getChildCount() - 1, -1, true, false);
             return child == null ? RecyclerView.NO_POSITION : recyclerView.getChildAdapterPosition(child);
@@ -339,4 +237,64 @@ public class FragmentForButton extends Fragment{
         }
     }
 
+    public class ModelRVAdapter extends RecyclerView.Adapter<ModelRVAdapter.ViewHolder> {
+        private ArrayList<Model> modelsList;
+        private FragmentForButton fragment;
+
+        public ModelRVAdapter(ArrayList<Model> coursesArrayList, FragmentForButton fragment) {
+            this.modelsList = coursesArrayList;
+            this.fragment = fragment;
+        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.card_disign, parent, false));
+        }
+
+        @SuppressLint("ResourceType")
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+            Model model = modelsList.get(position);
+
+            holder.txtTitle.setText(model.getTitle());
+            holder.txtPrice.setText(model.getPrice());
+            Glide.with(holder.img1.getContext()).load(model.getPic()).into(holder.img1);
+            holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForCard(model, fragment)).commit();
+                }
+            });
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return modelsList.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            public ImageView img1;
+            public TextView txtTitle;
+            public TextView txtPrice;
+            public RelativeLayout relativeLayout;
+
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+
+                img1 = itemView.findViewById(R.id.img1);
+                txtTitle = itemView.findViewById(R.id.txtTitle);
+                txtPrice = itemView.findViewById(R.id.txtPrice);
+                relativeLayout = itemView.findViewById(R.id.backLayout);
+
+                relativeLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+            }
+        }
+    }
 }
