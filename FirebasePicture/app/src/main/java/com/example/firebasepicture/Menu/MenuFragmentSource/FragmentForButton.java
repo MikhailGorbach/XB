@@ -35,6 +35,7 @@ public class FragmentForButton extends Fragment{
     private RecyclerView recyclerView;
     private ArrayList<Model> modelList;
     private ModelRVAdapter rvAdapter;
+    private FirestoreRecyclerAdapter adapter;
     private DocumentSnapshot lastVisible;
     private FragmentForButton fragment;
     private int name;
