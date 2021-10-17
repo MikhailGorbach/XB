@@ -1,54 +1,47 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleObserver;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.firebasepicture.R;
-import com.firebase.ui.firestore.ChangeEventListener;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.List;
-import java.util.Objects;
 
 public class FragmentForButton extends Fragment{
     private FirebaseFirestore firebaseFirestore;
     private RecyclerView recyclerView;
+    private ArrayList<Model> modelList;
+    private ModelRVAdapter rvAdapter;
     private FirestoreRecyclerAdapter adapter;
     private FragmentForButton fragment;
     private int name;
     private Query query;
-    private List<Model> list;
 
     public FragmentForButton(int name){
         this.name = name;
         fragment = this;
+        modelList = new ArrayList<>();
     }
 
     @Override
@@ -61,9 +54,39 @@ public class FragmentForButton extends Fragment{
     }
 
     private void initComponents(View v){
-        recyclerView = v.findViewById(R.id.recview);
-
+        initRecyclerView(v);
         firebaseFirestore = FirebaseFirestore.getInstance();
+        rvAdapter = new ModelRVAdapter(modelList, fragment.getContext());
+        recyclerView.setAdapter(rvAdapter);
+
+        query = firebaseFirestore
+                .collection("models")
+                .whereEqualTo("categories",getString(name))
+                .limit(8);
+
+        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                    for (DocumentSnapshot d : list) {
+                        Model c = d.toObject(Model.class);
+                        modelList.add(c);
+                    }
+                    rvAdapter.notifyDataSetChanged();
+                } else
+                    Toast.makeText(fragment.getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // if we do not get any data or any error we are displaying
+                // a toast message that we do not get any data
+                Toast.makeText(fragment.getContext(), "Fail to get the data.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        /*
         query = firebaseFirestore.collection("models").whereEqualTo("categories",getString(name)).limit(6);
 
         //Подключаем корневую папку с карточками
@@ -93,10 +116,15 @@ public class FragmentForButton extends Fragment{
                  });
              }
         };
-        Context ctx = this.getContext();
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(ctx, 2);
-        recyclerView.setLayoutManager(mLayoutManager);
 
+
+        recyclerView.setAdapter(adapter);
+*/
+    }
+
+    private void initRecyclerView(View v){
+        recyclerView = v.findViewById(R.id.recview);
+        recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
         recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
             @Override
             public void onLoadMore(int currentPage) {
@@ -106,13 +134,12 @@ public class FragmentForButton extends Fragment{
                         .whereEqualTo("categories",getString(name))
                         .limit(6);
 
+                nextQuery.get().
             }
         });
-        recyclerView.setAdapter(adapter);
-
     }
 
-    @Override
+/*    @Override
     public void onStop() {
         super.onStop();
         adapter.stopListening();
@@ -122,7 +149,7 @@ public class FragmentForButton extends Fragment{
     public void onStart() {
         super.onStart();
         adapter.startListening();
-    }
+    }*/
 
     public class AdapterToCards extends RecyclerView.ViewHolder {
 
