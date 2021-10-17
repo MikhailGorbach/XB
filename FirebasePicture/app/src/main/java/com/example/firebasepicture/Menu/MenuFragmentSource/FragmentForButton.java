@@ -18,8 +18,10 @@ import android.widget.Toast;
 
 import com.example.firebasepicture.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -33,7 +35,7 @@ public class FragmentForButton extends Fragment{
     private RecyclerView recyclerView;
     private ArrayList<Model> modelList;
     private ModelRVAdapter rvAdapter;
-    private FirestoreRecyclerAdapter adapter;
+    private DocumentSnapshot lastVisible;
     private FragmentForButton fragment;
     private int name;
     private Query query;
@@ -72,6 +74,7 @@ public class FragmentForButton extends Fragment{
                     for (DocumentSnapshot d : list) {
                         Model c = d.toObject(Model.class);
                         modelList.add(c);
+                        lastVisible = d;
                     }
                     rvAdapter.notifyDataSetChanged();
                 } else
@@ -81,8 +84,6 @@ public class FragmentForButton extends Fragment{
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                // if we do not get any data or any error we are displaying
-                // a toast message that we do not get any data
                 Toast.makeText(fragment.getContext(), "Fail to get the data.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -129,12 +130,31 @@ public class FragmentForButton extends Fragment{
             @Override
             public void onLoadMore(int currentPage) {
                 Query nextQuery = firebaseFirestore.collection("models")
-                        .orderBy("title")
-                        .startAfter(adapter.getItem(adapter.getItemCount()-1))
+                        .startAfter(lastVisible)
                         .whereEqualTo("categories",getString(name))
                         .limit(6);
 
-                nextQuery.get().
+                nextQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d : list) {
+                                Model c = d.toObject(Model.class);
+                                modelList.add(c);
+                                lastVisible = d;
+                            }
+                            rvAdapter.notifyDataSetChanged();
+                        } else
+                            Toast.makeText(fragment.getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(fragment.getContext(), "Fail to get the data.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
