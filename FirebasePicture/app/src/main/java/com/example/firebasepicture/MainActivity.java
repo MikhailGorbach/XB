@@ -1,8 +1,10 @@
 package com.example.firebasepicture;
 
 import android.annotation.SuppressLint;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -12,6 +14,7 @@ import com.example.firebasepicture.Menu.MenuFragment;
 import com.example.firebasepicture.Menu.MenuFragmentSource.GetDataFromFragment;
 import com.example.firebasepicture.Menu.SettingsFragment;
 import com.example.firebasepicture.Policy.PolicyFragment;
+import com.example.firebasepicture.Utility.NetworkChangeListener;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.assets.RenderableSource;
 import com.google.ar.sceneform.rendering.ModelRenderable;
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     private ArFragment arFragment;      //Фрагмент с изображением
     private Fragment fragment;          //Фрагмент
 
+    private NetworkChangeListener networkChangeListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
     //Инициализация компонентов
     private void initComponents(){
+        networkChangeListener = new NetworkChangeListener();
         fragmentManager = getSupportFragmentManager();
         modelRef = FirebaseStorage.getInstance().getReference();
         mySharedPreferences = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
@@ -166,4 +172,16 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         bottomNav.setItemEnabled(R.id.bottom_nav_main, true);
     }
 
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener,filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
 }

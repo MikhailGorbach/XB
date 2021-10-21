@@ -32,12 +32,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentForButton extends Fragment{
-    private final int limit = 8;
+    private final int limit = 16;
+
     private FirebaseFirestore firebaseFirestore;
     private RecyclerView recyclerView;
     private ArrayList<Model> modelList;
     private ModelRVAdapter rvAdapter;
-    private FirestoreRecyclerAdapter adapter;
     private DocumentSnapshot lastVisible;
     private FragmentForButton fragment;
     private String name;
@@ -130,7 +130,7 @@ public class FragmentForButton extends Fragment{
 
         private int previousTotal = 0;      // The total number of items in the dataset after the last load
         private boolean loading = true;     // True if we are still waiting for the last set of data to load.
-        private int visibleThreshold = 1;   //Минимальное кол. элементов, вниз, после которых начётся загрузка
+        private int visibleThreshold = 0;   //Минимальное кол. элементов, вниз, после которых начётся загрузка
         int firstVisibleItem, visibleItemCount, totalItemCount;
 
         private int currentPage = 1;
