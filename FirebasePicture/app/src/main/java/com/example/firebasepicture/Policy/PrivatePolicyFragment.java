@@ -2,6 +2,7 @@ package com.example.firebasepicture.Policy;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,12 +13,15 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.databinding.FragmentPrivatePolicyBinding;
 
 public class PrivatePolicyFragment extends Fragment {
+
     private ImageButton btnBack;
     private ScrollView scrlView;
     private Fragment fragment;
 
+    private FragmentPrivatePolicyBinding binding;
     private TextView txtPrivatePolicyName_1;
     private TextView txtPrivatePolicyName_2;
     private TextView txtPrivatePolicy;
@@ -31,23 +35,19 @@ public class PrivatePolicyFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_private_policy, container, false);
-
-        initComponents(v);
-
-        return v;
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentPrivatePolicyBinding.inflate(inflater,container,false);
+        initComponents();
+        return binding.getRoot();
     }
 
-    private void initComponents(View v){
-        txtPrivatePolicy = v.findViewById(R.id.txtPrivatePolicy);
-        txtPrivatePolicyName_1 = v.findViewById(R.id.txtPrivatePolicyName_1);
-        txtPrivatePolicyName_2 = v.findViewById(R.id.txtPrivatePolicyName_2);
-        txtConnectInfo = v.findViewById(R.id.txtConnectInfo);
-
-        btnBack = v.findViewById(R.id.btnPrivatePolicyBack);
-        scrlView = v.findViewById(R.id.scrlViewOfMainText);
+    private void initComponents(){
+        txtPrivatePolicy = binding.txtPrivatePolicy;
+        txtPrivatePolicyName_1 = binding.txtPrivatePolicyNameFirst;
+        txtPrivatePolicyName_2 = binding.txtPrivatePolicyNameSecond;
+        txtConnectInfo = binding.txtConnectInfo;
+        btnBack = binding.btnPrivatePolicyBack;
+        scrlView = binding.scrlViewOfMainText;
 
         scrlView.setVerticalScrollBarEnabled(false);
         scrlView.setHorizontalScrollBarEnabled(false);

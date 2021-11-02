@@ -1,12 +1,7 @@
 package com.example.firebasepicture.Policy;
 
-import android.annotation.SuppressLint;
-import android.app.UiModeManager;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +9,19 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.example.firebasepicture.MainActivity;
 import com.example.firebasepicture.Policy.Welcom.Welcome;
 import com.example.firebasepicture.R;
-import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+import com.example.firebasepicture.databinding.FragmentPolicyBinding;
 
 public class PolicyFragment extends Fragment {
+
     private Boolean btnPrivatePolicyStatus;
     private Boolean btnTermsAndPolicyStatus;
-
+    private FragmentPolicyBinding binding;
     private ImageButton btnPrivatePolicy;
     private ImageButton btnTermsAndPolicy;
     private TextView txtLinkPrivatePolicy;
@@ -33,33 +32,23 @@ public class PolicyFragment extends Fragment {
     public PolicyFragment() {
         MainActivity.bottomNav.setEnabled(false);
         MainActivity.bottomNav.setVisibility(View.INVISIBLE);
-
         btnPrivatePolicyStatus = btnTermsAndPolicyStatus = false;
         ctx = this;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentPolicyBinding.inflate(inflater, container, false);
+        initComponents();
+        return binding.getRoot();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_policy, container, false);
-
-        initComponents(v);
-
-        return v;
-    }
-
-    @SuppressLint("WrongConstant")
-    private void initComponents(View v){
-        btnPrivatePolicy            = v.findViewById(R.id.imgCheckPrivatePolicy);
-        btnTermsAndPolicy           = v.findViewById(R.id.imgCheckTermsAndPolicy);
-        btnPrivatePolicyAccept      = v.findViewById(R.id.btnPrivatePolicyAccept);
-        txtLinkPrivatePolicy        = v.findViewById(R.id.txtLinkPrivatePolicy);
-        txtLinkTermsAndConditions   = v.findViewById(R.id.txtLinkTermsAndConditions);
+    private void initComponents() {
+        btnPrivatePolicy = binding.imgCheckPrivatePolicy;
+        btnTermsAndPolicy = binding.imgCheckTermsAndPolicy;
+        btnPrivatePolicyAccept = binding.btnPrivatePolicyAccept;
+        txtLinkPrivatePolicy = binding.txtLinkPrivatePolicy;
+        txtLinkTermsAndConditions = binding.txtLinkTermsAndConditions;
 
         btnPrivatePolicy.setImageResource((!btnPrivatePolicyStatus) ? R.drawable.check_off : R.drawable.check_on);
         btnTermsAndPolicy.setImageResource((!btnTermsAndPolicyStatus) ? R.drawable.check_off : R.drawable.check_on);
@@ -67,7 +56,7 @@ public class PolicyFragment extends Fragment {
         if (btnPrivatePolicyStatus && btnTermsAndPolicyStatus) {
             btnPrivatePolicyAccept.setBackgroundColor(Color.BLUE);
             btnPrivatePolicyAccept.setEnabled(true);
-        }else {
+        } else {
             btnPrivatePolicyAccept.setBackgroundColor(Color.GRAY);
             btnPrivatePolicyAccept.setEnabled(false);
         }

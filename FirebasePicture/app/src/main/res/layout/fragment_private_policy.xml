@@ -29,7 +29,7 @@
         tools:src="@drawable/bbback" />
 
     <TextView
-        android:id="@+id/txtPrivatePolicyName_1"
+        android:id="@+id/txtPrivatePolicyName_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnPrivatePolicyBack"
@@ -39,10 +39,10 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/txtPrivatePolicyName_2"
+        android:id="@+id/txtPrivatePolicyName_second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtPrivatePolicyName_1"
+        android:layout_below="@+id/txtPrivatePolicyName_first"
         android:layout_marginLeft="15dp"
         android:text="Конфиденциальности"
         android:textColor="#FFFFFF"
