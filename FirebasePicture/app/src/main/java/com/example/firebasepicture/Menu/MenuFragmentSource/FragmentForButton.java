@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +42,7 @@ public class FragmentForButton extends Fragment{
     private ModelRVAdapter rvAdapter;
     private DocumentSnapshot lastVisible;
     private FragmentForButton fragment;
+    private Spinner spinnerSort;
     private String name;
     private Query query;
 
@@ -57,8 +60,18 @@ public class FragmentForButton extends Fragment{
 
         return v;
     }
+/*
+    private void fillSpinner(View v){
+        spinnerSort = v.findViewById(R.id.spinnerSort);
+
+        ArrayList<String> myArrayList = new ArrayList<String>(){};
+        myArrayList.add("min");
+        myArrayList.add("max");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, myArrayList,R.layout.support_simple_spinner_dropdown_item);
+    }*/
 
     private void initComponents(View v){
+        //fillSpinner(v);
         firebaseFirestore = FirebaseFirestore.getInstance();
         rvAdapter = new ModelRVAdapter(modelList,fragment);
 
@@ -94,6 +107,8 @@ public class FragmentForButton extends Fragment{
                 });
             }
         });
+        //modelList.sort();
+        //rvAdapter.notifyDataSetChanged();
 
         query = firebaseFirestore
                 .collection("models")
