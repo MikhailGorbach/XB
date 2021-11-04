@@ -51,7 +51,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         btnImgShareIt = v.findViewById(R.id.imgBtnShareIt);
 
         txtPrice.setText(model.getPrice());
-        Glide.with(v.getContext()).load(model.getPic()).into(img);
+        Glide.with(v.getContext()).load(model.getPhoto()).into(img);
 
         v.findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {
             @Override

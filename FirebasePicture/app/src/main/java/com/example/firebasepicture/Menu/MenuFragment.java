@@ -42,7 +42,7 @@ public class MenuFragment extends Fragment{
         arrayList.add("Кресла");
         arrayList.add("Стулья");
         arrayList.add("Кровати");
-        arrayList.add("Столы");
+        arrayList.add("Столы");/*
         arrayList.add("Двери");
         arrayList.add("Тумбы");
         arrayList.add("Комоды");
@@ -53,7 +53,7 @@ public class MenuFragment extends Fragment{
         arrayList.add("Стеллажи");
         arrayList.add("Настенное освещение");
         arrayList.add("Напольное освещение");
-        arrayList.add("Люстры");
+        arrayList.add("Люстры");*/
         UsersAdapter adapter = new UsersAdapter(arrayList);
 
         listOfItemSetting.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -96,7 +96,7 @@ public class MenuFragment extends Fragment{
                         case "Столы":
                             name = "table";
                             break;
-                        case "Двери":
+                        /*case "Двери":
                             name = "door";
                             break;
                         case "Тумбы":
@@ -128,7 +128,7 @@ public class MenuFragment extends Fragment{
                             break;
                         case "Люстры":
                             name = "chandelier";
-                            break;
+                            break;*/
                     }
                     getFragmentManager().beginTransaction().
                             replace(R.id.fragment_container, new FragmentForButton(name)).commit();

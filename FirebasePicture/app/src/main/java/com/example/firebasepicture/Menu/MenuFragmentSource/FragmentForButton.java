@@ -1,14 +1,6 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.OrientationHelper;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +8,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.firebasepicture.R;
@@ -64,11 +62,11 @@ public class FragmentForButton extends Fragment{
         recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
             @Override
             public void onLoadMore(int currentPage) {
-                Query nextQuery = firebaseFirestore.collection("models")
+                Query nextQuery = firebaseFirestore.collection("models");/*
                         .startAfter(lastVisible)
                         .whereEqualTo("category",name)
                         .limit(limit);
-
+*/
                 nextQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -93,9 +91,9 @@ public class FragmentForButton extends Fragment{
         });
 
         query = firebaseFirestore
-                .collection("models")
+                .collection("models");/*
                 .whereEqualTo("category",name)
-                .limit(limit);
+                .limit(limit);*/
 
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -260,7 +258,7 @@ public class FragmentForButton extends Fragment{
             Model model = modelsList.get(position);
 
             holder.txtPrice.setText(model.getPrice());
-            Glide.with(holder.img1.getContext()).load(model.getPic()).into(holder.img1);
+            Glide.with(holder.img1.getContext()).load(model.getPhoto()).into(holder.img1);
             holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
