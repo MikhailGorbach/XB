@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -45,9 +44,9 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
     }
 
     void initComponents(View v){
-        txtTitle    = v.findViewById(R.id.txtDaskTitle);
-        txtPrice    = v.findViewById(R.id.txtDaskPrice);
-        img         = v.findViewById(R.id.imgDaskAvatar);
+        txtTitle    = v.findViewById(R.id.txtDeskTitle);
+        txtPrice    = v.findViewById(R.id.txtDeskPrice);
+        img         = v.findViewById(R.id.imgDeskAvatar);
         btnImgShareIt = v.findViewById(R.id.imgBtnShareIt);
 
         txtTitle.setText(model.getTitle());
@@ -60,7 +59,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
             }
         });
-        ((Button) v.findViewById(R.id.btn3D)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) v.findViewById(R.id.btn3D)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GetDataFromFragment listener;
@@ -76,7 +75,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
             public void onClick(View v) {
                 final Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                String textToSend="some text";
+                String textToSend="http://share";
                 intent.putExtra(Intent.EXTRA_TEXT, textToSend);
                 try
                 {

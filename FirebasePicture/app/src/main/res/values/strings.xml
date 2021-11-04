@@ -4,4 +4,8 @@
     <string name="InfoAtFragmentMenuChairs">chairs</string>
     <string name="InfoAtFragmentMenuTables">tables</string>
     <string name="InfoAtFragmentMenuLights">lights</string>
+
+    <string name="InfoAtDeskLinkName">В наличии </string>
+    <string name="InfoAtDeskPrice">Цена </string>
+    <string name="InfoAtDeskBottomDescription">Информация о технических характеристках, комплекте постави, стране изготовления или внешнем виде товара носит справочный характер и основывается на последних доступных сведениях от проиводителя</string>
 </resources>
