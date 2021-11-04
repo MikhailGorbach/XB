@@ -9,23 +9,27 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.firebasepicture.MainActivity;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.databinding.Page1Binding;
 
 public class PageFragment extends Fragment {
+
     private boolean btnVisible;
     private int resDrawable;
     private int resWelcomeText;
     private int resWelcomeTitle;
 
+    private Page1Binding binding;
     private ImageView imgWelcomPicture;
     private Button btnWelcomAccept;
     private TextView txtWelcomeTitle;
     private TextView txtWelcomeText;
 
-    public PageFragment(int resDrawable, boolean btnVisible,int resWelcomeTitle, int resWelcomeText){
+    public PageFragment(int resDrawable, boolean btnVisible, int resWelcomeTitle, int resWelcomeText) {
         this.btnVisible = btnVisible;
         this.resDrawable = resDrawable;
         this.resWelcomeText = resWelcomeText;
@@ -33,24 +37,21 @@ public class PageFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.page_1, container, false);
-
-        initComponents(v);
-
-        return v;
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = Page1Binding.inflate(inflater, container, false);
+        initComponents();
+        return binding.getRoot();
     }
 
-    private void initComponents(View v){
-        imgWelcomPicture = v.findViewById(R.id.imgWelcomPicture);
-        btnWelcomAccept = v.findViewById(R.id.btnWelcomAccept);
-        txtWelcomeTitle = v.findViewById(R.id.txtWelcomeTitle);
-        txtWelcomeText = v.findViewById(R.id.txtWelcomeText);
+    private void initComponents() {
+        imgWelcomPicture = binding.imgWelcomPicture;
+        btnWelcomAccept = binding.btnWelcomAccept;
+        txtWelcomeTitle = binding.txtWelcomeTitle;
+        txtWelcomeText = binding.txtWelcomeText;
 
         imgWelcomPicture.setImageResource(resDrawable);
 
-        btnWelcomAccept.setVisibility((btnVisible)?View.VISIBLE:View.INVISIBLE);
+        btnWelcomAccept.setVisibility((btnVisible) ? View.VISIBLE : View.INVISIBLE);
         btnWelcomAccept.setEnabled(btnVisible);
         btnWelcomAccept.setOnClickListener(new View.OnClickListener() {
             @Override
