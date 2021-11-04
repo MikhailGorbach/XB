@@ -43,7 +43,6 @@ public class FragmentForButton extends Fragment{
     private ModelRVAdapter rvAdapter;
     private DocumentSnapshot lastVisible;
     private FragmentForButton fragment;
-    private Spinner spinnerSort;
     private String name;
     private Query query;
 
@@ -56,23 +55,11 @@ public class FragmentForButton extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_list, container, false);
-
         initComponents(v);
-
         return v;
     }
-/*
-    private void fillSpinner(View v){
-        spinnerSort = v.findViewById(R.id.spinnerSort);
-
-        ArrayList<String> myArrayList = new ArrayList<String>(){};
-        myArrayList.add("min");
-        myArrayList.add("max");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, myArrayList,R.layout.support_simple_spinner_dropdown_item);
-    }*/
 
     private void initComponents(View v){
-        //fillSpinner(v);
         firebaseFirestore = FirebaseFirestore.getInstance();
         rvAdapter = new ModelRVAdapter(modelList,fragment);
 
