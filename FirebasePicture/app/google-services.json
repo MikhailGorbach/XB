@@ -7,9 +7,45 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:917940158564:android:222183747a844fe2005f71",
+        "mobilesdk_app_id": "1:917940158564:android:e054e677de6da3a4005f71",
         "android_client_info": {
           "package_name": "com.example.firebasepicture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917940158564-2pa8j0bjt9s82lup3r4f525nsp09lpim.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFKB2pIclQJ-QFgReFeapt8MlnmLTnzyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917940158564-2pa8j0bjt9s82lup3r4f525nsp09lpim.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "917940158564-kc4jl2pjo17867cp2pa4854vrvllmg2c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lnter.ARTEST"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917940158564:android:222183747a844fe2005f71",
+        "android_client_info": {
+          "package_name": "com.example.firebasepictur"
         }
       },
       "oauth_client": [
