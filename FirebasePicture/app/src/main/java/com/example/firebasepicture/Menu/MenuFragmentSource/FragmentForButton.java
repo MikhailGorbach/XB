@@ -31,6 +31,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class FragmentForButton extends Fragment{
@@ -107,8 +108,6 @@ public class FragmentForButton extends Fragment{
                 });
             }
         });
-        //modelList.sort();
-        //rvAdapter.notifyDataSetChanged();
 
         query = firebaseFirestore
                 .collection("models")
@@ -125,6 +124,12 @@ public class FragmentForButton extends Fragment{
                         modelList.add(c);
                         lastVisible = d;
                     }
+                    modelList.sort(new Comparator<Model>() {
+                        @Override
+                        public int compare(Model o1, Model o2) {
+                            return o1.price.compareTo(o2.price);
+                        }
+                    });
                     rvAdapter.notifyDataSetChanged();
                 } else
                     Toast.makeText(fragment.getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
