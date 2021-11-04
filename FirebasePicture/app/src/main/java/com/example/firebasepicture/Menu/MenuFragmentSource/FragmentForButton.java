@@ -66,7 +66,7 @@ public class FragmentForButton extends Fragment{
             public void onLoadMore(int currentPage) {
                 Query nextQuery = firebaseFirestore.collection("models")
                         .startAfter(lastVisible)
-                        .whereEqualTo("categories",name)
+                        .whereEqualTo("category",name)
                         .limit(limit);
 
                 nextQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -94,7 +94,7 @@ public class FragmentForButton extends Fragment{
 
         query = firebaseFirestore
                 .collection("models")
-                .whereEqualTo("categories",name)
+                .whereEqualTo("category",name)
                 .limit(limit);
 
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -255,12 +255,10 @@ public class FragmentForButton extends Fragment{
             return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.card_design, parent, false));
         }
 
-        @SuppressLint("ResourceType")
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Model model = modelsList.get(position);
 
-            holder.txtTitle.setText(model.getTitle());
             holder.txtPrice.setText(model.getPrice());
             Glide.with(holder.img1.getContext()).load(model.getPic()).into(holder.img1);
             holder.relativeLayout.setOnClickListener(new View.OnClickListener() {

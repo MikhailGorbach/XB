@@ -50,7 +50,6 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         img         = v.findViewById(R.id.imgDaskAvatar);
         btnImgShareIt = v.findViewById(R.id.imgBtnShareIt);
 
-        txtTitle.setText(model.getTitle());
         txtPrice.setText(model.getPrice());
         Glide.with(v.getContext()).load(model.getPic()).into(img);
 

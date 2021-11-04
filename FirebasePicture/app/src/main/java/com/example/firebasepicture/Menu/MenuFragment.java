@@ -81,53 +81,53 @@ public class MenuFragment extends Fragment{
                 public void onClick(View view) {
                     String name = userModelList.get(position);
                     switch (name) {
-                        case ".sofa":
-                            name = "Диваны";
+                        case "Диваны":
+                            name = "sofa";
                             break;
-                        case ".armchair":
-                            name = "Кресла";
+                        case "Кресла":
+                            name = "armchair";
                             break;
-                        case ".chair":
-                            name = "Стулья";
+                        case "Стулья":
+                            name = "chair";
                             break;
-                        case ".bed":
-                            name = "Кровати";
+                        case "Кровати":
+                            name = "bed";
                             break;
-                        case ".table":
-                            name = "Столы";
+                        case "Столы":
+                            name = "table";
                             break;
-                        case ".door":
-                            name = "Двери";
+                        case "Двери":
+                            name = "door";
                             break;
-                        case ".pedestal":
-                            name = "Тумбы";
+                        case "Тумбы":
+                            name = "pedestal";
                             break;
-                        case ".dresser":
-                            name = "Комоды";
+                        case "Комоды":
+                            name = "dresser";
                             break;
-                        case ".banquette":
-                            name = "Банкетки";
+                        case "Банкетки":
+                            name = "banquette";
                             break;
-                        case ".poof":
-                            name = "Пуфы";
+                        case "Пуфы":
+                            name = "poof";
                             break;
-                        case ".wardrobe":
-                            name = "Шкафы";
+                        case "Шкафы":
+                            name = "wardrobe";
                             break;
-                        case ".couch":
-                            name = "Кушетки";
+                        case "Кушетки":
+                            name = "couch";
                             break;
-                        case ".shelf":
-                            name = "Стеллажи";
+                        case "Стеллажи":
+                            name = "shelf";
                             break;
-                        case ".lightWall":
-                            name = "Настенное освещение";
+                        case "Настенное освещение":
+                            name = "lightWall";
                             break;
-                        case ".lightFloor":
-                            name = "Напольное освещение";
+                        case "Напольное освещение":
+                            name = "lightFloor";
                             break;
-                        case ".chandelier":
-                            name = "Люстры";
+                        case "Люстры":
+                            name = "chandelier";
                             break;
                     }
                     getFragmentManager().beginTransaction().

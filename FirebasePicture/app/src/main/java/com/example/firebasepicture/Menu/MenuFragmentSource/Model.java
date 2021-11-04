@@ -4,8 +4,7 @@ import androidx.annotation.NonNull;
 
 //Информация об записи в firebase
 public class Model {
-    String pic;
-    String title;
+    String photo;
     String price;
     String name;
     String categories;
@@ -14,8 +13,7 @@ public class Model {
     }
 
     public Model(String pic, String title, String price, String name, String categories) {
-        this.pic = pic;
-        this.title = title;
+        this.photo = pic;
         this.price = price;
         this.name = name;
         this.categories = categories;
@@ -38,19 +36,11 @@ public class Model {
     }
 
     public String getPic() {
-        return pic;
+        return photo;
     }
 
     public void setPic(String pic) {
-        this.pic = pic;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+        this.photo = pic;
     }
 
     public String getPrice() {
@@ -64,8 +54,7 @@ public class Model {
     @Override
     public String toString() {
         return "Model{" +
-                "pic='" + pic + '\'' +
-                ", title='" + title + '\'' +
+                "pic='" + photo + '\'' +
                 ", price='" + price + '\'' +
                 ", name='" + name + '\'' +
                 ", categories='" + categories + '\'' +
