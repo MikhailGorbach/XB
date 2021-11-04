@@ -48,7 +48,7 @@
         android:layout_height="80dp"
         android:layout_below="@id/txtLinkPrivatePolicy"
         android:layout_centerHorizontal="true"
-        android:background="@color/colorTransparent"
+        android:background="@color/transparent"
         android:scaleType="centerInside"
         tools:ignore="SpeakableTextPresentCheck"
         tools:src="@drawable/check_off" />
@@ -82,7 +82,7 @@
         android:layout_height="80dp"
         android:layout_below="@id/txtLinkTermsAndConditions"
         android:layout_centerHorizontal="true"
-        android:background="@color/colorTransparent"
+        android:background="@color/transparent"
         android:scaleType="centerInside"
         tools:ignore="SpeakableTextPresentCheck"
         tools:src="@drawable/check_off" />

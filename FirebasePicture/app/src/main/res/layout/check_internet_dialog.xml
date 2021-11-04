@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFFFFF"
-    android:backgroundTint="@color/colorTransparent">
+    android:backgroundTint="@color/transparent">
 
     <ImageView
         android:id="@+id/imgNoInternetConnection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_dialog_alert" />
 
     <TextView
@@ -22,31 +20,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/imgNoInternetConnection"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Нет интернет соединения"
         android:textColor="@color/black"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgNoInternetConnection" />
 
     <TextView
         android:id="@+id/txt2NoInternetConnection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt1NoInternetConnection"
+        android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="Проверьте ваш интернет"
         android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt1NoInternetConnection" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRetryNoInternetConnection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt2NoInternetConnection"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/blank_b"
-        android:backgroundTint="#1EC7FA"
-        android:text="Заново" />
-</RelativeLayout>
+        android:backgroundTint="@color/blue"
+        android:text="Заново"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt2NoInternetConnection" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
