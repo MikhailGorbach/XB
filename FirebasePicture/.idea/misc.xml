@@ -3,21 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable-v24/round_corners.xml" value="0.2703125" />
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/card_disign.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/card_main_disign.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/check_internet_dialog.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_for_card.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_ideas.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_list.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_policy.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_private_policy.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_settings.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_welcome.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/row_uses.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1421875" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable-v24/round_corners.xml" value="0.1421875" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/background_recycler_view.xml" value="0.14739583333333334" />
@@ -30,6 +17,7 @@
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1421875" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/my_style_for_buttom.xml" value="0.14739583333333334" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/card_design.xml" value="0.13229166666666667" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/card_disign.xml" value="0.4" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/card_main_disign.xml" value="0.4" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/check_internet_dialog.xml" value="0.22644927536231885" />

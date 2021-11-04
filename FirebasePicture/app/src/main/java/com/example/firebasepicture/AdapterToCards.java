@@ -39,7 +39,7 @@ public class AdapterToCards extends FirestoreRecyclerAdapter<Model, AdapterToCar
     @NonNull
     @Override
     public ViewHolderToCards onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_disign, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_design, parent,false);
         return new ViewHolderToCards(view);
     }
 
