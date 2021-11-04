@@ -2,29 +2,25 @@ package com.example.firebasepicture.Menu;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.firebasepicture.Menu.MenuFragmentSource.FragmentForButton;
-import com.example.firebasepicture.Menu.MenuFragmentSource.FragmentForCard;
-import com.example.firebasepicture.Menu.MenuFragmentSource.Model;
 import com.example.firebasepicture.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MenuFragment extends Fragment{
+
     private RecyclerView listOfItemSetting;
 
     @Override
@@ -33,22 +29,31 @@ public class MenuFragment extends Fragment{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_menu, container, false);
-
-        initComponenet(v);
-
+        initComponent(v);
         return v;
     }
 
-    void initComponenet(View v){
+    void initComponent(View v) {
         listOfItemSetting = v.findViewById(R.id.listOfItemSetting);
-
-        List<String> arrayList = new ArrayList<String>();
-        arrayList.add(getString(R.string.InfoAtFragmentMenuTables));
-        arrayList.add(getString(R.string.InfoAtFragmentMenuChairs));
-        arrayList.add(getString(R.string.InfoAtFragmentMenuLights));
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Диваны");
+        arrayList.add("Кресла");
+        arrayList.add("Стулья");
+        arrayList.add("Кровати");
+        arrayList.add("Столы");
+        arrayList.add("Двери");
+        arrayList.add("Тумбы");
+        arrayList.add("Комоды");
+        arrayList.add("Банкетки");
+        arrayList.add("Пуфы");
+        arrayList.add("Шкафы");
+        arrayList.add("Кушетки");
+        arrayList.add("Стеллажи");
+        arrayList.add("Настенное освещение");
+        arrayList.add("Напольное освещение");
+        arrayList.add("Люстры");
         UsersAdapter adapter = new UsersAdapter(arrayList);
 
         listOfItemSetting.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -74,7 +79,59 @@ public class MenuFragment extends Fragment{
             holder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton(userModelList.get(position))).commit();
+                    String name = userModelList.get(position);
+                    switch (name) {
+                        case "Диваны":
+                            name = "sofa";
+                            break;
+                        case "Кресла":
+                            name = "armchair";
+                            break;
+                        case "Стулья":
+                            name = "chair";
+                            break;
+                        case "Кровати":
+                            name = "bed";
+                            break;
+                        case "Столы":
+                            name = "table";
+                            break;
+                        case "Двери":
+                            name = "door";
+                            break;
+                        case "Тумбы":
+                            name = "pedestal";
+                            break;
+                        case "Комоды":
+                            name = "dresser";
+                            break;
+                        case "Банкетки":
+                            name = "banquette";
+                            break;
+                        case "Пуфы":
+                            name = "poof";
+                            break;
+                        case "Шкафы":
+                            name = "wardrobe";
+                            break;
+                        case "Кушетки":
+                            name = "couch";
+                            break;
+                        case "Стеллажи":
+                            name = "shelf";
+                            break;
+                        case "Настенное освещение":
+                            name = "lightWall";
+                            break;
+                        case "Напольное освещение":
+                            name = "lightFloor";
+                            break;
+                        case "Люстры":
+                            name = "chandelier";
+                            break;
+                    }
+                    getFragmentManager().beginTransaction().
+                            replace(R.id.fragment_container, new FragmentForButton(name)).commit();
                 }
             });
         }

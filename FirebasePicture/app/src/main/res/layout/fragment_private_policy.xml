@@ -11,7 +11,7 @@
         android:id="@+id/imgBlankA"
         android:layout_width="match_parent"
         android:layout_height="125dp"
-        android:background="@color/colorWhite"
+        android:background="@color/white"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/blank_a"
         tools:srcCompat="@drawable/blank_a" />
@@ -22,7 +22,7 @@
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@color/colorTransparent"
+        android:background="@color/transparent"
         android:scaleType="centerCrop"
         app:tint="#2196F3"
         tools:ignore="SpeakableTextPresentCheck"
