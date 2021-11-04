@@ -1,5 +1,6 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.firebasepicture.R;
@@ -19,6 +22,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
     private TextView txtTitle;
     private TextView txtPrice;
     private ImageView img;
+    private ImageButton btnImgShareIt;
 
     private Fragment fragment;
 
@@ -44,6 +48,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         txtTitle    = v.findViewById(R.id.txtDaskTitle);
         txtPrice    = v.findViewById(R.id.txtDaskPrice);
         img         = v.findViewById(R.id.imgDaskAvatar);
+        btnImgShareIt = v.findViewById(R.id.imgBtnShareIt);
 
         txtTitle.setText(model.getTitle());
         txtPrice.setText(model.getPrice());
@@ -66,6 +71,23 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
             }
         });
 
+        btnImgShareIt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                String textToSend="some text";
+                intent.putExtra(Intent.EXTRA_TEXT, textToSend);
+                try
+                {
+                    startActivity(Intent.createChooser(intent, "Описание действия"));
+                }
+                catch (android.content.ActivityNotFoundException ex)
+                {
+                    Toast.makeText(getContext(), "Some error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
