@@ -1,6 +1,5 @@
 package com.example.firebasepicture;
 
-import android.annotation.SuppressLint;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -8,7 +7,12 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.example.firebasepicture.Menu.IdeasFragment;
 import com.example.firebasepicture.Menu.MenuFragment;
 import com.example.firebasepicture.Menu.MenuFragmentSource.GetDataFromFragment;
@@ -23,9 +27,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -79,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     }
 
     //Инициализируем BottomNavigation
-    @SuppressLint("NonConstantResourceId")
     private void initBottomNavigation(){
         bottomNav = findViewById(R.id.bottom_nav_menu);
         bottomNav.setOnItemSelectedListener(id -> {
@@ -100,9 +101,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, fragment)
                         .commit();
-            } else
-                Toast.makeText(MainActivity.this, "Error.",Toast.LENGTH_SHORT).show();
-
+            }
         });
     }
 

@@ -2,6 +2,7 @@ package com.example.firebasepicture.Menu;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -11,31 +12,29 @@ import android.widget.TextView;
 
 import com.example.firebasepicture.Policy.PrivatePolicyFragment;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.databinding.FragmentSettingsBinding;
 
 public class SettingsFragment extends Fragment {
+
+    private FragmentSettingsBinding binding;
     private TextView txtLinkSettingPrivatePolicy;
     private TextView txtLinkSettingTermsAndConditions;
     private TextView txtLinkSettingFeedBack;
-    private TextView txtLinkSettingScenes;
     private SettingsFragment ctx;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_settings, container, false);
-
-        initComponent(v);
-
-        return v;
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentSettingsBinding.inflate(inflater, container, false);
+        initComponent();
+        return binding.getRoot();
     }
 
-    private void initComponent(View v){
+    private void initComponent(){
         ctx = this;
 
-        txtLinkSettingPrivatePolicy = v.findViewById(R.id.txtLinkSettingPrivatePolicy);
-        txtLinkSettingTermsAndConditions = v.findViewById(R.id.txtLinkSettingTermsAndConditions);
-        txtLinkSettingFeedBack = v.findViewById(R.id.txtLinkSettingFeedBack);
-        //txtLinkSettingScenes = v.findViewById(R.id.txtLinkSettingScenes);
+        txtLinkSettingPrivatePolicy = binding.txtLinkSettingPrivatePolicy;
+        txtLinkSettingTermsAndConditions = binding.txtLinkSettingTermsAndConditions;
+        txtLinkSettingFeedBack = binding.txtLinkSettingFeedBack;
 
         txtLinkSettingPrivatePolicy.setOnClickListener(new View.OnClickListener() {
             @Override
