@@ -1,32 +1,28 @@
-package com.example.firebasepicture.Policy.Welcom;
+package com.example.firebasepicture.Policy.Welcome;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.example.firebasepicture.Policy.Welcom.Adapter.PageAdapter;
+import com.example.firebasepicture.Policy.Welcome.Adapter.PageAdapter;
 import com.example.firebasepicture.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Welcome extends Fragment {
+public class WelcomeFragment extends Fragment {
     private ViewPager pager;
     private PagerAdapter adapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_welcome, container, false);
-
         initComponents(v);
-
         return v;
     }
 
@@ -41,6 +37,5 @@ public class Welcome extends Fragment {
         adapter = new PageAdapter(getFragmentManager(), list);
 
         pager.setAdapter(adapter);
-
     }
 }

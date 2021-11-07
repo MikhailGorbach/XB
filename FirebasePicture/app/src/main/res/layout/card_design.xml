@@ -15,7 +15,7 @@
         android:padding="15dp">
 
         <ImageView
-            android:id="@+id/img1"
+            android:id="@+id/imgOnCard"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@drawable/ic_launcher_background" />
@@ -25,9 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/img1"
+            android:layout_toRightOf="@id/imgOnCard"
             android:text="This is Demo Name"
-            android:textColor="#000"
+            android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -37,9 +37,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtTitle"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/img1"
+            android:layout_toRightOf="@id/imgOnCard"
             android:text="This is Demo Price"
-            android:textColor="#000"
+            android:textColor="@color/black"
             android:textSize="25sp" />
 
     </RelativeLayout>

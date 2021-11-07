@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txt2NoInternetConnection"
         android:layout_marginTop="40dp"
-        android:background="@drawable/blank_b"
+        android:background="@drawable/background_blue_rounded"
         android:backgroundTint="@color/blue"
         android:text="Заново"
         app:layout_constraintStart_toStartOf="parent"

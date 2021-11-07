@@ -1,6 +1,5 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,15 +18,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.firebasepicture.R;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -152,7 +146,6 @@ public class FragmentForButton extends Fragment{
             visibleItemCount = recyclerView.getChildCount();
             totalItemCount = mRecyclerViewHelper.getItemCount();
             firstVisibleItem = mRecyclerViewHelper.findFirstVisibleItemPosition();
-
 
             if (loading) {
                 if (totalItemCount > previousTotal) {
@@ -289,7 +282,7 @@ public class FragmentForButton extends Fragment{
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
 
-                img1 = itemView.findViewById(R.id.img1);
+                img1 = itemView.findViewById(R.id.imgOnCard);
                 txtTitle = itemView.findViewById(R.id.txtTitle);
                 txtPrice = itemView.findViewById(R.id.txtPrice);
                 relativeLayout = itemView.findViewById(R.id.backLayout);

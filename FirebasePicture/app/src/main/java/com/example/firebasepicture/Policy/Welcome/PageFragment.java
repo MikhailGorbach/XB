@@ -1,4 +1,4 @@
-package com.example.firebasepicture.Policy.Welcom;
+package com.example.firebasepicture.Policy.Welcome;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.firebasepicture.MainActivity;
 import com.example.firebasepicture.R;
-import com.example.firebasepicture.databinding.Page1Binding;
+import com.example.firebasepicture.databinding.FragmentPageBinding;
 
 public class PageFragment extends Fragment {
 
@@ -23,7 +23,7 @@ public class PageFragment extends Fragment {
     private int resWelcomeText;
     private int resWelcomeTitle;
 
-    private Page1Binding binding;
+    private FragmentPageBinding binding;
     private ImageView imgWelcomPicture;
     private Button btnWelcomAccept;
     private TextView txtWelcomeTitle;
@@ -38,7 +38,7 @@ public class PageFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = Page1Binding.inflate(inflater, container, false);
+        binding = FragmentPageBinding.inflate(inflater, container, false);
         initComponents();
         return binding.getRoot();
     }

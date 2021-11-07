@@ -26,8 +26,8 @@
         android:layout_marginRight="20dp"
         android:scaleType="centerInside"
         android:scaleX="-1"
-        app:srcCompat="@drawable/bbback"
-        tools:srcCompat="@drawable/bbback"
+        app:srcCompat="@drawable/goback"
+        tools:srcCompat="@drawable/goback"
         app:tint="#CFCFCF" />
 
 </RelativeLayout>

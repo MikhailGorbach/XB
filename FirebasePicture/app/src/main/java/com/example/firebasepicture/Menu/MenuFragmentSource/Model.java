@@ -1,7 +1,5 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
-import androidx.annotation.NonNull;
-
 //Информация об записи в firebase
 public class Model {
     String photo;

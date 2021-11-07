@@ -2,12 +2,11 @@ package com.example.firebasepicture;
 
 import android.media.Image;
 
-//Информация об записи в firebase
 public class Model {
     Image picture;
     String title, price;
 
-    public Model(){
+    public Model() {
 
     }
 

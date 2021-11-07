@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.firebasepicture.MainActivity;
-import com.example.firebasepicture.Policy.Welcom.Welcome;
+import com.example.firebasepicture.Policy.Welcome.WelcomeFragment;
 import com.example.firebasepicture.R;
 import com.example.firebasepicture.databinding.FragmentPolicyBinding;
 
@@ -92,7 +92,7 @@ public class PolicyFragment extends Fragment {
         btnPrivatePolicyAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Welcome()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new WelcomeFragment()).commit();
             }
         });
 

@@ -1,6 +1,5 @@
 package com.example.firebasepicture;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -8,7 +7,6 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -53,12 +51,9 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initComponents();
-
         if (Intent.ACTION_VIEW.equals(getIntent().getAction()) && getIntent().getDataString() != null) {
             final String jobId = getIntent().getDataString().substring(getIntent().getDataString().lastIndexOf("/") + 1);
-
         }
     }
 
@@ -161,8 +156,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                         renderable = modelRenderable;
                     });
         }
-        catch (@NonNull Exception e)
-        {
+        catch (@NonNull Exception e) {
             e.printStackTrace();
             Toast.makeText(MainActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
         }

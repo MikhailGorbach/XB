@@ -1,4 +1,4 @@
-package com.example.firebasepicture.Policy.Welcom.Adapter;
+package com.example.firebasepicture.Policy.Welcome.Adapter;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

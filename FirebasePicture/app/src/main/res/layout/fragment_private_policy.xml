@@ -13,8 +13,8 @@
         android:layout_height="125dp"
         android:background="@color/white"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/blank_a"
-        tools:srcCompat="@drawable/blank_a" />
+        app:srcCompat="@drawable/background_blue_rounded_bottom"
+        tools:srcCompat="@drawable/background_blue_rounded_bottom" />
 
     <ImageButton
         android:id="@+id/btnPrivatePolicyBack"
@@ -26,7 +26,7 @@
         android:scaleType="centerCrop"
         app:tint="#2196F3"
         tools:ignore="SpeakableTextPresentCheck"
-        tools:src="@drawable/bbback" />
+        tools:src="@drawable/goback" />
 
     <TextView
         android:id="@+id/txtPrivatePolicyName_first"
@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="МногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекстаМногоТекста"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <TextView
