@@ -80,56 +80,6 @@ public class MenuFragment extends Fragment{
                 @Override
                 public void onClick(View view) {
                     String name = userModelList.get(position);
-                    switch (name) {
-                        case "Диваны":
-                            name = "sofa";
-                            break;
-                        case "Кресла":
-                            name = "armchair";
-                            break;
-                        case "Стулья":
-                            name = "chair";
-                            break;
-                        case "Кровати":
-                            name = "bed";
-                            break;
-                        case "Столы":
-                            name = "table";
-                            break;
-                        case "Двери":
-                            name = "door";
-                            break;
-                        case "Тумбы":
-                            name = "pedestal";
-                            break;
-                        case "Комоды":
-                            name = "dresser";
-                            break;
-                        case "Банкетки":
-                            name = "banquette";
-                            break;
-                        case "Пуфы":
-                            name = "poof";
-                            break;
-                        case "Шкафы":
-                            name = "wardrobe";
-                            break;
-                        case "Кушетки":
-                            name = "couch";
-                            break;
-                        case "Стеллажи":
-                            name = "shelf";
-                            break;
-                        case "Настенное освещение":
-                            name = "lightWall";
-                            break;
-                        case "Напольное освещение":
-                            name = "lightFloor";
-                            break;
-                        case "Люстры":
-                            name = "chandelier";
-                            break;
-                    }
                     getFragmentManager().beginTransaction().
                             replace(R.id.fragment_container, new FragmentForButton(name)).commit();
                 }

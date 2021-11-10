@@ -40,12 +40,68 @@ public class FragmentForButton extends Fragment{
     private DocumentSnapshot lastVisible;
     private FragmentForButton fragment;
     private String name;
+    private String rname;
     private Query query;
 
     public FragmentForButton(String name){
-        this.name = name;
+        this.rname = name;
         fragment = this;
         modelList = new ArrayList<>();
+
+        switchName();
+    }
+
+    private void switchName(){
+        switch (rname) {
+            case "Диваны":
+                name = "sofa";
+                break;
+            case "Кресла":
+                name = "armchair";
+                break;
+            case "Стулья":
+                name = "chair";
+                break;
+            case "Кровати":
+                name = "bed";
+                break;
+            case "Столы":
+                name = "table";
+                break;
+            case "Двери":
+                name = "door";
+                break;
+            case "Тумбы":
+                name = "pedestal";
+                break;
+            case "Комоды":
+                name = "dresser";
+                break;
+            case "Банкетки":
+                name = "banquette";
+                break;
+            case "Пуфы":
+                name = "poof";
+                break;
+            case "Шкафы":
+                name = "wardrobe";
+                break;
+            case "Кушетки":
+                name = "couch";
+                break;
+            case "Стеллажи":
+                name = "shelf";
+                break;
+            case "Настенное освещение":
+                name = "lightWall";
+                break;
+            case "Напольное освещение":
+                name = "lightFloor";
+                break;
+            case "Люстры":
+                name = "chandelier";
+                break;
+        }
     }
 
     @Override
@@ -59,6 +115,7 @@ public class FragmentForButton extends Fragment{
         firebaseFirestore = FirebaseFirestore.getInstance();
         rvAdapter = new ModelRVAdapter(modelList,fragment);
 
+        ((TextView) v.findViewById(R.id.txtCategoryList)).setText(rname);
         recyclerView = v.findViewById(R.id.recview);
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
         recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
