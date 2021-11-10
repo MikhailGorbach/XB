@@ -1,36 +1,63 @@
 package com.example.firebasepicture;
 
-import android.media.Image;
-
 //Информация об записи в firebase
 public class Model {
-    Image picture;
-    String title, price;
+    String article;
+    String assembling;
+    String category;
+    String colour;
+    String company;
+    String country;
+    String delivery;
+    String depth;
+    String description;
+    String height;
+    String link;
+    String material;
+    String name;
+    String ogrn;
+    String photo;
+    String price;
+    String scaleCompensation;
+    String seller;
+    String volume;
+    String weight;
+    String width;
 
     public Model(){
 
     }
 
-    public Model(Image picture, String price, String title) {
-        this.picture = picture;
-        this.title = title;
+    public Model(String article, String assembling, String category, String colour, String company, String country, String delivery, String depth, String description, String height, String link, String material, String name, String ogrn, String photo, String price, String scaleCompensation, String seller, String volume, String weight, String width) {
+        this.article = article;
+        this.assembling = assembling;
+        this.category = category;
+        this.colour = colour;
+        this.company = company;
+        this.country = country;
+        this.delivery = delivery;
+        this.depth = depth;
+        this.description = description;
+        this.height = height;
+        this.link = link;
+        this.material = material;
+        this.name = name;
+        this.ogrn = ogrn;
+        this.photo = photo;
         this.price = price;
+        this.scaleCompensation = scaleCompensation;
+        this.seller = seller;
+        this.volume = volume;
+        this.weight = weight;
+        this.width = width;
     }
 
-    public Image getPicture() {
-        return picture;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setPicture(Image picture) {
-        this.picture = picture;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getPrice() {
@@ -39,5 +66,166 @@ public class Model {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getArticle() {
+        return article;
+    }
+
+    public void setArticle(String article) {
+        this.article = article;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getWidth() {
+        return width;
+    }
+
+    public void setWidth(String width) {
+        this.width = width;
+    }
+
+    public String getDepth() {
+        return depth;
+    }
+
+    public void setDepth(String depth) {
+        this.depth = depth;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getVolume() {
+        return volume;
+    }
+
+    public void setVolume(String volume) {
+        this.volume = volume;
+    }
+
+    public String getAssembling() {
+        return assembling;
+    }
+
+    public void setAssembling(String assembling) {
+        this.assembling = assembling;
+    }
+
+    public String getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(String delivery) {
+        this.delivery = delivery;
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getOgrn() {
+        return ogrn;
+    }
+
+    public void setOgrn(String ogrn) {
+        this.ogrn = ogrn;
+    }
+
+    @Override
+    public String toString() {
+        return "Model{" +
+                "photo='" + photo + '\'' +
+                ", price='" + price + '\'' +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", article='" + article + '\'' +
+                ", link='" + link + '\'' +
+                ", description='" + description + '\'' +
+                ", width='" + width + '\'' +
+                ", depth='" + depth + '\'' +
+                ", height='" + height + '\'' +
+                ", material='" + material + '\'' +
+                ", country='" + country + '\'' +
+                ", weight='" + weight + '\'' +
+                ", volume='" + volume + '\'' +
+                ", assembling='" + assembling + '\'' +
+                ", delivery='" + delivery + '\'' +
+                ", colour='" + colour + '\'' +
+                ", company='" + company + '\'' +
+                ", ogrn='" + ogrn + '\'' +
+                '}';
     }
 }

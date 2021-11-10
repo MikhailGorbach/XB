@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
 
 public class FragmentForCard extends Fragment implements GetDataFromFragment{
@@ -50,7 +51,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         btnImgShareIt = v.findViewById(R.id.imgBtnShareIt);
 
         txtPrice.setText(model.getPrice());
-        Glide.with(v.getContext()).load(model.getPic()).into(img);
+        Glide.with(v.getContext()).load(model.getPhoto()).into(img);
 
         v.findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {
             @Override

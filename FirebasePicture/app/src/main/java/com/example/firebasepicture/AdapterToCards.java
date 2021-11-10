@@ -23,9 +23,9 @@ public class AdapterToCards extends FirestoreRecyclerAdapter<Model, AdapterToCar
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolderToCards holder, int position, @NonNull Model model) {
-        holder.txtTitle.setText(model.getTitle());
+        holder.txtTitle.setText(model.getName());
         holder.txtPrice.setText(model.getPrice());
-        Glide.with(holder.img1.getContext()).load(model.getPicture()).into(holder.img1);
+        Glide.with(holder.img1.getContext()).load(model.photo).into(holder.img1);
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override

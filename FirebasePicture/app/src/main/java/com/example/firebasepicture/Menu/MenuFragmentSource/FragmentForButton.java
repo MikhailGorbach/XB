@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -107,18 +108,12 @@ public class FragmentForButton extends Fragment{
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if (!queryDocumentSnapshots.isEmpty()) {
                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                    for (DocumentSnapshot d : list) {
+
+                    for ( DocumentSnapshot d: list) {
                         Model c = d.toObject(Model.class);
                         modelList.add(c);
                         lastVisible = d;
                     }
-                    modelList.sort(new Comparator<Model>() {
-                        @Override
-                        public int compare(Model o1, Model o2) {
-                            return o1.price.compareTo(o2.price);
-                        }
-                    });
-                    rvAdapter.notifyDataSetChanged();
                 } else
                     Toast.makeText(fragment.getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
 
@@ -265,7 +260,8 @@ public class FragmentForButton extends Fragment{
             Model model = modelsList.get(position);
 
             holder.txtPrice.setText(model.getPrice());
-            Glide.with(holder.img1.getContext()).load(model.getPic()).into(holder.img1);
+            holder.txtTitle.setText(model.getName());
+            Glide.with(holder.img1.getContext()).load(model.getPhoto()).into(holder.img1);
             holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
