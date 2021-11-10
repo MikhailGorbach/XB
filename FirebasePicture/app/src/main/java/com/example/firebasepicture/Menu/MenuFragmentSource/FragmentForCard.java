@@ -1,6 +1,7 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.example.firebasepicture.R;
 public class FragmentForCard extends Fragment implements GetDataFromFragment{
     private Model model;
     private TextView txtTitle;
+    private TextView txtDeskLink;
     private TextView txtPrice;
     private ImageView img;
     private ImageButton btnImgShareIt;
@@ -45,11 +47,31 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
 
     void initComponents(View v){
         txtTitle    = v.findViewById(R.id.txtDeskTitle);
-        txtPrice    = v.findViewById(R.id.txtDeskPrice);
         img         = v.findViewById(R.id.imgDeskAvatar);
         btnImgShareIt = v.findViewById(R.id.imgBtnShareIt);
 
-        txtPrice.setText(model.getPrice());
+        ( (TextView) v.findViewById(R.id.txtDeskPrice) ).setText(model.getPrice());
+        ( (TextView) v.findViewById(R.id.txtDeskTitle) ).setText(model.getName());
+        ( (TextView) v.findViewById(R.id.txtDeskDescription) ).setText(model.getDescription());
+        ( (TextView) v.findViewById(R.id.txtDeskWidth) ).setText(model.getWidth() + " см.");
+        ( (TextView) v.findViewById(R.id.txtDeskDepth) ).setText(model.getDepth() + " см.");
+        ( (TextView) v.findViewById(R.id.txtDeskHeight) ).setText(model.getHeight() + " см.");
+        ( (TextView) v.findViewById(R.id.txtDeskMaterial) ).setText(model.getMaterial());
+        ( (TextView) v.findViewById(R.id.txtDeskContries) ).setText(model.getCountry());
+        ( (TextView) v.findViewById(R.id.txtDeskWeight) ).setText(model.getWeight() + " см.");
+        ( (TextView) v.findViewById(R.id.txtDeskVolume) ).setText(model.getVolume() + " м3.");
+        ( (TextView) v.findViewById(R.id.txtDeskAssembling) ).setText(model.getAssembling());
+        ( (TextView) v.findViewById(R.id.txtDeskDelivery) ).setText(model.getDelivery());
+        ( (TextView) v.findViewById(R.id.txtDeskCompany) ).setText(model.getCompany());
+        ( (TextView) v.findViewById(R.id.txtDeskSeller) ).setText(model.getSeller());
+        ( (TextView) v.findViewById(R.id.txtDeskLink) ).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(model.getLink()));
+                startActivity(browserIntent);
+
+            }
+        });
         Glide.with(v.getContext()).load(model.getPhoto()).into(img);
 
         v.findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {

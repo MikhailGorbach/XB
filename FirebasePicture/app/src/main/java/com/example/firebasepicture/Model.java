@@ -205,6 +205,22 @@ public class Model {
         this.ogrn = ogrn;
     }
 
+    public String getScaleCompensation() {
+        return scaleCompensation;
+    }
+
+    public void setScaleCompensation(String scaleCompensation) {
+        this.scaleCompensation = scaleCompensation;
+    }
+
+    public String getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
+    }
+
     @Override
     public String toString() {
         return "Model{" +
