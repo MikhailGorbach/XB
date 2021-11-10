@@ -100,22 +100,31 @@ public class FragmentForButton extends Fragment{
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                if (!queryDocumentSnapshots.isEmpty()) {
-                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
 
-                    for ( DocumentSnapshot d: list) {
-                        Model c = d.toObject(Model.class);
-                        modelList.add(c);
-                        lastVisible = d;
-                    }
-                } else
+                if (queryDocumentSnapshots.isEmpty()) {
                     Toast.makeText(fragment.getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                if(list.isEmpty()){
+                    Toast.makeText(fragment.getContext(), "Error with download from Database", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                for ( DocumentSnapshot d: list) {
+                    Model c = d.toObject(Model.class);
+                    modelList.add(c);
+                    lastVisible = d;
+                }
+
+                rvAdapter.notifyDataSetChanged();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(fragment.getContext(), "Fail to get the data.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragment.getContext(), "Fail get data from Database.", Toast.LENGTH_SHORT).show();
             }
         });
 

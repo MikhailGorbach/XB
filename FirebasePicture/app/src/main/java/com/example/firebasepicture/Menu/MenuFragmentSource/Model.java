@@ -1,4 +1,5 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
+/*
 
 //Информация об записи в firebase
 public class Model {
@@ -60,3 +61,4 @@ public class Model {
     }
 
 }
+*/
