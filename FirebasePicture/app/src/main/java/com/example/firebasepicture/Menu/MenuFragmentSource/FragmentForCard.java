@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 import com.example.firebasepicture.Model;
@@ -19,9 +20,7 @@ import com.example.firebasepicture.R;
 
 public class FragmentForCard extends Fragment implements GetDataFromFragment{
     private Model model;
-    private TextView txtTitle;
-    private TextView txtDeskLink;
-    private TextView txtPrice;
+    private TextView txtDeskSeller;
     private ImageView img;
     private ImageButton btnImgShareIt;
 
@@ -46,9 +45,9 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
     }
 
     void initComponents(View v){
-        txtTitle    = v.findViewById(R.id.txtDeskTitle);
-        img         = v.findViewById(R.id.imgDeskAvatar);
-        btnImgShareIt = v.findViewById(R.id.imgBtnShareIt);
+        txtDeskSeller   = v.findViewById(R.id.txtDeskSeller);
+        img             = v.findViewById(R.id.imgDeskAvatar);
+        btnImgShareIt   = v.findViewById(R.id.imgBtnShareIt);
 
         ( (TextView) v.findViewById(R.id.txtDeskPrice) ).setText(model.getPrice());
         ( (TextView) v.findViewById(R.id.txtDeskTitle) ).setText(model.getName());
@@ -63,7 +62,17 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         ( (TextView) v.findViewById(R.id.txtDeskAssembling) ).setText(model.getAssembling());
         ( (TextView) v.findViewById(R.id.txtDeskDelivery) ).setText(model.getDelivery());
         ( (TextView) v.findViewById(R.id.txtDeskCompany) ).setText(model.getCompany());
-        ( (TextView) v.findViewById(R.id.txtDeskSeller) ).setText(model.getSeller());
+
+        txtDeskSeller.setText(model.getSeller() == null ? "Нет" : model.getSeller());
+        txtDeskSeller.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                MyDialogFragment myDialogFragment = new MyDialogFragment(model);
+                myDialogFragment.show(manager, "myDialog");
+            }
+        });
+
         ( (TextView) v.findViewById(R.id.txtDeskLink) ).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
