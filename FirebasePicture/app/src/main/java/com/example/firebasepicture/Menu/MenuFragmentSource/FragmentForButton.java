@@ -261,7 +261,7 @@ public class FragmentForButton extends Fragment{
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Model model = modelsList.get(position);
 
-            holder.txtPrice.setText(model.getPrice());
+            holder.txtPrice.setText(model.getPrice() + " ₽");
             holder.txtTitle.setText(model.getName());
             Glide.with(holder.img1.getContext()).load(model.getPhoto()).into(holder.img1);
             holder.relativeLayout.setOnClickListener(new View.OnClickListener() {

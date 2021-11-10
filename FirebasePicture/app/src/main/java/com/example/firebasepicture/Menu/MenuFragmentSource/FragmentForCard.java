@@ -1,5 +1,8 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,20 +18,26 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
+import com.example.firebasepicture.MainActivity;
 import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
 
 public class FragmentForCard extends Fragment implements GetDataFromFragment{
     private Model model;
     private TextView txtDeskSeller;
+    private TextView txtDeskArticle;
+
     private ImageView img;
     private ImageButton btnImgShareIt;
+    private Context context;
 
     private Fragment fragment;
 
     public FragmentForCard(Model model, Fragment fragment) {
         this.model = model;
         this.fragment = fragment;
+
+        context = fragment.getContext();
     }
 
     @Override
@@ -46,22 +55,34 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
 
     void initComponents(View v){
         txtDeskSeller   = v.findViewById(R.id.txtDeskSeller);
+        txtDeskArticle  = v.findViewById(R.id.txtDeskArticle);
         img             = v.findViewById(R.id.imgDeskAvatar);
         btnImgShareIt   = v.findViewById(R.id.imgBtnShareIt);
 
-        ( (TextView) v.findViewById(R.id.txtDeskPrice) ).setText(model.getPrice());
+        ( (TextView) v.findViewById(R.id.txtDeskPrice) ).setText(model.getPrice() + " ₽");
         ( (TextView) v.findViewById(R.id.txtDeskTitle) ).setText(model.getName());
         ( (TextView) v.findViewById(R.id.txtDeskDescription) ).setText(model.getDescription());
-        ( (TextView) v.findViewById(R.id.txtDeskWidth) ).setText(model.getWidth() + " см.");
-        ( (TextView) v.findViewById(R.id.txtDeskDepth) ).setText(model.getDepth() + " см.");
-        ( (TextView) v.findViewById(R.id.txtDeskHeight) ).setText(model.getHeight() + " см.");
+        ( (TextView) v.findViewById(R.id.txtDeskWidth) ).setText(model.getWidth() + " см");
+        ( (TextView) v.findViewById(R.id.txtDeskDepth) ).setText(model.getDepth() + " см");
+        ( (TextView) v.findViewById(R.id.txtDeskHeight) ).setText(model.getHeight() + " см");
         ( (TextView) v.findViewById(R.id.txtDeskMaterial) ).setText(model.getMaterial());
         ( (TextView) v.findViewById(R.id.txtDeskContries) ).setText(model.getCountry());
-        ( (TextView) v.findViewById(R.id.txtDeskWeight) ).setText(model.getWeight() + " см.");
-        ( (TextView) v.findViewById(R.id.txtDeskVolume) ).setText(model.getVolume() + " м3.");
+        ( (TextView) v.findViewById(R.id.txtDeskWeight) ).setText(model.getWeight() + " см");
+        ( (TextView) v.findViewById(R.id.txtDeskVolume) ).setText(model.getVolume() + " м3");
         ( (TextView) v.findViewById(R.id.txtDeskAssembling) ).setText(model.getAssembling());
         ( (TextView) v.findViewById(R.id.txtDeskDelivery) ).setText(model.getDelivery());
         ( (TextView) v.findViewById(R.id.txtDeskCompany) ).setText(model.getCompany());
+
+        txtDeskArticle.setText(model.getArticle());
+        txtDeskArticle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                clipboard.setPrimaryClip(ClipData.newPlainText("", model.getArticle()));
+
+                Toast.makeText(context, "Артикуль скопирован в буфер обмена", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         txtDeskSeller.setText(model.getSeller() == null ? "Нет" : model.getSeller());
         txtDeskSeller.setOnClickListener(new View.OnClickListener() {
