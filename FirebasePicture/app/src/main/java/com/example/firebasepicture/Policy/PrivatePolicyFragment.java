@@ -61,7 +61,7 @@ public class PrivatePolicyFragment extends Fragment {
 
         type(tip);
 
-        btnBack.setImageResource(R.drawable.bbback);
+        btnBack.setImageResource(R.drawable.goback);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +74,7 @@ public class PrivatePolicyFragment extends Fragment {
         txtConnectInfo.setEnabled(false);
         txtConnectInfo.setVisibility(View.INVISIBLE);
 
-        switch (i){
+        switch (i) {
             case 0:
                 txtPrivatePolicyName_1.setText(R.string.PrivatePolicyName_1);
                 txtPrivatePolicyName_2.setText(R.string.PrivatePolicyName_2);

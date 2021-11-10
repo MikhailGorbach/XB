@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.IBinder;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -25,7 +24,7 @@ public class NetworkChangeListener extends BroadcastReceiver {
             AppCompatButton btnRetry = layout_dialog.findViewById(R.id.btnRetryNoInternetConnection);
 
             AlertDialog dialog = builder.create();
-            dialog.getWindow().setBackgroundDrawableResource(R.drawable.blank_b);
+            dialog.getWindow().setBackgroundDrawableResource(R.drawable.background_blue_rounded);
             dialog.show();
             dialog.setCancelable(false);
 

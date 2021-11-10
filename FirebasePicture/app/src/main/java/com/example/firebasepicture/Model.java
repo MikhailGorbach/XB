@@ -1,6 +1,7 @@
 package com.example.firebasepicture;
 
 //Информация об записи в firebase
+import android.media.Image;
 public class Model {
     String article;
     String assembling;
@@ -24,7 +25,7 @@ public class Model {
     String weight;
     String width;
 
-    public Model(){
+    public Model() {
 
     }
 

@@ -1,16 +1,12 @@
 package com.example.firebasepicture.Menu;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.firebasepicture.Policy.PrivatePolicyFragment;
 import com.example.firebasepicture.R;
@@ -19,16 +15,12 @@ public class SettingsFragment extends Fragment {
     private TextView txtLinkSettingPrivatePolicy;
     private TextView txtLinkSettingTermsAndConditions;
     private TextView txtLinkSettingFeedBack;
-    private TextView txtLinkSettingScenes;
     private SettingsFragment ctx;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_settings, container, false);
-
         initComponent(v);
-
         return v;
     }
 
@@ -38,7 +30,6 @@ public class SettingsFragment extends Fragment {
         txtLinkSettingPrivatePolicy = v.findViewById(R.id.txtLinkSettingPrivatePolicy);
         txtLinkSettingTermsAndConditions = v.findViewById(R.id.txtLinkSettingTermsAndConditions);
         txtLinkSettingFeedBack = v.findViewById(R.id.txtLinkSettingFeedBack);
-        //txtLinkSettingScenes = v.findViewById(R.id.txtLinkSettingScenes);
 
         txtLinkSettingPrivatePolicy.setOnClickListener(new View.OnClickListener() {
             @Override

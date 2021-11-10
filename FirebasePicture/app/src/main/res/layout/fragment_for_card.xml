@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#3F51B5"
-    tools:context=".Menu.MenuFragmentSource.FragmentForCard">
+    android:background="#3F51B5">
 
     <LinearLayout
         android:id="@+id/linerLayoutUpBarFragmentForCard"
@@ -21,7 +20,7 @@
             android:id="@+id/btnBack"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@drawable/bbback"
+            android:background="@drawable/goback"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <Space
@@ -51,7 +50,6 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:orientation="vertical">
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -87,14 +85,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/InfoAtDeskLinkName"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/txtDeskLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="по ссылке"
-                    android:textColor="#FFEB3B" />
+                    android:textColor="@color/yellow" />
 
             </LinearLayout>
 
@@ -104,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/InfoAtDeskPrice"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <View
@@ -119,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Имя"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <TextView
@@ -128,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="описание"
-                android:textColor="#FFFFFF" />
+                android:textColor="@color/white" />
 
             <View
                 android:layout_width="match_parent"
@@ -142,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Параметры"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <TextView
@@ -151,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Основное"
-                android:textColor="#FFFFFF" />
+                android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -164,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ширина: "
-                    android:textColor="#969696"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
 
                 <TextView
@@ -172,7 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="... см"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -188,7 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Глубина: "
-                    android:textColor="#969696"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
 
                 <TextView
@@ -196,7 +194,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="... см"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -212,7 +210,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Высота: "
-                    android:textColor="#969696"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
 
                 <TextView
@@ -220,7 +218,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="... см"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -235,7 +233,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Материал: "
-                    android:textColor="#969696"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
 
                 <TextView
@@ -243,7 +241,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="атомы"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -258,7 +256,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Страна производства: "
-                    android:textColor="#969696"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
 
                 <TextView
@@ -266,7 +264,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="СССР"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -278,7 +276,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Упаковка"
-                android:textColor="#FFFFFF" />
+                android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -291,7 +289,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Вес в упаковке: "
-                    android:textColor="#969696"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
 
                 <TextView
@@ -299,7 +297,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="... см"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -315,7 +313,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Объём: "
-                    android:textColor="#969696"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
 
                 <TextView
@@ -323,7 +321,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="... м3"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -339,7 +337,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Потребуется сборка: "
-                    android:textColor="#969696"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
 
                 <TextView
@@ -347,7 +345,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="вероятно"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -381,7 +379,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Продавец: "
-                    android:textColor="#969696"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
 
                 <TextView
@@ -389,7 +387,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ссылка"
-                    android:textColor="#3F51B5"
+                    android:textColor="@color/blue_for_card"
                     android:textSize="12sp" />
 
                 <ImageView
@@ -411,7 +409,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/InfoAtDeskBottomDescription"
-                android:textColor="#969696"
+                android:textColor="@android:color/darker_gray"
                 android:textSize="10sp" />
         </LinearLayout>
 

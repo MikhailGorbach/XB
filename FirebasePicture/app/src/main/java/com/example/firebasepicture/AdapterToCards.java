@@ -52,7 +52,7 @@ public class AdapterToCards extends FirestoreRecyclerAdapter<Model, AdapterToCar
         public ViewHolderToCards(@NonNull View itemView) {
             super(itemView);
 
-            img1 = itemView.findViewById(R.id.img1);
+            img1 = itemView.findViewById(R.id.imgOnCard);
             txtTitle = itemView.findViewById(R.id.txtTitle);
             txtPrice = itemView.findViewById(R.id.txtPrice);
             relativeLayout = itemView.findViewById(R.id.backLayout);
