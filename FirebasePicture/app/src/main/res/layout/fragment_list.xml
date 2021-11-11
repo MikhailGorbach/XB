@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/btnBack2"
+            android:id="@+id/btnBackFragmentList"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@drawable/goback"
@@ -34,14 +34,14 @@
             android:textSize="24sp" />
 
         <ImageButton
-            android:id="@+id/imgBtnShareIt2"
+            android:id="@+id/imgBtnSortFragmentList"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:background="@color/transparent"
             android:scaleType="centerInside"
-            android:src="@drawable/uploadsymbol_105008"
+            android:src="@drawable/sort_icon"
             app:tint="#FFFFFF"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </LinearLayout>
