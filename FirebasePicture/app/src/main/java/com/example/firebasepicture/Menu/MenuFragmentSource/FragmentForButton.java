@@ -1,5 +1,7 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,6 +25,7 @@ import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -116,6 +121,12 @@ public class FragmentForButton extends Fragment{
         rvAdapter = new ModelRVAdapter(modelList,fragment);
 
         ((TextView) v.findViewById(R.id.txtCategoryList)).setText(rname);
+        ((ImageButton) v.findViewById(R.id.imgBtnSortFragmentList)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showBottomSheetDialog();
+            }
+        });
         recyclerView = v.findViewById(R.id.recview);
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
         recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
@@ -186,6 +197,22 @@ public class FragmentForButton extends Fragment{
         });
 
         recyclerView.setAdapter(rvAdapter);
+    }
+
+    private void showBottomSheetDialog() {
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this.getContext(),R.style.CustomBottomSheetDialogTheme);
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog);
+
+        bottomSheetDialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
+        ((Button)bottomSheetDialog.getWindow().findViewById(R.id.btnCancelBottomSheetDialog)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialog.dismiss();
+            }
+        });
+
+
+        bottomSheetDialog.show();
     }
 
     public abstract static class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener {
