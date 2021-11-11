@@ -7,4 +7,8 @@
     <string name="InfoAtFragmentMenuChairs">Стулья</string>
     <string name="InfoAtFragmentMenuTables">Столы</string>
     <string name="InfoAtFragmentMenuLights">Лампы</string>
+    <string name="cancelBottomSheetDialog">Cancel</string>
+    <string name="minBottomSheetDialog">По цене min</string>
+    <string name="maxBottomSheetDialog">По цене max</string>
+    <string name="sortBottomSheetDialog">Сортировка</string>
 </resources>
