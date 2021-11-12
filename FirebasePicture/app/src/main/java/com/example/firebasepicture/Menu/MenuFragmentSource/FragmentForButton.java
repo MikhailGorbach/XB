@@ -1,7 +1,5 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -42,11 +40,11 @@ public class FragmentForButton extends Fragment{
     private RecyclerView recyclerView;
     private ArrayList<Model> modelList;
     private ModelRVAdapter rvAdapter;
-    private DocumentSnapshot lastVisible;
     private FragmentForButton fragment;
     private String name;
     private String rname;
     private Query query;
+    private Comparator<DocumentSnapshot> comparator;
 
     public FragmentForButton(String name){
         this.rname = name;
@@ -127,63 +125,43 @@ public class FragmentForButton extends Fragment{
                 showBottomSheetDialog();
             }
         });
+
         recyclerView = v.findViewById(R.id.recview);
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
-        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
-            @Override
-            public void onLoadMore(int currentPage) {
-                Query nextQuery = firebaseFirestore.collection("models")
-                        .startAfter(lastVisible)
-                        .whereEqualTo("category",name)
-                        .limit(limit);
+        loadMax();
 
-                nextQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if (!queryDocumentSnapshots.isEmpty()) {
-                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                            for (DocumentSnapshot d : list) {
-                                Model c = d.toObject(Model.class);
-                                modelList.add(c);
-                                lastVisible = d;
-                            }
-                            rvAdapter.notifyDataSetChanged();
-                        }
+        if(rvAdapter.getItemCount() == 0)
+            loadQuery();
 
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
+        recyclerView.setAdapter(rvAdapter);
+    }
 
-                    }
-                });
-            }
-        });
-
+    private void loadQuery(){
         query = firebaseFirestore
                 .collection("models")
-                .whereEqualTo("category",name)
-                .limit(limit);
+                .whereEqualTo("category",name);
 
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
                 if (queryDocumentSnapshots.isEmpty()) {
                     Toast.makeText(fragment.getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                list.sort(comparator);
                 if(list.isEmpty()){
                     Toast.makeText(fragment.getContext(), "Error with download from Database", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                for ( DocumentSnapshot d: list) {
-                    Model c = d.toObject(Model.class);
-                    modelList.add(c);
-                    lastVisible = d;
+                int max = rvAdapter.getItemCount(), i = 0, j = 0;
+                for (DocumentSnapshot d : list) {
+                    if(i++ < max) continue;
+                    if(j++ >= limit) break;
+
+                    modelList.add(d.toObject(Model.class));
                 }
 
                 rvAdapter.notifyDataSetChanged();
@@ -195,8 +173,44 @@ public class FragmentForButton extends Fragment{
                 Toast.makeText(fragment.getContext(), "Fail get data from Database.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
-        recyclerView.setAdapter(rvAdapter);
+    private void loadMin(){
+        comparator = new Comparator<DocumentSnapshot>() {
+            @Override
+            public int compare(DocumentSnapshot o1, DocumentSnapshot o2) {
+                return Integer.parseInt(o1.toObject(Model.class).getPrice()) >
+                       Integer.parseInt(o2.toObject(Model.class).getPrice()) ? 1 :
+                        (Integer.parseInt(o1.toObject(Model.class).getPrice()) ==
+                         Integer.parseInt(o2.toObject(Model.class).getPrice())) ? 0 : -1;
+            }
+        };
+        loadQuery();
+        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
+            @Override
+            public void onLoadMore(int currentPage) {
+                loadQuery();
+            }
+        });
+    }
+
+    private void loadMax(){
+        comparator = new Comparator<DocumentSnapshot>() {
+            @Override
+            public int compare(DocumentSnapshot o1, DocumentSnapshot o2) {
+                return Integer.parseInt(o1.toObject(Model.class).getPrice()) >
+                        Integer.parseInt(o2.toObject(Model.class).getPrice()) ? -1 :
+                        (Integer.parseInt(o1.toObject(Model.class).getPrice()) ==
+                         Integer.parseInt(o2.toObject(Model.class).getPrice())) ? 0 : 1;
+            }
+        };
+        loadQuery();
+        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
+            @Override
+            public void onLoadMore(int currentPage) {
+                loadQuery();
+            }
+        });
     }
 
     private void showBottomSheetDialog() {
@@ -210,7 +224,22 @@ public class FragmentForButton extends Fragment{
                 bottomSheetDialog.dismiss();
             }
         });
-
+        ((Button)bottomSheetDialog.getWindow().findViewById(R.id.btnSortMaxBottomSheetDialog)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rvAdapter.remove();
+                bottomSheetDialog.dismiss();
+                loadMax();
+            }
+        });
+        ((Button)bottomSheetDialog.getWindow().findViewById(R.id.btnSortMinBottomSheetDialog)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rvAdapter.remove();
+                bottomSheetDialog.dismiss();
+                loadMin();
+            }
+        });
 
         bottomSheetDialog.show();
     }
@@ -329,6 +358,11 @@ public class FragmentForButton extends Fragment{
     public class ModelRVAdapter extends RecyclerView.Adapter<ModelRVAdapter.ViewHolder> {
         private ArrayList<Model> modelsList;
         private FragmentForButton fragment;
+
+        public void remove(){
+            while(modelsList.size() > 0) modelsList.remove(0);
+            notifyDataSetChanged();
+        }
 
         public ModelRVAdapter(ArrayList<Model> coursesArrayList, FragmentForButton fragment) {
             this.modelsList = coursesArrayList;
