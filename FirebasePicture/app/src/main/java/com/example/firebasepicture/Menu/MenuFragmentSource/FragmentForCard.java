@@ -117,7 +117,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
                 listener = (GetDataFromFragment) getActivity();
 
                 getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
-                listener.GetData(model.getName());
+                listener.GetData(model.getArticle());
             }
         });
 

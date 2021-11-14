@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,12 +21,17 @@ import com.example.firebasepicture.Menu.MenuFragmentSource.GetDataFromFragment;
 import com.example.firebasepicture.Menu.SettingsFragment;
 import com.example.firebasepicture.Policy.PolicyFragment;
 import com.example.firebasepicture.Utility.NetworkChangeListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.assets.RenderableSource;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
+import com.google.ar.sceneform.ux.TransformableNode;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
@@ -132,9 +138,20 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         assert arFragment != null;
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
             AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
-            anchorNode.setRenderable(renderable);
-            arFragment.getArSceneView().getScene().addChild(anchorNode);
+
+            TransformableNode nd = new TransformableNode(arFragment.getTransformationSystem());
+
+            nd.getScaleController().setMaxScale(0.02f);
+            nd.getScaleController().setMinScale(0.01f);
+
+            nd.setParent(anchorNode);
+            nd.setRenderable(renderable);
+            nd.select();
+
+            arFragment.getArSceneView().getScene().addChild(nd);
+
         });
+
     }
 
     //Создаём модель
@@ -164,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
     @Override
     public void GetData(String data) {//data - имя модели например "blasterH"
-        modelRef = modelRef.child(data+".glb");
+        modelRef = modelRef.child("models Android/" + data+".glb");
         newModel(data); //Создать по нажатию на экран
         modelRef = FirebaseStorage.getInstance().getReference();
 
