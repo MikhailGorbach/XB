@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.firebasepicture.MainActivity;
+import com.example.firebasepicture.Activity.MainActivity;
 import com.example.firebasepicture.R;
 import com.example.firebasepicture.databinding.FragmentPageBinding;
 

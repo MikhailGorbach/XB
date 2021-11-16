@@ -1,13 +1,9 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.firebasepicture.MainActivity;
 import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
 

@@ -1,4 +1,4 @@
-package com.example.firebasepicture;
+package com.example.firebasepicture.Activity;
 
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -7,7 +7,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,10 +20,9 @@ import com.example.firebasepicture.Menu.MenuFragment;
 import com.example.firebasepicture.Menu.MenuFragmentSource.GetDataFromFragment;
 import com.example.firebasepicture.Menu.SettingsFragment;
 import com.example.firebasepicture.Policy.PolicyFragment;
+import com.example.firebasepicture.R;
 import com.example.firebasepicture.Utility.NetworkChangeListener;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.ar.core.Anchor;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.assets.RenderableSource;
@@ -31,17 +30,14 @@ import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 public class MainActivity extends AppCompatActivity implements GetDataFromFragment
 {
@@ -66,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         if (Intent.ACTION_VIEW.equals(getIntent().getAction()) && getIntent().getDataString() != null) {
             final String jobId = getIntent().getDataString().substring(getIntent().getDataString().lastIndexOf("/") + 1);
         }
+
     }
 
     //Инициализация компонентов

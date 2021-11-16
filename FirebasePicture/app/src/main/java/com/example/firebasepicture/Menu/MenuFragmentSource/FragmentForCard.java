@@ -18,7 +18,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
-import com.example.firebasepicture.MainActivity;
 import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
 
