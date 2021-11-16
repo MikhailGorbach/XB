@@ -1,5 +1,6 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -145,7 +146,12 @@ public class FragmentForButton extends Fragment{
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if (queryDocumentSnapshots.isEmpty()) {
-                    Toast.makeText(fragment.getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
+                    //Здесь вылетала ошибка
+                    Context context = fragment.getContext();
+
+                    if (context != null)
+                        Toast.makeText( context, "No data found in Database", Toast.LENGTH_SHORT).show();
+
                     return;
                 }
 

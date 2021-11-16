@@ -22,7 +22,9 @@ import com.example.firebasepicture.Menu.SettingsFragment;
 import com.example.firebasepicture.Policy.PolicyFragment;
 import com.example.firebasepicture.Utility.NetworkChangeListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.ar.core.Anchor;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.assets.RenderableSource;
 import com.google.ar.sceneform.rendering.ModelRenderable;
@@ -30,13 +32,16 @@ import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity implements GetDataFromFragment
 {
@@ -118,9 +123,14 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     private void newModel(String name){
         try {
             File file = File.createTempFile(name, "glb");
-            modelRef.getFile(file)
+            StorageTask<FileDownloadTask.TaskSnapshot> taskSnapshotStorageTask = modelRef.getFile(file)
                     .addOnSuccessListener(taskSnapshot -> buildModel(file))
-                    .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Error. Model hasn't founded.", Toast.LENGTH_SHORT).show());
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MainActivity.this, "Error. Model hasn't founded.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
         catch (IOException e)
         {
@@ -137,18 +147,19 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         //При нажатии создать новую сцену с renderable обектом
         assert arFragment != null;
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
-            AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
+            if (renderable == null){
+                return;
+            }
 
-            TransformableNode nd = new TransformableNode(arFragment.getTransformationSystem());
+            Anchor anchor = hitResult.createAnchor();
+            AnchorNode anchorNode = new AnchorNode(anchor);
+            anchorNode.setParent(arFragment.getArSceneView().getScene());
 
-            nd.getScaleController().setMaxScale(0.02f);
-            nd.getScaleController().setMinScale(0.01f);
-
-            nd.setParent(anchorNode);
-            nd.setRenderable(renderable);
-            nd.select();
-
-            arFragment.getArSceneView().getScene().addChild(nd);
+            TransformableNode lamp = new TransformableNode(arFragment.getTransformationSystem());
+            lamp.setParent(anchorNode);
+            lamp.setRenderable(renderable);
+            lamp.getScaleController().setEnabled(false);
+            lamp.select();
 
         });
 
