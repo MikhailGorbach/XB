@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -19,7 +20,7 @@ public class SettingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_settings, container, false);
+        View v = inflater.inflate(R.layout.fragment_settings_new, container, false);
         initComponent(v);
         return v;
     }
@@ -27,6 +28,36 @@ public class SettingsFragment extends Fragment {
     private void initComponent(View v){
         ctx = this;
 
+        ( (LinearLayout) v.findViewById(R.id.layoutSupportFragmentSetting) ).setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        ( (LinearLayout) v.findViewById(R.id.layoutTeltegramFragmentSetting) ).setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        ( (LinearLayout) v.findViewById(R.id.layoutListFragmentSetting) ).setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v) {
+                    Fragment f = ctx;
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, new BrandListFragment(f)).commit();
+                }
+            });
+        ( (LinearLayout) v.findViewById(R.id.layoutInfoFragmentSetting) ).setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+      /*
         txtLinkSettingPrivatePolicy = v.findViewById(R.id.txtLinkSettingPrivatePolicy);
         txtLinkSettingTermsAndConditions = v.findViewById(R.id.txtLinkSettingTermsAndConditions);
         txtLinkSettingFeedBack = v.findViewById(R.id.txtLinkSettingFeedBack);
@@ -52,6 +83,6 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new PrivatePolicyFragment(ctx,2)).commit();
             }
-        });
+        });*/
     }
 }
