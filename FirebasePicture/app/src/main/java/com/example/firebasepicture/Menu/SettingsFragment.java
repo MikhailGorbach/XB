@@ -16,7 +16,6 @@ public class SettingsFragment extends Fragment {
     private TextView txtLinkSettingPrivatePolicy;
     private TextView txtLinkSettingTermsAndConditions;
     private TextView txtLinkSettingFeedBack;
-    private SettingsFragment ctx;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,27 +25,26 @@ public class SettingsFragment extends Fragment {
     }
 
     private void initComponent(View v){
-        ctx = this;
+        Fragment f = this;
 
         ( (LinearLayout) v.findViewById(R.id.layoutSupportFragmentSetting) ).setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v) {
-
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, new SupportFragment(f)).commit();
                 }
             });
         ( (LinearLayout) v.findViewById(R.id.layoutTeltegramFragmentSetting) ).setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v) {
-
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, new TelegramFragment(f)).commit();
                 }
             });
         ( (LinearLayout) v.findViewById(R.id.layoutListFragmentSetting) ).setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v) {
-                    Fragment f = ctx;
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, new BrandListFragment(f)).commit();
                 }
             });
