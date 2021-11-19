@@ -5,17 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.firebasepicture.Policy.PrivatePolicyFragment;
 import com.example.firebasepicture.R;
 
 public class SettingsFragment extends Fragment {
-    private TextView txtLinkSettingPrivatePolicy;
-    private TextView txtLinkSettingTermsAndConditions;
-    private TextView txtLinkSettingFeedBack;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,7 +47,7 @@ public class SettingsFragment extends Fragment {
             {
                 @Override
                 public void onClick(View v) {
-
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, new InfoFragment(f)).commit();
                 }
             });
       /*
