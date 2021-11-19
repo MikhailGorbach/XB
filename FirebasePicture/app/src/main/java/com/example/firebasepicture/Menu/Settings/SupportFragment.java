@@ -1,4 +1,4 @@
-package com.example.firebasepicture.Menu;
+package com.example.firebasepicture.Menu.Settings;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,14 +6,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import com.example.firebasepicture.Activity.MainActivity;
 import com.example.firebasepicture.R;
 
 public class SupportFragment extends Fragment {

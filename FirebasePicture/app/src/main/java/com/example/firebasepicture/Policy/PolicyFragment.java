@@ -99,14 +99,14 @@ public class PolicyFragment extends Fragment {
         txtLinkPrivatePolicy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new PrivatePolicyFragment(ctx,0)).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new PrivatePolicyFragment(ctx)).commit();
             }
         });
 
         txtLinkTermsAndConditions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new PrivatePolicyFragment(ctx,1)).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new TermsAndUse(ctx)).commit();
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.example.firebasepicture.Menu;
+package com.example.firebasepicture.Menu.Settings;
 
 import android.os.Bundle;
 

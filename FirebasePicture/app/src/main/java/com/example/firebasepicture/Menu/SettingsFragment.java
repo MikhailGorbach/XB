@@ -8,6 +8,10 @@ import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.firebasepicture.Menu.Settings.BrandListFragment;
+import com.example.firebasepicture.Menu.Settings.InfoFragment;
+import com.example.firebasepicture.Menu.Settings.SupportFragment;
+import com.example.firebasepicture.Menu.Settings.TelegramFragment;
 import com.example.firebasepicture.R;
 
 public class SettingsFragment extends Fragment {
