@@ -45,7 +45,7 @@ public class InfoFragment extends Fragment {
         View.OnClickListener onAboutClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutUs(f)).commit();
             }
         };
         View.OnClickListener onContactClick = new View.OnClickListener() {

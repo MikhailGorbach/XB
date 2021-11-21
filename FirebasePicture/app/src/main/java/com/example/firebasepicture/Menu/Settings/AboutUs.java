@@ -27,6 +27,11 @@ public class AboutUs extends Fragment {
     }
 
     private void initComponents(){
-
+        binding.btnBackFragmentAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+            }
+        });
     }
 }
