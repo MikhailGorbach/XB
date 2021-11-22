@@ -3,42 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/background_blue_rounded_square.xml" value="0.2638888888888889" />
+        <entry key="..\:/Users/User/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_telegram.xml" value="0.225" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable-v24/round_corners.xml" value="0.14947916666666666" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable-xhdpi/splashscreen.xml" value="0.2703125" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/background_blue_rounded.xml" value="0.14947916666666666" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/background_blue_rounded_bottom.xml" value="0.14947916666666666" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/background_blue_rounded_square.xml" value="0.4" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/background_gradient.xml" value="0.2703125" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/background_recycler_view.xml" value="0.14947916666666666" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/background_welcome_in_card.xml" value="0.14947916666666666" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/background_white_rounded.xml" value="0.14947916666666666" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/layout_shadow.xml" value="0.2703125" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/selector_checkbox.xml" value="0.2703125" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/drawable/shadow.xml" value="0.2703125" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/activity_splash_screen.xml" value="0.12239583333333333" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.264" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/card_design.xml" value="0.25407608695652173" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/card_disign.xml" value="0.264" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/check_internet_dialog.xml" value="0.18704710144927536" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_about_us.xml" value="0.4" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_brand_list.xml" value="0.264" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_contact.xml" value="0.17753623188405798" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_dialog.xml" value="0.19429347826086957" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_for_button.xml" value="0.264" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_for_card.xml" value="0.152" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_ideas.xml" value="0.10860655737704918" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_info.xml" value="0.4" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_list.xml" value="0.176" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_menu.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_policy.xml" value="0.18659420289855072" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_private_policy.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_settings.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_settings_new.xml" value="0.176" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_support.xml" value="0.4" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_telegram.xml" value="0.264" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_terms_and_use.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

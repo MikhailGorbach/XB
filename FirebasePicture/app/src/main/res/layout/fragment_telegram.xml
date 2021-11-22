@@ -101,14 +101,15 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnBotFragmentTelegram2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="20dp"
+                        android:textColor="@color/black"
                         android:background="@drawable/background_blue_rounded_square"
-                        android:backgroundTint="#FFFFFF"
+                        app:backgroundTint="@color/white"
                         android:text="Перейти к боту" />
 
                     <Space
