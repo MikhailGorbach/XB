@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#3F51B5">
+    android:background="@color/main_color">
 
     <LinearLayout
         android:id="@+id/linerLayoutUpBarFragmentForCard"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/transparent"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,9 +19,13 @@
 
         <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/goback"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="7dp"
+            android:background="@color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/chevron_backward_2x"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <Space
@@ -30,13 +35,13 @@
 
         <ImageButton
             android:id="@+id/imgBtnShareIt"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:background="@color/transparent"
             android:scaleType="centerInside"
-            android:src="@drawable/uploadsymbol_105008"
+            android:src="@drawable/square_and_arrow_up_2x"
             app:tint="#FFFFFF"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -46,25 +51,27 @@
         android:id="@+id/scrlFragmentForCard"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linerLayoutUpBarFragmentForCard"
+        app:layout_constraintTop_toTopOf="@+id/linerLayoutUpBarFragmentForCard"
         tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
             android:id="@+id/linerLayoutMainFragmentForCard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
             android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_corners">
+                android:background="@drawable/background_blue_rounded_square_more">
 
                 <ImageView
                     android:id="@+id/imgDeskAvatar"
@@ -81,6 +88,7 @@
                     android:layout_height="80dp"
                     android:layout_below="@id/imgDeskAvatar"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/logo3d"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </RelativeLayout>
@@ -88,13 +96,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtDeskLinkName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="@string/InfoAtDeskLinkName"
                     android:textColor="@color/white" />
 
@@ -102,6 +114,8 @@
                     android:id="@+id/txtDeskLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text=" Интернет-магазине"
                     android:textColor="@color/yellow" />
 
@@ -111,7 +125,9 @@
                 android:id="@+id/txtDeskPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:text="@string/InfoAtDeskPrice"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -119,14 +135,18 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:background="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/txtDeskTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:text="Имя"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -135,21 +155,27 @@
                 android:id="@+id/txtDeskDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:text="описание"
                 android:textColor="@color/white" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:background="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/txtDeskSetting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:text="Параметры"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -158,20 +184,26 @@
                 android:id="@+id/txtDeskMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:text="Основное"
                 android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtDeskArticleName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="Артикул: "
                     android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
@@ -180,6 +212,8 @@
                     android:id="@+id/txtDeskArticle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:textColor="@color/blue"
                     android:textSize="12sp" />
 
@@ -188,13 +222,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtDeskWidthName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="Ширина: "
                     android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
@@ -203,6 +241,8 @@
                     android:id="@+id/txtDeskWidth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="... см"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -212,13 +252,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtDeskDepthName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="Глубина: "
                     android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
@@ -227,6 +271,8 @@
                     android:id="@+id/txtDeskDepth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="... см"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -236,13 +282,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtDeskHeightName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="Высота: "
                     android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
@@ -251,6 +301,8 @@
                     android:id="@+id/txtDeskHeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="... см"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -259,13 +311,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtDeskMaterialName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="Материал: "
                     android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
@@ -274,6 +330,8 @@
                     android:id="@+id/txtDeskMaterial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="атомы"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -282,13 +340,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtDeskContriesName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="Страна производства: "
                     android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
@@ -297,6 +359,8 @@
                     android:id="@+id/txtDeskContries"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="СССР"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -308,20 +372,26 @@
                 android:id="@+id/txtDeskPack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:text="Упаковка"
                 android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtDeskWeightName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="Вес в упаковке: "
                     android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
@@ -330,6 +400,8 @@
                     android:id="@+id/txtDeskWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="... см"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -339,13 +411,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtDeskVolumeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="Объём: "
                     android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
@@ -354,6 +430,8 @@
                     android:id="@+id/txtDeskVolume"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="... м3"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -363,13 +441,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtDeskAssembling"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="Потребуется сборка"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
@@ -379,32 +461,42 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:background="@android:color/darker_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/imgDesBoxFragmentForCard"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
                     android:src="@drawable/home3x" />
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:orientation="vertical">
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -412,6 +504,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:text="Доставка и сборка в течении"
                             android:textColor="@color/white" />
 
@@ -420,6 +513,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:text="21 день"
                             android:textColor="@color/white" />
                     </LinearLayout>
@@ -427,6 +521,8 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -434,6 +530,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:text="Доставка со склада "
                             android:textColor="@android:color/darker_gray"
                             android:textSize="12sp" />
@@ -442,6 +539,8 @@
                             android:id="@+id/txtDeskCompany"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:text="дом2 "
                             android:textColor="@android:color/darker_gray"
@@ -456,19 +555,25 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:background="@android:color/darker_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/imgDeskPictureFragmentForCard"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:src="@drawable/home3x" />
 
                 <TextView
@@ -476,6 +581,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="Продавец: "
                     android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
@@ -484,36 +590,46 @@
                     android:id="@+id/txtDeskSeller"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="Ссылка"
                     android:textColor="@color/blue"
                     android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/imgDeskPicture2FragmentForCard"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:layout_marginLeft="5dp"
-                    android:src="@drawable/wishlist3x" />
+                    android:layout_marginTop="1dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/info_circle_2x" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:background="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/txtDeskBottomDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:text="@string/InfoAtDeskBottomDescription"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="10sp" />
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="100dp" />
+                android:layout_height="100dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
         </LinearLayout>
 
     </ScrollView>
