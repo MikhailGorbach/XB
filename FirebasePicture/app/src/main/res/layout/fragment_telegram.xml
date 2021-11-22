@@ -10,7 +10,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#3F51B5"
+        android:background="@color/main_color"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,12 +102,13 @@
                         android:layout_weight="1" />
 
                     <Button
-                        android:id="@+id/btnBotFragmentTelegram"
+                        android:id="@+id/btnBotFragmentTelegram2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/background_blue_rounded_square"
+                        android:backgroundTint="#FFFFFF"
                         android:text="Перейти к боту" />
 
                     <Space
