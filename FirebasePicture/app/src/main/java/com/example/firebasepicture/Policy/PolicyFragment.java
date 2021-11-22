@@ -106,7 +106,7 @@ public class PolicyFragment extends Fragment {
         txtLinkTermsAndConditions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new TermsAndUse(ctx)).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new TermsAndUseFragment(ctx)).commit();
             }
         });
     }

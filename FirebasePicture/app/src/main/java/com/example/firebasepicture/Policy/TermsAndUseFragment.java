@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import com.example.firebasepicture.R;
 import com.example.firebasepicture.databinding.FragmentTermsAndUseBinding;
 
-public class TermsAndUse extends Fragment {
+public class TermsAndUseFragment extends Fragment {
     private Fragment fragment;
     private FragmentTermsAndUseBinding binding;
-    public TermsAndUse(Fragment fragment) {
+    public TermsAndUseFragment(Fragment fragment) {
         this.fragment = fragment;
     }
 

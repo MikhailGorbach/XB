@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import com.example.firebasepicture.R;
 import com.example.firebasepicture.databinding.FragmentAboutUsBinding;
 
-public class AboutUs extends Fragment {
+public class AboutUsFragment extends Fragment {
     private Fragment fragment;
     private FragmentAboutUsBinding binding;
-    public AboutUs(Fragment fragment) {
+    public AboutUsFragment(Fragment fragment) {
         this.fragment = fragment;
     }
 

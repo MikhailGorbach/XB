@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.firebasepicture.Policy.PrivatePolicyFragment;
-import com.example.firebasepicture.Policy.TermsAndUse;
+import com.example.firebasepicture.Policy.TermsAndUseFragment;
 import com.example.firebasepicture.R;
 import com.example.firebasepicture.databinding.FragmentInfoBinding;
 
@@ -39,19 +39,19 @@ public class InfoFragment extends Fragment {
         View.OnClickListener onTermsClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new TermsAndUse(f)).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new TermsAndUseFragment(f)).commit();
             }
         };
         View.OnClickListener onAboutClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutUs(f)).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutUsFragment(f)).commit();
             }
         };
         View.OnClickListener onContactClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContactFragment(f)).commit();
             }
         };
         View.OnClickListener onAppClick = new View.OnClickListener() {
