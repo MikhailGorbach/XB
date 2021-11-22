@@ -3,22 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/bottom_nav_settings"
-        android:title="Настройки"
-        android:icon="@drawable/settings"
-        app:cnb_backgroundColor="@color/colorPrimary">
-    </item>
+        android:id="@+id/bottom_nav_ideas"
+        android:icon="@drawable/wishlist3x"
+        android:iconTint="@color/gray"
+        android:title="Идеи"
+        app:cnb_backgroundColor="@color/colorPrimary"></item>
     <item
         android:id="@+id/bottom_nav_main"
+        android:icon="@drawable/home3x"
+        android:iconTint="@color/gray"
         android:title="Меню"
-        android:icon="@drawable/main"
-        app:cnb_backgroundColor="@color/colorPrimary">
-    </item>
+        app:cnb_backgroundColor="@color/colorPrimary"></item>
 
     <item
-        android:id="@+id/bottom_nav_ideas"
-        android:title="Идеи"
-        android:icon="@drawable/idea"
+        android:id="@+id/bottom_nav_settings"
+        android:icon="@drawable/settingscogwheel_102669_2"
+        android:iconTint="@color/gray"
+        android:title="Настройки"
         app:cnb_backgroundColor="@color/colorPrimary">
 
     </item>
