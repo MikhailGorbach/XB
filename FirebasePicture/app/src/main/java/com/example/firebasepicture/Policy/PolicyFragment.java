@@ -50,8 +50,8 @@ public class PolicyFragment extends Fragment {
         txtLinkPrivatePolicy = binding.txtLinkPrivatePolicy;
         txtLinkTermsAndConditions = binding.txtLinkTermsAndConditions;
 
-        btnPrivatePolicy.setImageResource((!btnPrivatePolicyStatus) ? R.drawable.check_off : R.drawable.check_on);
-        btnTermsAndPolicy.setImageResource((!btnTermsAndPolicyStatus) ? R.drawable.check_off : R.drawable.check_on);
+        btnPrivatePolicy.setImageResource((!btnPrivatePolicyStatus) ? R.drawable.check_out : R.drawable.check_in);
+        btnTermsAndPolicy.setImageResource((!btnTermsAndPolicyStatus) ? R.drawable.check_out : R.drawable.check_in);
 
         if (btnPrivatePolicyStatus && btnTermsAndPolicyStatus) {
             btnPrivatePolicyAccept.setBackgroundColor(Color.BLUE);
@@ -65,7 +65,7 @@ public class PolicyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 btnPrivatePolicyStatus = !btnPrivatePolicyStatus;
-                btnPrivatePolicy.setImageResource(btnPrivatePolicyStatus ? R.drawable.check_on : R.drawable.check_off);
+                btnPrivatePolicy.setImageResource(btnPrivatePolicyStatus ? R.drawable.check_in : R.drawable.check_out);
                 btnPrivatePolicyAccept.setEnabled((btnPrivatePolicyStatus && btnTermsAndPolicyStatus) ? true : false);
 
                 if (btnPrivatePolicyStatus && btnTermsAndPolicyStatus)
@@ -79,7 +79,7 @@ public class PolicyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 btnTermsAndPolicyStatus = !btnTermsAndPolicyStatus;
-                btnTermsAndPolicy.setImageResource(btnTermsAndPolicyStatus ? R.drawable.check_on : R.drawable.check_off);
+                btnTermsAndPolicy.setImageResource(btnTermsAndPolicyStatus ? R.drawable.check_in : R.drawable.check_out);
                 btnPrivatePolicyAccept.setEnabled((btnPrivatePolicyStatus && btnTermsAndPolicyStatus) ? true : false);
 
                 if (btnPrivatePolicyStatus && btnTermsAndPolicyStatus)
