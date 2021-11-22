@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
         initBottomNavigation();
 
-        if(!privatePolicyAccept){
+        if(privatePolicyAccept){
             PolicyFragment policyFragment = new PolicyFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, policyFragment)
