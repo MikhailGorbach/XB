@@ -10,7 +10,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#3F51B5"
+        android:background="@color/main_color"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,30 +18,36 @@
 
         <ImageButton
             android:id="@+id/btnBackFragmentList"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/goback"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/chevron_backward_2x"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/txtCategoryList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:text="TextView"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
         <ImageButton
             android:id="@+id/imgBtnSortFragmentList"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="10dp"
             android:background="@color/transparent"
             android:scaleType="centerInside"
-            android:src="@drawable/sort_icon"
+            android:src="@drawable/arrow_up_arrow_down_2x"
             app:tint="#FFFFFF"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </LinearLayout>
