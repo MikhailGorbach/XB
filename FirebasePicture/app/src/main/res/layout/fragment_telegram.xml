@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Menu.Settings.TelegramFragment">
+    tools:ignore="SpUsage">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
@@ -41,9 +41,9 @@
             android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:text="Телеграм бот"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -52,13 +52,13 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:ignore="SpeakableTextPresentCheck">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,8 +79,8 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="20dp"
                     android:text="Мы создали удобного телеграм бота"
-                    android:textColor="#FFFFFF"
-                    android:textSize="34sp" />
+                    android:textColor="@color/white"
+                    android:textSize="34dp" />
 
                 <TextView
                     android:id="@+id/txtCardDescriptionFragmentSupport"
@@ -88,8 +88,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="Что он умеет?"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp" />
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -123,7 +123,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFFFF"
+                android:background="@color/white"
                 android:orientation="vertical">
 
 
@@ -131,18 +131,17 @@
                     android:id="@+id/txtTitleFragmentTelegram"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Преимущества"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginHorizontal="10dp"
                     android:background="@android:color/darker_gray" />
 
                 <LinearLayout
@@ -160,39 +159,39 @@
                             android:id="@+id/txtTextFragmentTelegram1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="15dp"
                             android:text="Онлайн-чат 24/7"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
 
                         <TextView
                             android:id="@+id/txtTextFragmentTelegram2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:text="С техпожжержкой"
                             android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
                         <TextView
                             android:id="@+id/txtTextFragmentTelegram3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="15dp"
                             android:text="Покажем, как пользоваться AR"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
 
                         <TextView
                             android:id="@+id/txtTextFragmentTelegram4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:text="и другими технологиями сервиса"
                             android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
                         <TextView
                             android:id="@+id/txtTextFragmentTelegram5"
@@ -201,14 +200,14 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="15dp"
                             android:text="Ответы популярные вопросы"
-                            android:textColor="#000000"
+                            android:textColor="@color/black"
                             android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/txtTextFragmentTelegram6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:text="Просто выберите интересующий вопрос из списка"
                             android:textColor="@android:color/darker_gray"
                             android:textSize="14sp" />
@@ -217,39 +216,39 @@
                             android:id="@+id/txtTextFragmentTelegram7"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="15dp"
                             android:text="Возможность оставить обратную связь"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
 
                         <TextView
                             android:id="@+id/txtTextFragmentTelegram8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:text="так Вы поможете улучшить сервис"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp" />
+                            android:textColor="@color/darker_gray"
+                            android:textSize="14dp" />
 
                         <TextView
                             android:id="@+id/txtTextFragmentTelegram9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="15dp"
                             android:text="Расскажем, как получить кэшбек"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
 
                         <TextView
                             android:id="@+id/txtTextFragmentTelegram10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:text="после покупки мебели"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp" />
+                            android:textColor="@color/darker_gray"
+                            android:textSize="14dp" />
 
                     </LinearLayout>
 
@@ -264,35 +263,29 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="30dp"
-                            android:layout_marginRight="10dp"
-                            android:src="@drawable/telegram"
-                            app:srcCompat="@drawable/telegram" />
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/telegram" />
 
                         <ImageView
                             android:id="@+id/imageView3"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="30dp"
-                            android:layout_marginRight="10dp"
-                            android:src="@drawable/phone"
-                            app:srcCompat="@drawable/phone" />
+                            android:layout_marginEnd="10dp"
+                            android:rotation="20"
+                            android:src="@drawable/phone" />
 
                         <ImageView
                             android:id="@+id/imageView4"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="30dp"
-                            android:layout_marginRight="10dp"
-                            android:src="@drawable/t24_7"
-                            app:srcCompat="@drawable/t24_7" />
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/t24_7" />
                     </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="75dp" />
 
         </LinearLayout>
     </ScrollView>
