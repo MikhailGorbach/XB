@@ -387,6 +387,7 @@ public class FragmentForButton extends Fragment{
 
             holder.txtPrice.setText(model.getPrice() + " ₽");
             holder.txtTitle.setText(model.getName());
+            holder.txtCompany.setText(model.getCompany());
             Glide.with(holder.img1.getContext()).load(model.getPhoto()).into(holder.img1);
             holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -406,6 +407,7 @@ public class FragmentForButton extends Fragment{
             public ImageView img1;
             public TextView txtTitle;
             public TextView txtPrice;
+            public TextView txtCompany;
             public RelativeLayout relativeLayout;
 
             public ViewHolder(@NonNull View itemView) {
@@ -414,6 +416,7 @@ public class FragmentForButton extends Fragment{
                 img1 = itemView.findViewById(R.id.imgOnCard);
                 txtTitle = itemView.findViewById(R.id.txtTitle);
                 txtPrice = itemView.findViewById(R.id.txtPrice);
+                txtCompany = itemView.findViewById(R.id.txtCompany);
                 relativeLayout = itemView.findViewById(R.id.backLayout);
 
                 relativeLayout.setOnClickListener(new View.OnClickListener() {
