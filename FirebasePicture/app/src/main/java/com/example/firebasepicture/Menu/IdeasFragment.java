@@ -50,52 +50,8 @@ public class IdeasFragment extends Fragment {
         links.add("https://homevis.tech/static/users/img/2.png");
         links.add("https://homevis.tech/static/users/img/3.png");
 
-        binding.listMyList.setAdapter(new UsersAdapter2(links,this));
-    }
-
-    public class UsersAdapter2 extends RecyclerView.Adapter<UsersAdapter2.UserAdapterViewHolder>{
-        public Fragment fragment;
-        private List<String> userModelList;
-
-        public UsersAdapter2(List<String> userModelList, Fragment fragment) {
-            this.userModelList = userModelList;
-            this.fragment = fragment;
-        }
-
-        @NonNull
-        @Override
-        public UserAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new UsersAdapter2.UserAdapterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_uses,null));
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull UserAdapterViewHolder holder, @SuppressLint("RecyclerView") int position) {
-            holder.txtTitle.setText(userModelList.get(position));
-            holder.layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String name = userModelList.get(position);
-                    getFragmentManager().beginTransaction().
-                            replace(R.id.fragment_container, new FragmentForButton(name, fragment)).commit();
-                }
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            return userModelList.size();
-        }
-
-        public class UserAdapterViewHolder extends RecyclerView.ViewHolder {
-            public TextView txtTitle;
-            public RelativeLayout layout;
-
-            public UserAdapterViewHolder(@NonNull View itemView) {
-                super(itemView);
-                txtTitle = (TextView) itemView.findViewById(R.id.uses_title);
-                layout = (RelativeLayout) itemView.findViewById(R.id.layout_title);
-            }
-        }
+        UsersAdapter adapter = new UsersAdapter(links, this);
+        binding.listMyList.setAdapter(adapter);
     }
 
 }

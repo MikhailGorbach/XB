@@ -61,48 +61,47 @@ public class MenuFragment extends Fragment{
     }
 
 
-    public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterViewHolder>{
-        public Fragment fragment;
-        private List<String> userModelList;
+}
+class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterViewHolder>{
+    public Fragment fragment;
+    private List<String> userModelList;
 
-        public UsersAdapter(List<String> userModelList, Fragment fragment) {
-            this.userModelList = userModelList;
-            this.fragment = fragment;
-        }
-
-        @Override
-        public UserAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new UserAdapterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_uses,null));
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull UserAdapterViewHolder holder, @SuppressLint("RecyclerView") int position) {
-            holder.txtTitle.setText(userModelList.get(position));
-            holder.layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String name = userModelList.get(position);
-                    getFragmentManager().beginTransaction().
-                            replace(R.id.fragment_container, new FragmentForButton(name, fragment)).commit();
-                }
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            return userModelList.size();
-        }
-
-        public class UserAdapterViewHolder extends RecyclerView.ViewHolder {
-            public TextView txtTitle;
-            public RelativeLayout layout;
-
-            public UserAdapterViewHolder(@NonNull View itemView) {
-                super(itemView);
-                txtTitle = (TextView) itemView.findViewById(R.id.uses_title);
-                layout = (RelativeLayout) itemView.findViewById(R.id.layout_title);
-            }
-        }
+    public UsersAdapter(List<String> userModelList, Fragment fragment) {
+        this.userModelList = userModelList;
+        this.fragment = fragment;
     }
 
+    @Override
+    public UsersAdapter.UserAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new UsersAdapter.UserAdapterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_uses,null));
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull UsersAdapter.UserAdapterViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.txtTitle.setText(userModelList.get(position));
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = userModelList.get(position);
+                fragment.getFragmentManager().beginTransaction().
+                        replace(R.id.fragment_container, new FragmentForButton(name, fragment)).commit();
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return userModelList.size();
+    }
+
+    public class UserAdapterViewHolder extends RecyclerView.ViewHolder {
+        public TextView txtTitle;
+        public RelativeLayout layout;
+
+        public UserAdapterViewHolder(@NonNull View itemView) {
+            super(itemView);
+            txtTitle = (TextView) itemView.findViewById(R.id.uses_title);
+            layout = (RelativeLayout) itemView.findViewById(R.id.layout_title);
+        }
+    }
 }
