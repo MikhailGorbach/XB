@@ -1,18 +1,25 @@
 package com.example.firebasepicture.Menu.Settings;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.firebasepicture.R;
 import com.example.firebasepicture.databinding.FragmentTelegramBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TelegramFragment extends Fragment {
     private Fragment fragment;
@@ -45,4 +52,5 @@ public class TelegramFragment extends Fragment {
             }
         });
     }
+
 }
