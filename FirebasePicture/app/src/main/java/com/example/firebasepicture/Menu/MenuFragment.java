@@ -54,7 +54,7 @@ public class MenuFragment extends Fragment{
         arrayList.add("Настенное освещение");
         arrayList.add("Напольное освещение");
         arrayList.add("Люстры");
-        UsersAdapter adapter = new UsersAdapter(arrayList);
+        UsersAdapter adapter = new UsersAdapter(arrayList, this);
 
         listOfItemSetting.setLayoutManager(new LinearLayoutManager(getContext()));
         listOfItemSetting.setAdapter(adapter);
@@ -62,10 +62,12 @@ public class MenuFragment extends Fragment{
 
 
     public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterViewHolder>{
+        public MenuFragment fragment;
         private List<String> userModelList;
 
-        public UsersAdapter(List<String> userModelList) {
+        public UsersAdapter(List<String> userModelList, MenuFragment fragment) {
             this.userModelList = userModelList;
+            this.fragment = fragment;
         }
 
         @Override
@@ -81,7 +83,7 @@ public class MenuFragment extends Fragment{
                 public void onClick(View view) {
                     String name = userModelList.get(position);
                     getFragmentManager().beginTransaction().
-                            replace(R.id.fragment_container, new FragmentForButton(name)).commit();
+                            replace(R.id.fragment_container, new FragmentForButton(name, fragment)).commit();
                 }
             });
         }

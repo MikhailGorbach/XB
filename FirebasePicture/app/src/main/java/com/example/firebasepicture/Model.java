@@ -4,6 +4,7 @@ package com.example.firebasepicture;
 import android.media.Image;
 public class Model {
     String article;
+    Long articleL;
     String assembling;
     String category;
     String colour;

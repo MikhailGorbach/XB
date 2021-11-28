@@ -6,47 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/main_color">
 
-    <LinearLayout
-        android:id="@+id/linerLayoutUpBarFragmentForCard"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/transparent"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
-
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="7dp"
-            android:background="@color/transparent"
-            android:scaleType="centerInside"
-            android:src="@drawable/chevron_backward_2x"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:id="@+id/imgBtnShareIt"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@color/transparent"
-            android:scaleType="centerInside"
-            android:src="@drawable/square_and_arrow_up_2x"
-            app:tint="#FFFFFF"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    </LinearLayout>
-
     <ScrollView
         android:id="@+id/scrlFragmentForCard"
         android:layout_width="0dp"
@@ -665,6 +624,48 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linerLayoutUpBarFragmentForCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/transparent"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="7dp"
+            android:background="@color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/chevron_backward_2x"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/imgBtnShareIt"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/square_and_arrow_up_2x"
+            app:tint="#FFFFFF"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
     <!--
     <LinearLayout
         android:layout_width="match_parent"

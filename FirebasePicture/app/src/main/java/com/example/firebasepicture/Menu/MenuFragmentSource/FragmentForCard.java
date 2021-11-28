@@ -73,6 +73,8 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         ( (TextView) v.findViewById(R.id.txtDeskDelivery) ).setText(model.getDelivery());
         ( (TextView) v.findViewById(R.id.txtDeskCompany) ).setText(model.getCompany());
 
+
+
         txtDeskArticle.setText(model.getArticle());
         txtDeskArticle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +106,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         });
         Glide.with(v.getContext()).load(model.getPhoto()).into(img);
 
-        v.findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) v.findViewById(R.id.btnBack)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();

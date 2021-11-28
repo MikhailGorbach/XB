@@ -1,5 +1,6 @@
 package com.example.firebasepicture.Activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     }
 
     //Инициализируем BottomNavigation
+    @SuppressLint("ResourceAsColor")
     private void initBottomNavigation(){
         Context ctx = this;
         bottomNav = findViewById(R.id.bottom_nav_menu);
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                     fragment = new IdeasFragment();
                     break;
                 case R.id.bottom_nav_main:
-                    //findViewById(id).setBackgroundTintList(ctx.getResources().getColorStateList(R.color.white));
+                    //setBackgroundTintList(ctx.getResources().getColorStateList(R.color.white));
                     fragment = new MenuFragment();
                     break;
                 case R.id.bottom_nav_settings:

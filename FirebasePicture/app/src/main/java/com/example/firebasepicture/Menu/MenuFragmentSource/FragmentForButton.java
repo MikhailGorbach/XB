@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.databinding.FragmentListBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -38,17 +40,20 @@ public class FragmentForButton extends Fragment{
     private final int limit = 16;
 
     private FirebaseFirestore firebaseFirestore;
+    private FragmentListBinding binding;
     private RecyclerView recyclerView;
     private ArrayList<Model> modelList;
     private ModelRVAdapter rvAdapter;
     private FragmentForButton fragment;
+    private Fragment back;
     private String name;
     private String rname;
     private Query query;
     private Comparator<DocumentSnapshot> comparator;
 
-    public FragmentForButton(String name){
+    public FragmentForButton(String name, Fragment back){
         this.rname = name;
+        this.back = back;
         fragment = this;
         modelList = new ArrayList<>();
 
@@ -110,24 +115,31 @@ public class FragmentForButton extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_list, container, false);
-        initComponents(v);
-        return v;
+        binding = FragmentListBinding.inflate(inflater, container, false);
+        initComponents();
+        return binding.getRoot();
     }
 
-    private void initComponents(View v){
+    private void initComponents(){
         firebaseFirestore = FirebaseFirestore.getInstance();
         rvAdapter = new ModelRVAdapter(modelList,fragment);
 
-        ((TextView) v.findViewById(R.id.txtCategoryList)).setText(rname);
-        ((ImageButton) v.findViewById(R.id.imgBtnSortFragmentList)).setOnClickListener(new View.OnClickListener() {
+        binding.txtCategoryList.setText(rname);
+        binding.imgBtnSortFragmentList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showBottomSheetDialog();
             }
         });
+        binding.btnBackFragmentList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, back).commit();
+            }
+        });
 
-        recyclerView = v.findViewById(R.id.recview);
+
+        recyclerView = binding.recview;
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
         loadMax();
 
@@ -156,6 +168,9 @@ public class FragmentForButton extends Fragment{
                 }
 
                 List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                for (DocumentSnapshot d : list) {
+                    Log.d("debug", "onSuccess: "+d.toObject(Model.class).toString());
+                }
                 list.sort(comparator);
                 if(list.isEmpty()){
                     Toast.makeText(fragment.getContext(), "Error with download from Database", Toast.LENGTH_SHORT).show();
@@ -204,10 +219,11 @@ public class FragmentForButton extends Fragment{
         comparator = new Comparator<DocumentSnapshot>() {
             @Override
             public int compare(DocumentSnapshot o1, DocumentSnapshot o2) {
-                return Integer.parseInt(o1.toObject(Model.class).getPrice()) >
-                        Integer.parseInt(o2.toObject(Model.class).getPrice()) ? -1 :
-                        (Integer.parseInt(o1.toObject(Model.class).getPrice()) ==
-                         Integer.parseInt(o2.toObject(Model.class).getPrice())) ? 0 : 1;
+                int a = Integer.parseInt(o1.toObject(Model.class).getPrice());
+                int b = Integer.parseInt(o2.toObject(Model.class).getPrice());
+
+                //return a > b ? -1 : (a == b) ? 0 : 1;
+                return (a > b) ? -1 : 1;
             }
         };
         loadQuery();
