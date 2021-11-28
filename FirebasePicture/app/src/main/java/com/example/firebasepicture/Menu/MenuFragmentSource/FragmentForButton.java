@@ -138,7 +138,6 @@ public class FragmentForButton extends Fragment{
             }
         });
 
-
         recyclerView = binding.recview;
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
         loadMax();
@@ -168,9 +167,6 @@ public class FragmentForButton extends Fragment{
                 }
 
                 List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                for (DocumentSnapshot d : list) {
-                    Log.d("debug", "onSuccess: "+d.toObject(Model.class).toString());
-                }
                 list.sort(comparator);
                 if(list.isEmpty()){
                     Toast.makeText(fragment.getContext(), "Error with download from Database", Toast.LENGTH_SHORT).show();

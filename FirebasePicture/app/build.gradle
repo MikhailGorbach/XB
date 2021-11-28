@@ -59,4 +59,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.0.0'
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
+    implementation 'androidx.databinding:databinding-runtime:4.1.3'
 }
