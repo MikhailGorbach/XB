@@ -62,10 +62,10 @@ public class MenuFragment extends Fragment{
 
 
     public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterViewHolder>{
-        public MenuFragment fragment;
+        public Fragment fragment;
         private List<String> userModelList;
 
-        public UsersAdapter(List<String> userModelList, MenuFragment fragment) {
+        public UsersAdapter(List<String> userModelList, Fragment fragment) {
             this.userModelList = userModelList;
             this.fragment = fragment;
         }

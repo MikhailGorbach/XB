@@ -36,7 +36,7 @@
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_dialog.xml" value="0.264" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_for_button.xml" value="0.264" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_for_card.xml" value="0.22105263157894736" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_ideas.xml" value="0.10860655737704918" />
+        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_ideas.xml" value="0.1" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_info.xml" value="0.4" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_list.xml" value="0.4" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_menu.xml" value="0.264" />
@@ -49,8 +49,9 @@
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_support.xml" value="0.4" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_telegram.xml" value="0.2820069204152249" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_terms_and_use.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_welcome.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/fragment_welcome.xml" value="0.1" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/item_header.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/page_adapter_ideas_card.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/row_uses.xml" value="0.3451086956521739" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/layout/sub_item.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/my_wo/Documents/GitHub/XB/FirebasePicture/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
