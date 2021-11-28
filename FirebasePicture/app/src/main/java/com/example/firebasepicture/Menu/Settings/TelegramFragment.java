@@ -1,5 +1,7 @@
 package com.example.firebasepicture.Menu.Settings;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,9 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.databinding.FragmentTelegramBinding;
 
 public class TelegramFragment extends Fragment {
     private Fragment fragment;
+    private FragmentTelegramBinding binding;
     public TelegramFragment(Fragment fragment) {
         this.fragment = fragment;
     }
@@ -21,16 +25,23 @@ public class TelegramFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_telegram, container, false);
-        initComponents(v);
-        return v;
+        binding = FragmentTelegramBinding.inflate(inflater, container, false);
+        initComponents();
+        return binding.getRoot();
     }
 
-    private void initComponents(View v){
-        ( (ImageButton) v.findViewById(R.id.btnBackFragmentSupport) ).setOnClickListener(new View.OnClickListener() {
+    private void initComponents(){
+        binding.btnBackFragmentSupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+            }
+        });
+        binding.btnBotFragmentTelegram2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/IXBY_bot"));
+                startActivity(browserIntent);
             }
         });
     }
