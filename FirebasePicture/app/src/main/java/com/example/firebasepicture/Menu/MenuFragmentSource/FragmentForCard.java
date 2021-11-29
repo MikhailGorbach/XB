@@ -123,6 +123,8 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
             }
         });
 
+
+
         btnImgShareIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

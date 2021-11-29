@@ -1,6 +1,7 @@
 package com.example.firebasepicture.Menu;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -51,9 +53,69 @@ public class IdeasFragment extends Fragment {
         links.add("https://homevis.tech/static/users/img/2.png");
         links.add("https://homevis.tech/static/users/img/3.png");
 
-        UsersAdapter adapter = new UsersAdapter(links, this);
-        binding.listMyList.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        MePicAdapter adapter = new MePicAdapter(links, this, this.getContext());
+        LinearLayoutManager lm = new LinearLayoutManager(requireContext());
+        lm.setOrientation(LinearLayoutManager.HORIZONTAL);
+        binding.listMyList.setLayoutManager(lm);
         binding.listMyList.setAdapter(adapter);
+    }
+
+    class MePicAdapter extends RecyclerView.Adapter<MePicAdapter.MePicAdapterViewHolder>{
+
+        public Fragment fragment;
+        private ArrayList<String> ulrList;
+        private Context mContext;
+
+        public MePicAdapter(ArrayList<String> urlList, Fragment fragment, Context mContext) {
+            this.ulrList = urlList;
+            this.fragment = fragment;
+            this.mContext = mContext;
+        }
+
+        @NonNull
+        @Override
+        public MePicAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new MePicAdapterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.page_adapter_ideas_card, parent,false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull MePicAdapterViewHolder holder, @SuppressLint("RecyclerView") int position) {
+            Glide.with(mContext).load(ulrList.get(position)).into(holder.image);
+            holder.image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String name = "";
+                    switch (ulrList.get(position)){
+                        case "https://homevis.tech/static/users/img/1.png":
+                            name = "sale1";
+                            break;
+                        case "https://homevis.tech/static/users/img/2.png":
+                            name = "sale1";
+                            break;
+                        case "https://homevis.tech/static/users/img/3.png":
+                            name = "sale1";
+                            break;
+                    }
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton(name, fragment,true) ).commit();
+                }
+            });
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return ulrList.size();
+        }
+
+        public class MePicAdapterViewHolder extends RecyclerView.ViewHolder {
+            public ImageView image;
+
+            public MePicAdapterViewHolder(@NonNull View itemView) {
+                super(itemView);
+                image = itemView.findViewById(R.id.pictureImage);
+            }
+        }
+
     }
 
 }

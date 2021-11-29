@@ -50,14 +50,23 @@ public class FragmentForButton extends Fragment{
     private String rname;
     private Query query;
     private Comparator<DocumentSnapshot> comparator;
+    private Boolean isFromIdeas;
 
     public FragmentForButton(String name, Fragment back){
+        isFromIdeas = false;
         this.rname = name;
         this.back = back;
         fragment = this;
         modelList = new ArrayList<>();
 
         switchName();
+    }
+    public FragmentForButton(String name, Fragment back, Boolean isFromIdeas){
+        this.name = name;
+        this.back = back;
+        fragment = this;
+        modelList = new ArrayList<>();
+        this.isFromIdeas = isFromIdeas;
     }
 
     private void switchName(){
@@ -149,9 +158,15 @@ public class FragmentForButton extends Fragment{
     }
 
     private void loadQuery(){
-        query = firebaseFirestore
+        if(!isFromIdeas)
+            query = firebaseFirestore
                 .collection("models")
                 .whereEqualTo("category",name);
+        else
+            query = firebaseFirestore
+                    .collection("models")
+                    .whereEqualTo("salecategory",name);
+
 
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
