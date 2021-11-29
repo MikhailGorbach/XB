@@ -206,8 +206,6 @@ public class PrivatePolicyFragment extends Fragment {
 
         }
 
-
-
         @Override
         public void onBindChildViewHolder(ChildViewHolder holder, int group, int position)
         {

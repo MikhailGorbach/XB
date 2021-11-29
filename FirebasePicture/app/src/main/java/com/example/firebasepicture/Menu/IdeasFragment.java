@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,6 +52,7 @@ public class IdeasFragment extends Fragment {
         links.add("https://homevis.tech/static/users/img/3.png");
 
         UsersAdapter adapter = new UsersAdapter(links, this);
+        binding.listMyList.setLayoutManager(new LinearLayoutManager(this.getContext()));
         binding.listMyList.setAdapter(adapter);
     }
 
