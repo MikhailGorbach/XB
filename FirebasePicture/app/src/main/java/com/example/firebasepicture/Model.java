@@ -20,7 +20,7 @@ public class Model {
     String ogrn;
     String photo;
     String price;
-    String scaleCompensation;
+    Long scaleCompensation;
     String seller;
     String volume;
     String weight;
@@ -38,7 +38,7 @@ public class Model {
         this.salecategory = salecategory;
     }
 
-    public Model(String article, String assembling, String category, String salecategory, String colour, String company, String country, String delivery, String depth, String description, String height, String link, String material, String name, String ogrn, String photo, String price, String scaleCompensation, String seller, String volume, String weight, String width) {
+    public Model(String article, String assembling, String category, String salecategory, String colour, String company, String country, String delivery, String depth, String description, String height, String link, String material, String name, String ogrn, String photo, String price, Long scaleCompensation, String seller, String volume, String weight, String width) {
         this.article = article;
         this.assembling = assembling;
         this.category = category;
@@ -63,7 +63,7 @@ public class Model {
         this.width = width;
     }
 
-    public Model(String article, String assembling, String category, String colour, String company, String country, String delivery, String depth, String description, String height, String link, String material, String name, String ogrn, String photo, String price, String scaleCompensation, String seller, String volume, String weight, String width) {
+    public Model(String article, String assembling, String category, String colour, String company, String country, String delivery, String depth, String description, String height, String link, String material, String name, String ogrn, String photo, String price, Long scaleCompensation, String seller, String volume, String weight, String width) {
         this.article = article;
         this.assembling = assembling;
         this.category = category;
@@ -239,11 +239,11 @@ public class Model {
         this.ogrn = ogrn;
     }
 
-    public String getScaleCompensation() {
+    public Long getScaleCompensation() {
         return scaleCompensation;
     }
 
-    public void setScaleCompensation(String scaleCompensation) {
+    public void setScaleCompensation(Long scaleCompensation) {
         this.scaleCompensation = scaleCompensation;
     }
 

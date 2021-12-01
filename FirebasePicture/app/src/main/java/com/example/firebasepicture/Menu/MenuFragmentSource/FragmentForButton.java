@@ -124,12 +124,14 @@ public class FragmentForButton extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d("debug", "onCreateView: ");
         binding = FragmentListBinding.inflate(inflater, container, false);
         initComponents();
         return binding.getRoot();
     }
 
     private void initComponents(){
+        Log.d("debug", "initComponents: ");
         firebaseFirestore = FirebaseFirestore.getInstance();
         rvAdapter = new ModelRVAdapter(modelList,fragment);
 
@@ -158,6 +160,7 @@ public class FragmentForButton extends Fragment{
     }
 
     private void loadQuery(){
+        Log.d("debug", "loadQuery: ");
         if(!isFromIdeas)
             query = firebaseFirestore
                 .collection("models")
@@ -171,6 +174,7 @@ public class FragmentForButton extends Fragment{
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                Log.d("debug", "onSuccess: ");
                 if (queryDocumentSnapshots.isEmpty()) {
                     //Здесь вылетала ошибка
                     Context context = fragment.getContext();
