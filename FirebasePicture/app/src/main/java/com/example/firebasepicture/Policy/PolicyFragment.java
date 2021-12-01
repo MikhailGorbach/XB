@@ -1,5 +1,6 @@
 package com.example.firebasepicture.Policy;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -54,10 +55,10 @@ public class PolicyFragment extends Fragment {
         btnTermsAndPolicy.setImageResource((!btnTermsAndPolicyStatus) ? R.drawable.check_out : R.drawable.check_in);
 
         if (btnPrivatePolicyStatus && btnTermsAndPolicyStatus) {
-            btnPrivatePolicyAccept.setBackgroundColor(Color.BLUE);
+            btnPrivatePolicyAccept.setBackgroundTintList(this.getResources().getColorStateList(R.color.blue));
             btnPrivatePolicyAccept.setEnabled(true);
         } else {
-            btnPrivatePolicyAccept.setBackgroundColor(Color.GRAY);
+            btnPrivatePolicyAccept.setBackgroundTintList(this.getResources().getColorStateList(R.color.gray));
             btnPrivatePolicyAccept.setEnabled(false);
         }
 
@@ -69,9 +70,9 @@ public class PolicyFragment extends Fragment {
                 btnPrivatePolicyAccept.setEnabled((btnPrivatePolicyStatus && btnTermsAndPolicyStatus) ? true : false);
 
                 if (btnPrivatePolicyStatus && btnTermsAndPolicyStatus)
-                    btnPrivatePolicyAccept.setBackgroundColor(Color.BLUE);
+                    btnPrivatePolicyAccept.setBackgroundTintList(ctx.getResources().getColorStateList(R.color.blue));
                 else
-                    btnPrivatePolicyAccept.setBackgroundColor(Color.GRAY);
+                    btnPrivatePolicyAccept.setBackgroundTintList(ctx.getResources().getColorStateList(R.color.gray));
             }
         });
 
@@ -83,9 +84,9 @@ public class PolicyFragment extends Fragment {
                 btnPrivatePolicyAccept.setEnabled((btnPrivatePolicyStatus && btnTermsAndPolicyStatus) ? true : false);
 
                 if (btnPrivatePolicyStatus && btnTermsAndPolicyStatus)
-                    btnPrivatePolicyAccept.setBackgroundColor(Color.BLUE);
+                    btnPrivatePolicyAccept.setBackgroundTintList(ctx.getResources().getColorStateList(R.color.blue));
                 else
-                    btnPrivatePolicyAccept.setBackgroundColor(Color.GRAY);
+                    btnPrivatePolicyAccept.setBackgroundTintList(ctx.getResources().getColorStateList(R.color.gray));
             }
         });
 

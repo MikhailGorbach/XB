@@ -1,104 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/main_color">
 
     <TextView
         android:id="@+id/txtTitlePrivatePolicy"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
         android:text="Политика конфиденциальности, правила и условия использования"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="28sp" />
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtWarningPrivatePolicy"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtTitlePrivatePolicy"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
         android:text="Я ознакомился(лась) с политикой конфиденциальности и понял(а) её"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="16sp" />
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitlePrivatePolicy" />
 
     <TextView
         android:id="@+id/txtLinkPrivatePolicy"
-        android:layout_width="wrap_content"
+        android:layout_width="211dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtWarningPrivatePolicy"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
         android:text="Политика конфиденциальности"
         android:textAlignment="center"
-        android:textColor="#00B0FF"
-        android:textSize="16sp" />
+        android:textColor="@color/blue"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWarningPrivatePolicy" />
 
     <ImageButton
         android:id="@+id/imgCheckPrivatePolicy"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@id/txtLinkPrivatePolicy"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
         android:background="@color/transparent"
         android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLinkPrivatePolicy"
         app:tint="#FFEB3B"
-        tools:ignore="SpeakableTextPresentCheck"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
         tools:src="@drawable/check_out" />
 
     <TextView
         android:id="@+id/txtWarningTermsAndConditions"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/imgCheckPrivatePolicy"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="90dp"
         android:layout_marginTop="100dp"
+        android:layout_marginEnd="90dp"
         android:text="Я принимаю правила и условия использования"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="16sp" />
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgCheckPrivatePolicy" />
 
     <TextView
         android:id="@+id/txtLinkTermsAndConditions"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtWarningTermsAndConditions"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
         android:text="Правила и условия использования"
         android:textAlignment="center"
-        android:textColor="#00B0FF" />
+        android:textColor="@color/blue"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWarningTermsAndConditions" />
 
     <ImageButton
         android:id="@+id/imgCheckTermsAndPolicy"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@id/txtLinkTermsAndConditions"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
         android:background="@color/transparent"
         android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLinkTermsAndConditions"
         app:tint="#FFEB3B"
-        tools:ignore="SpeakableTextPresentCheck"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
         tools:src="@drawable/check_out" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnPrivatePolicyAccept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentBottom="false"
         android:layout_centerHorizontal="true"
-        android:background="#D13B3B"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/background_blue_rounded_square_more"
         android:text="Приступить"
-        android:textColor="#212121"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextContrastCheck" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ public class Model {
     String article;
     String assembling;
     String category;
+    String salecategory;
     String colour;
     String company;
     String country;
@@ -19,7 +20,7 @@ public class Model {
     String ogrn;
     String photo;
     String price;
-    String scaleCompensation;
+    Long scaleCompensation;
     String seller;
     String volume;
     String weight;
@@ -29,7 +30,40 @@ public class Model {
 
     }
 
-    public Model(String article, String assembling, String category, String colour, String company, String country, String delivery, String depth, String description, String height, String link, String material, String name, String ogrn, String photo, String price, String scaleCompensation, String seller, String volume, String weight, String width) {
+    public String getSalecategory() {
+        return salecategory;
+    }
+
+    public void setSalecategory(String salecategory) {
+        this.salecategory = salecategory;
+    }
+
+    public Model(String article, String assembling, String category, String salecategory, String colour, String company, String country, String delivery, String depth, String description, String height, String link, String material, String name, String ogrn, String photo, String price, Long scaleCompensation, String seller, String volume, String weight, String width) {
+        this.article = article;
+        this.assembling = assembling;
+        this.category = category;
+        this.salecategory = salecategory;
+        this.colour = colour;
+        this.company = company;
+        this.country = country;
+        this.delivery = delivery;
+        this.depth = depth;
+        this.description = description;
+        this.height = height;
+        this.link = link;
+        this.material = material;
+        this.name = name;
+        this.ogrn = ogrn;
+        this.photo = photo;
+        this.price = price;
+        this.scaleCompensation = scaleCompensation;
+        this.seller = seller;
+        this.volume = volume;
+        this.weight = weight;
+        this.width = width;
+    }
+
+    public Model(String article, String assembling, String category, String colour, String company, String country, String delivery, String depth, String description, String height, String link, String material, String name, String ogrn, String photo, String price, Long scaleCompensation, String seller, String volume, String weight, String width) {
         this.article = article;
         this.assembling = assembling;
         this.category = category;
@@ -205,11 +239,11 @@ public class Model {
         this.ogrn = ogrn;
     }
 
-    public String getScaleCompensation() {
+    public Long getScaleCompensation() {
         return scaleCompensation;
     }
 
-    public void setScaleCompensation(String scaleCompensation) {
+    public void setScaleCompensation(Long scaleCompensation) {
         this.scaleCompensation = scaleCompensation;
     }
 

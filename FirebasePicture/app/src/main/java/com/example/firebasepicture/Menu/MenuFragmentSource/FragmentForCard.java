@@ -65,12 +65,15 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         ( (TextView) v.findViewById(R.id.txtDeskDepth) ).setText(model.getDepth() + " см");
         ( (TextView) v.findViewById(R.id.txtDeskHeight) ).setText(model.getHeight() + " см");
         ( (TextView) v.findViewById(R.id.txtDeskMaterial) ).setText(model.getMaterial());
+        ( (TextView) v.findViewById(R.id.txtDeskColor) ).setText(model.getColour());
         ( (TextView) v.findViewById(R.id.txtDeskContries) ).setText(model.getCountry());
         ( (TextView) v.findViewById(R.id.txtDeskWeight) ).setText(model.getWeight() + " см");
-        ( (TextView) v.findViewById(R.id.txtDeskVolume) ).setText(model.getVolume() + " м3");
+        ( (TextView) v.findViewById(R.id.txtDeskVolume) ).setText(model.getVolume() + " м³");
         ( (TextView) v.findViewById(R.id.txtDeskAssembling) ).setText(model.getAssembling());
         ( (TextView) v.findViewById(R.id.txtDeskDelivery) ).setText(model.getDelivery());
         ( (TextView) v.findViewById(R.id.txtDeskCompany) ).setText(model.getCompany());
+
+
 
         txtDeskArticle.setText(model.getArticle());
         txtDeskArticle.setOnClickListener(new View.OnClickListener() {
@@ -79,12 +82,12 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
                 ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
                 clipboard.setPrimaryClip(ClipData.newPlainText("", model.getArticle()));
 
-                Toast.makeText(context, "Артикуль скопирован в буфер обмена", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Артикул скопирован в буфер обмена", Toast.LENGTH_SHORT).show();
             }
         });
 
         txtDeskSeller.setText(model.getSeller() == null ? "Нет" : model.getSeller());
-        txtDeskSeller.setOnClickListener(new View.OnClickListener() {
+        ((ImageView) v.findViewById(R.id.imgDeskPicture2FragmentForCard)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager manager = getFragmentManager();
@@ -103,7 +106,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         });
         Glide.with(v.getContext()).load(model.getPhoto()).into(img);
 
-        v.findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) v.findViewById(R.id.btnBack)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
@@ -119,6 +122,8 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
                 listener.GetData(model.getArticle());
             }
         });
+
+
 
         btnImgShareIt.setOnClickListener(new View.OnClickListener() {
             @Override

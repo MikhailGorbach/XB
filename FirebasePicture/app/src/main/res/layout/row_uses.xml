@@ -14,6 +14,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="20dp"
         android:text="title"
+        android:textColor="@color/black"
         android:textSize="14sp" />
 
     <ImageView
@@ -29,5 +30,14 @@
         app:srcCompat="@drawable/goback"
         tools:srcCompat="@drawable/goback"
         app:tint="#CFCFCF" />
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray" />
 
 </RelativeLayout>

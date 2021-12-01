@@ -1,5 +1,7 @@
 package com.example.firebasepicture.Activity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -7,7 +9,6 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
         initBottomNavigation();
 
-        if(privatePolicyAccept){
+        if(!privatePolicyAccept){
             PolicyFragment policyFragment = new PolicyFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, policyFragment)
@@ -92,19 +93,24 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     }
 
     //Инициализируем BottomNavigation
+    @SuppressLint("ResourceAsColor")
     private void initBottomNavigation(){
+        Context ctx = this;
         bottomNav = findViewById(R.id.bottom_nav_menu);
         bottomNav.setOnItemSelectedListener(id -> {
             fragment = null;
             switch (id) {
-                case R.id.bottom_nav_settings:
-                    fragment = new SettingsFragment();
+                case R.id.bottom_nav_ideas:
+                    //findViewById(id).setBackgroundTintList(ctx.getResources().getColorStateList(R.color.white));
+                    fragment = new IdeasFragment();
                     break;
                 case R.id.bottom_nav_main:
+                    //setBackgroundTintList(ctx.getResources().getColorStateList(R.color.white));
                     fragment = new MenuFragment();
                     break;
-                case R.id.bottom_nav_ideas:
-                    fragment = new IdeasFragment();
+                case R.id.bottom_nav_settings:
+                    //findViewById(id).setBackgroundColor(R.color.white);//ssetBackgroundTintList(ctx.getResources().getColorStateList(R.color.white));
+                    fragment = new SettingsFragment();
                     break;
             }
             if (fragment != null) {

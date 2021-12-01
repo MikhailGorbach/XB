@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.databinding.FragmentListBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -38,21 +40,33 @@ public class FragmentForButton extends Fragment{
     private final int limit = 16;
 
     private FirebaseFirestore firebaseFirestore;
+    private FragmentListBinding binding;
     private RecyclerView recyclerView;
     private ArrayList<Model> modelList;
     private ModelRVAdapter rvAdapter;
     private FragmentForButton fragment;
+    private Fragment back;
     private String name;
     private String rname;
     private Query query;
     private Comparator<DocumentSnapshot> comparator;
+    private Boolean isFromIdeas;
 
-    public FragmentForButton(String name){
+    public FragmentForButton(String name, Fragment back){
+        isFromIdeas = false;
         this.rname = name;
+        this.back = back;
         fragment = this;
         modelList = new ArrayList<>();
 
         switchName();
+    }
+    public FragmentForButton(String name, Fragment back, Boolean isFromIdeas){
+        this.name = name;
+        this.back = back;
+        fragment = this;
+        modelList = new ArrayList<>();
+        this.isFromIdeas = isFromIdeas;
     }
 
     private void switchName(){
@@ -110,24 +124,32 @@ public class FragmentForButton extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_list, container, false);
-        initComponents(v);
-        return v;
+        Log.d("debug", "onCreateView: ");
+        binding = FragmentListBinding.inflate(inflater, container, false);
+        initComponents();
+        return binding.getRoot();
     }
 
-    private void initComponents(View v){
+    private void initComponents(){
+        Log.d("debug", "initComponents: ");
         firebaseFirestore = FirebaseFirestore.getInstance();
         rvAdapter = new ModelRVAdapter(modelList,fragment);
 
-        ((TextView) v.findViewById(R.id.txtCategoryList)).setText(rname);
-        ((ImageButton) v.findViewById(R.id.imgBtnSortFragmentList)).setOnClickListener(new View.OnClickListener() {
+        binding.txtCategoryList.setText(rname);
+        binding.imgBtnSortFragmentList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showBottomSheetDialog();
             }
         });
+        binding.btnBackFragmentList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, back).commit();
+            }
+        });
 
-        recyclerView = v.findViewById(R.id.recview);
+        recyclerView = binding.recview;
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
         loadMax();
 
@@ -138,13 +160,21 @@ public class FragmentForButton extends Fragment{
     }
 
     private void loadQuery(){
-        query = firebaseFirestore
+        Log.d("debug", "loadQuery: ");
+        if(!isFromIdeas)
+            query = firebaseFirestore
                 .collection("models")
                 .whereEqualTo("category",name);
+        else
+            query = firebaseFirestore
+                    .collection("models")
+                    .whereEqualTo("salecategory",name);
+
 
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                Log.d("debug", "onSuccess: ");
                 if (queryDocumentSnapshots.isEmpty()) {
                     //Здесь вылетала ошибка
                     Context context = fragment.getContext();
@@ -204,10 +234,11 @@ public class FragmentForButton extends Fragment{
         comparator = new Comparator<DocumentSnapshot>() {
             @Override
             public int compare(DocumentSnapshot o1, DocumentSnapshot o2) {
-                return Integer.parseInt(o1.toObject(Model.class).getPrice()) >
-                        Integer.parseInt(o2.toObject(Model.class).getPrice()) ? -1 :
-                        (Integer.parseInt(o1.toObject(Model.class).getPrice()) ==
-                         Integer.parseInt(o2.toObject(Model.class).getPrice())) ? 0 : 1;
+                int a = Integer.parseInt(o1.toObject(Model.class).getPrice());
+                int b = Integer.parseInt(o2.toObject(Model.class).getPrice());
+
+                //return a > b ? -1 : (a == b) ? 0 : 1;
+                return (a > b) ? -1 : 1;
             }
         };
         loadQuery();
@@ -387,6 +418,7 @@ public class FragmentForButton extends Fragment{
 
             holder.txtPrice.setText(model.getPrice() + " ₽");
             holder.txtTitle.setText(model.getName());
+            holder.txtCompany.setText(model.getCompany());
             Glide.with(holder.img1.getContext()).load(model.getPhoto()).into(holder.img1);
             holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -406,6 +438,7 @@ public class FragmentForButton extends Fragment{
             public ImageView img1;
             public TextView txtTitle;
             public TextView txtPrice;
+            public TextView txtCompany;
             public RelativeLayout relativeLayout;
 
             public ViewHolder(@NonNull View itemView) {
@@ -414,6 +447,7 @@ public class FragmentForButton extends Fragment{
                 img1 = itemView.findViewById(R.id.imgOnCard);
                 txtTitle = itemView.findViewById(R.id.txtTitle);
                 txtPrice = itemView.findViewById(R.id.txtPrice);
+                txtCompany = itemView.findViewById(R.id.txtCompany);
                 relativeLayout = itemView.findViewById(R.id.backLayout);
 
                 relativeLayout.setOnClickListener(new View.OnClickListener() {

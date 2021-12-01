@@ -84,10 +84,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:paddingRight="100dp"
                         android:text="Добро пожаловать на HOMEVIS"
                         android:textColor="#FFFFFF"
-                        android:textSize="34sp" />
+                        android:textSize="30sp" />
 
                     <TextView
                         android:id="@+id/textView3"
@@ -95,9 +96,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="20dp"
+                        android:paddingRight="50dp"
                         android:text="Для нас всегда будет приоритет, сделать для Вас шопинг шоппинг удобным и доступным"
                         android:textColor="#FFFFFF"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -129,9 +131,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginTop="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
                                 android:text="Более 20"
                                 android:textColor="#000000"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/txtCardLeftDFragmentAbout"
@@ -139,6 +144,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginBottom="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
                                 android:text="проверенных брендов в каталоге"
                                 android:textColor="@android:color/darker_gray"
                                 android:textSize="14sp" />
@@ -170,9 +177,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginTop="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
                                 android:text="1.5 тыс+"
                                 android:textColor="#000000"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/txtCardLeftDFragmentAbout2"
@@ -180,6 +190,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginBottom="10dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
                                 android:text="моделей доступных к просмотру в AR"
                                 android:textColor="@android:color/darker_gray"
                                 android:textSize="14sp" />
@@ -190,7 +202,8 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/back_menu">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -206,7 +219,8 @@
                             android:layout_marginTop="15dp"
                             android:text="Преимущества"
                             android:textColor="#000000"
-                            android:textSize="34sp" />
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
 
                         <View
                             android:id="@+id/view3"
@@ -308,7 +322,6 @@
                                     android:layout_height="50dp"
                                     android:layout_marginTop="30dp"
                                     android:layout_marginRight="10dp"
-                                    android:src="@drawable/telegram"
                                     app:srcCompat="@drawable/car" />
 
                                 <ImageView
@@ -317,7 +330,6 @@
                                     android:layout_height="50dp"
                                     android:layout_marginTop="30dp"
                                     android:layout_marginRight="10dp"
-                                    android:src="@drawable/phone"
                                     app:srcCompat="@drawable/card_money" />
 
                                 <ImageView
@@ -326,7 +338,6 @@
                                     android:layout_height="50dp"
                                     android:layout_marginTop="30dp"
                                     android:layout_marginRight="10dp"
-                                    android:src="@drawable/t24_7"
                                     app:srcCompat="@drawable/sofa" />
                             </LinearLayout>
 
@@ -349,7 +360,8 @@
                         android:layout_marginTop="15dp"
                         android:text="Реквизиты"
                         android:textColor="#000000"
-                        android:textSize="34sp" />
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="match_parent"

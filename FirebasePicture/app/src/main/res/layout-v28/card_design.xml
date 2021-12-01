@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:elevation="8dp"
     android:outlineAmbientShadowColor="@null"
-    android:outlineSpotShadowColor="@null"
-
+    
     app:cardPreventCornerOverlap="false"
     app:cardUseCompatPadding="false">
 

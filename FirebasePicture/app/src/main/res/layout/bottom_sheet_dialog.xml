@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
     android:background="@color/transparent"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_white_rounded"
+        android:background="@drawable/background_white_rounded_little"
         android:orientation="vertical">
 
         <TextView
@@ -20,12 +22,12 @@
             android:shadowColor="@android:color/darker_gray"
             android:text="@string/sortBottomSheetDialog"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <View
             android:id="@+id/view2"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:background="@android:color/darker_gray" />
 
         <Button
@@ -41,7 +43,7 @@
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:background="@android:color/darker_gray" />
 
         <Button
@@ -62,9 +64,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/background_white_rounded"
+        android:background="@drawable/background_white_rounded_little"
         android:text="@string/cancelBottomSheetDialog"
-        android:textColor="@color/dark_blue" />
+        android:textColor="@color/dark_blue"
+        android:textStyle="bold" />
 
 </LinearLayout>

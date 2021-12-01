@@ -37,6 +37,7 @@ public class MyDialogFragment extends DialogFragment {
                 dialog.dismiss();
             }
         });
+        dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
 
         return dialog;
     }
