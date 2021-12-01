@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -37,6 +38,13 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         this.fragment = fragment;
 
         context = fragment.getContext();
+    }
+
+    public FragmentForCard(Model model, Context context) {
+        this.model = model;
+        this.fragment = null;
+
+        this.context = context;
     }
 
     @Override
@@ -109,7 +117,10 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         ((ImageButton) v.findViewById(R.id.btnBack)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                if(fragment != null)
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                else
+                    getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
             }
         });
         ((ImageButton) v.findViewById(R.id.btn3D)).setOnClickListener(new View.OnClickListener() {
@@ -130,7 +141,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
             public void onClick(View v) {
                 final Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                String textToSend="http://share";
+                String textToSend="http://share/"+model.getArticle();
                 intent.putExtra(Intent.EXTRA_TEXT, textToSend);
                 try
                 {

@@ -133,7 +133,6 @@ public class PrivatePolicyFragment extends Fragment {
             }
         });
         mPIAdapter = new PurchaseItemRecyclerViewAdapter(listEl); // purchaseItemAdapter
-
         binding.list.setAdapter(mPIAdapter);
     }
     //adapter
@@ -156,7 +155,6 @@ public class PrivatePolicyFragment extends Fragment {
             TitleList.add("8. Прекращение обработки персональных данных");
             TitleList.add("9. Ответственность сторон");
             TitleList.add("10. Разрешение споров");
-
         }
 
         @Override
@@ -165,13 +163,18 @@ public class PrivatePolicyFragment extends Fragment {
         }
 
         @Override
+        public String getGroupItem(int i) {
+            return TitleList.get(i);
+        }
+
+        @Override
         public int getChildItemCount(int i) {
             return 1;
         }
 
         @Override
-        public String getGroupItem(int i) {
-            return TitleList.get(i);
+        public int getChildItemViewType(int i, int i1) {
+            return 1;
         }
 
         @Override
@@ -187,9 +190,10 @@ public class PrivatePolicyFragment extends Fragment {
         }
 
         @Override
-        protected ExpandableRecyclerView.SimpleGroupViewHolder onCreateGroupViewHolder(ViewGroup parent)
+        public void onBindChildViewHolder(ChildViewHolder holder, int group, int position)
         {
-            return new ExpandableRecyclerView.SimpleGroupViewHolder(parent.getContext());
+            super.onBindChildViewHolder(holder, group, position);
+            holder.name.setText(getChildItem(group,position));
         }
 
         @Override
@@ -203,19 +207,6 @@ public class PrivatePolicyFragment extends Fragment {
         public void onBindGroupViewHolder(ExpandableRecyclerView.SimpleGroupViewHolder holder, int group) {
             super.onBindGroupViewHolder(holder, group);
             holder.setText(getGroupItem(group));
-
-        }
-
-        @Override
-        public void onBindChildViewHolder(ChildViewHolder holder, int group, int position)
-        {
-            super.onBindChildViewHolder(holder, group, position);
-            holder.name.setText(getChildItem(group,position));
-        }
-
-        @Override
-        public int getChildItemViewType(int i, int i1) {
-            return 1;
         }
 
         public class ChildViewHolder extends RecyclerView.ViewHolder
@@ -226,6 +217,12 @@ public class PrivatePolicyFragment extends Fragment {
                 name = (TextView) itemView.findViewById(R.id.item_name);
             }
         }
+
+        @Override
+        protected ExpandableRecyclerView.SimpleGroupViewHolder onCreateGroupViewHolder(ViewGroup parent) {
+            return new ExpandableRecyclerView.SimpleGroupViewHolder(parent.getContext());
+        }
+
     }
 
 

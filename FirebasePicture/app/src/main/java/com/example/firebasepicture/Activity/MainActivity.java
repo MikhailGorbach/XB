@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,12 +19,16 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.firebasepicture.Menu.IdeasFragment;
 import com.example.firebasepicture.Menu.MenuFragment;
+import com.example.firebasepicture.Menu.MenuFragmentSource.FragmentForButton;
+import com.example.firebasepicture.Menu.MenuFragmentSource.FragmentForCard;
 import com.example.firebasepicture.Menu.MenuFragmentSource.GetDataFromFragment;
 import com.example.firebasepicture.Menu.SettingsFragment;
+import com.example.firebasepicture.Model;
 import com.example.firebasepicture.Policy.PolicyFragment;
 import com.example.firebasepicture.R;
 import com.example.firebasepicture.Utility.NetworkChangeListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.ar.core.Anchor;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.assets.RenderableSource;
@@ -31,6 +36,10 @@ import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -39,6 +48,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements GetDataFromFragment
 {
@@ -54,14 +64,40 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     private Fragment fragment;          //Фрагмент
 
     private NetworkChangeListener networkChangeListener;
-
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
         initComponents();
         if (Intent.ACTION_VIEW.equals(getIntent().getAction()) && getIntent().getDataString() != null) {
-            final String jobId = getIntent().getDataString().substring(getIntent().getDataString().lastIndexOf("/") + 1);
+            String jobId = getIntent().getDataString().substring(getIntent().getDataString().lastIndexOf("/") + 1);
+            Log.d("debug", "onCreate: "+jobId);
+
+            FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+            Query query = firebaseFirestore.collection("models").whereEqualTo("article", jobId);
+
+            query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    if (queryDocumentSnapshots.isEmpty()) {
+                        if (context != null)
+                            Toast.makeText( context, "No data found in Database", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container, new FragmentForCard(list.get(0).toObject(Model.class),context)).commit();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(fragment.getContext(), "Fail get data from Database.", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
 
     }
