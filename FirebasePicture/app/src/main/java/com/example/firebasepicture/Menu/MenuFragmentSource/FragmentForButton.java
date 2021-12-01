@@ -420,7 +420,7 @@ public class FragmentForButton extends Fragment{
             holder.txtTitle.setText(model.getName());
             holder.txtCompany.setText(model.getCompany());
             Glide.with(holder.img1.getContext()).load(model.getPhoto()).into(holder.img1);
-            holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForCard(model, fragment)).commit();
@@ -448,14 +448,6 @@ public class FragmentForButton extends Fragment{
                 txtTitle = itemView.findViewById(R.id.txtTitle);
                 txtPrice = itemView.findViewById(R.id.txtPrice);
                 txtCompany = itemView.findViewById(R.id.txtCompany);
-                relativeLayout = itemView.findViewById(R.id.backLayout);
-
-                relativeLayout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
             }
         }
     }

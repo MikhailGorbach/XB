@@ -55,7 +55,6 @@ public class AdapterToCards extends FirestoreRecyclerAdapter<Model, AdapterToCar
             img1 = itemView.findViewById(R.id.imgOnCard);
             txtTitle = itemView.findViewById(R.id.txtTitle);
             txtPrice = itemView.findViewById(R.id.txtPrice);
-            relativeLayout = itemView.findViewById(R.id.backLayout);
         }
 
     }
