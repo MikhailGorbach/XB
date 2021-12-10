@@ -7,11 +7,11 @@
     android:background="@color/back_menu">
 
         <ImageView
+            android:id="@+id/img_0"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/upbcg"
-            tools:srcCompat="@drawable/upbcg" />
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/custom_up" />
 
         <TextView
             android:id="@+id/txtSettingName_1"
@@ -38,11 +38,9 @@
             android:id="@+id/listOfItemSetting"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/txtSettingName_2"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="70dp"
-            android:background="@drawable/background_blue_rounded_square" />
+            android:layout_below="@id/img_0"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/background_blue_rounded_square"
+            android:paddingBottom="70dp" />
 
 </RelativeLayout>

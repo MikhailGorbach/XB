@@ -10,13 +10,12 @@
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="match_parent"
-        android:layout_height="226dp"
-        android:scaleType="centerCrop"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/upbcg"
-        tools:srcCompat="@drawable/upbcg" />
+        app:srcCompat="@drawable/custom_up" />
 
     <TextView
         android:id="@+id/txtSettingName_3"
