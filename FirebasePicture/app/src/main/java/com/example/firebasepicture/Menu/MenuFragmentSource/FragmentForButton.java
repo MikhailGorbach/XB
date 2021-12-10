@@ -108,7 +108,7 @@ public class FragmentForButton extends Fragment{
             case "Шкафы":
                 name = "wardrobe";
                 break;
-            case "Кушетки":
+            case "Оттоманки":
                 name = "couch";
                 break;
             case "Стеллажи":

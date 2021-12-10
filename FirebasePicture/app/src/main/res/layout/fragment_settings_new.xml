@@ -144,6 +144,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
+                android:paddingLeft="3dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/list_bullet_rectangle_portrait_2x"
                 app:tint="@color/gray" />

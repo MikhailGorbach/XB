@@ -50,7 +50,7 @@ public class MenuFragment extends Fragment{
         arrayList.add("Пуфы");
         arrayList.add("Шкафы");
         arrayList.add("Раковины");
-        arrayList.add("Кушетки");
+        arrayList.add("Оттоманки");
         arrayList.add("Стеллажи");
         arrayList.add("Настенное освещение");
         arrayList.add("Напольное освещение");

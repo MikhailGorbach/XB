@@ -52,6 +52,7 @@ public class IdeasFragment extends Fragment {
         links.add("https://homevis.tech/static/sales/sale1.png");
         links.add("https://homevis.tech/static/sales/sale2.png");
         links.add("https://homevis.tech/static/sales/sale3.png");
+        links.add("https://homevis.tech/static/sales/sale0.png");
 
         MePicAdapter adapter = new MePicAdapter(links, this, this.getContext());
         LinearLayoutManager lm = new LinearLayoutManager(requireContext());
@@ -94,6 +95,9 @@ public class IdeasFragment extends Fragment {
                             break;
                         case "https://homevis.tech/static/sales/sale3.png":
                             name = "sale3";
+                            break;
+                        case "https://homevis.tech/static/sales/sale0.png":
+                            name = "sale0";
                             break;
                     }
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton(name, fragment,true) ).commit();

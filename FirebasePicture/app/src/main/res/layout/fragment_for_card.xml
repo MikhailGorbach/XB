@@ -36,10 +36,12 @@
                     android:id="@+id/imgDeskAvatar"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
+                    android:layout_marginTop="20dp"
                     android:layout_centerInParent="false"
                     android:layout_centerHorizontal="true"
-                    android:scaleType="centerInside"
-                    tools:src="@tools:sample/avatars" />
+                    tools:src="@tools:sample/avatars"
+                    android:background="@drawable/rounded_back"
+                    android:scaleType="fitCenter"/>
 
                 <ImageButton
                     android:id="@+id/btn3D"

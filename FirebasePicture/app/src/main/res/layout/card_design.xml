@@ -10,28 +10,21 @@
     app:cardMaxElevation="0dp"
     app:cardPreventCornerOverlap="false">
 
-    <FrameLayout
-        android:id="@+id/frame"
+    <!--app:layout_constraintDimensionRatio="1:1" -->
+
+    <ImageView
+        android:id="@+id/imgOnCard"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/background_white_rounded_little_"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rounded_back_corner"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imgOnCard"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/rounded_back"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_background" />
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/txtPrice"
@@ -44,7 +37,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frame" />
+        app:layout_constraintTop_toBottomOf="@+id/imgOnCard" />
 
     <TextView
         android:id="@+id/txtCompany"

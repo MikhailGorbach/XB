@@ -205,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
             lamp.getScaleController().setEnabled(false);
             lamp.select();
 
+            renderable = null;
         });
 
     }

@@ -64,6 +64,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         txtDeskSeller   = v.findViewById(R.id.txtDeskSeller);
         txtDeskArticle  = v.findViewById(R.id.txtDeskArticle);
         img             = v.findViewById(R.id.imgDeskAvatar);
+        img.setClipToOutline(true);
         btnImgShareIt   = v.findViewById(R.id.imgBtnShareIt);
 
         ( (TextView) v.findViewById(R.id.txtDeskPrice) ).setText(model.getPrice() + " ₽");
