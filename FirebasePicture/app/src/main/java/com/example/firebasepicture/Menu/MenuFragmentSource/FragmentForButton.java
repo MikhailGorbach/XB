@@ -51,6 +51,7 @@ public class FragmentForButton extends Fragment{
     private Query query;
     private Comparator<DocumentSnapshot> comparator;
     private Boolean isFromIdeas;
+    private Boolean isSort;
 
     public FragmentForButton(String name, Fragment back){
         isFromIdeas = false;
@@ -60,13 +61,16 @@ public class FragmentForButton extends Fragment{
         modelList = new ArrayList<>();
 
         switchName();
+        isSort = true;
     }
     public FragmentForButton(String name, Fragment back, Boolean isFromIdeas){
+        rname = "Акции";
         this.name = name;
         this.back = back;
         fragment = this;
         modelList = new ArrayList<>();
         this.isFromIdeas = isFromIdeas;
+        isSort = true;
     }
 
     private void switchName(){
@@ -116,8 +120,14 @@ public class FragmentForButton extends Fragment{
             case "Напольное освещение":
                 name = "lightFloor";
                 break;
-            case "Люстры":
+            case "Потолочное освещение":
                 name = "chandelier";
+                break;
+            case "Накладные светильники":
+                name = "overheadLamps";
+                break;
+            case "Раковины":
+                name = "sink";
                 break;
         }
     }
@@ -151,10 +161,7 @@ public class FragmentForButton extends Fragment{
 
         recyclerView = binding.recview;
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
-        loadMax();
-
-        if(rvAdapter.getItemCount() == 0)
-            loadQuery();
+        defLoad();
 
         recyclerView.setAdapter(rvAdapter);
     }
@@ -186,7 +193,8 @@ public class FragmentForButton extends Fragment{
                 }
 
                 List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                list.sort(comparator);
+                if (isSort) list.sort(comparator);
+
                 if(list.isEmpty()){
                     Toast.makeText(fragment.getContext(), "Error with download from Database", Toast.LENGTH_SHORT).show();
                     return;
@@ -212,13 +220,15 @@ public class FragmentForButton extends Fragment{
     }
 
     private void loadMin(){
+        isSort = true;
+
         comparator = new Comparator<DocumentSnapshot>() {
             @Override
             public int compare(DocumentSnapshot o1, DocumentSnapshot o2) {
-                return Integer.parseInt(o1.toObject(Model.class).getPrice()) >
-                       Integer.parseInt(o2.toObject(Model.class).getPrice()) ? 1 :
-                        (Integer.parseInt(o1.toObject(Model.class).getPrice()) ==
-                         Integer.parseInt(o2.toObject(Model.class).getPrice())) ? 0 : -1;
+                int max = Integer.parseInt(o1.toObject(Model.class).getPrice());
+                int min = Integer.parseInt(o2.toObject(Model.class).getPrice());
+
+                return max > min ? 1 : (max == min) ? 0 : -1;
             }
         };
         loadQuery();
@@ -231,16 +241,28 @@ public class FragmentForButton extends Fragment{
     }
 
     private void loadMax(){
+        isSort = true;
+
         comparator = new Comparator<DocumentSnapshot>() {
             @Override
             public int compare(DocumentSnapshot o1, DocumentSnapshot o2) {
-                int a = Integer.parseInt(o1.toObject(Model.class).getPrice());
-                int b = Integer.parseInt(o2.toObject(Model.class).getPrice());
+                int max = Integer.parseInt(o1.toObject(Model.class).getPrice());
+                int min = Integer.parseInt(o2.toObject(Model.class).getPrice());
 
-                //return a > b ? -1 : (a == b) ? 0 : 1;
-                return (a > b) ? -1 : 1;
+                return max > min ? -1 : (max == min) ? 0 : 1;
             }
         };
+        loadQuery();
+        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
+            @Override
+            public void onLoadMore(int currentPage) {
+                loadQuery();
+            }
+        });
+    }
+
+    private void defLoad(){
+        isSort = false;
         loadQuery();
         recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
             @Override
@@ -275,6 +297,14 @@ public class FragmentForButton extends Fragment{
                 rvAdapter.remove();
                 bottomSheetDialog.dismiss();
                 loadMin();
+            }
+        });
+        ((Button)bottomSheetDialog.getWindow().findViewById(R.id.btnPopularyBottomSheetDialog)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rvAdapter.remove();
+                bottomSheetDialog.dismiss();
+                defLoad();
             }
         });
 
@@ -445,6 +475,7 @@ public class FragmentForButton extends Fragment{
                 super(itemView);
 
                 img1 = itemView.findViewById(R.id.imgOnCard);
+                img1.setClipToOutline(true);
                 txtTitle = itemView.findViewById(R.id.txtTitle);
                 txtPrice = itemView.findViewById(R.id.txtPrice);
                 txtCompany = itemView.findViewById(R.id.txtCompany);

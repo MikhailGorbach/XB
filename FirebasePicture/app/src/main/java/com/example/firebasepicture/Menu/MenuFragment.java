@@ -49,11 +49,13 @@ public class MenuFragment extends Fragment{
         arrayList.add("Банкетки");
         arrayList.add("Пуфы");
         arrayList.add("Шкафы");
+        arrayList.add("Раковины");
         arrayList.add("Кушетки");
         arrayList.add("Стеллажи");
         arrayList.add("Настенное освещение");
         arrayList.add("Напольное освещение");
-        arrayList.add("Люстры");
+        arrayList.add("Потолочное освещение");
+        arrayList.add("Накладные светильники");
         UsersAdapter adapter = new UsersAdapter(arrayList, this);
 
         listOfItemSetting.setLayoutManager(new LinearLayoutManager(getContext()));

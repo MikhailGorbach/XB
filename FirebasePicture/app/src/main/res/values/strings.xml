@@ -10,6 +10,7 @@
     <string name="cancelBottomSheetDialog">Cancel</string>
     <string name="minBottomSheetDialog">По цене min</string>
     <string name="maxBottomSheetDialog">По цене max</string>
+    <string name="popularyBottomSheetDialog">По популярности</string>
     <string name="sortBottomSheetDialog">Сортировка</string>
     <string name="support_homevis_tech">support@homevis.tech</string>
 </resources>

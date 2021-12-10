@@ -353,92 +353,6 @@
             </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/txtDeskPack"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
-                android:text="Упаковка"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="15dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtDeskWeightName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Вес в упаковке: "
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/txtDeskWeight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:text="... см"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="15dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtDeskVolumeName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Объём: "
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/txtDeskVolume"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:text="... м³"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="15dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtDeskAssembling"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Потребуется сборка"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -459,7 +373,7 @@
                     android:id="@+id/imgDesBoxFragmentForCard"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginRight="5dp"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/shippingbox_fill_2x"
@@ -478,6 +392,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginRight="5dp"
                         android:orientation="horizontal">
 
@@ -506,6 +421,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginRight="5dp"
                         android:orientation="horizontal">
 
@@ -514,7 +430,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
                             android:layout_marginRight="5dp"
                             android:text="Доставка со склада "
                             android:textColor="@android:color/darker_gray"
@@ -525,12 +440,31 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:text="дом2 "
                             android:textColor="@android:color/darker_gray"
                             android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtDeskAssembling"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="Потребуется сборка"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="14sp" />
+
                     </LinearLayout>
 
 
@@ -564,21 +498,10 @@
                     app:tint="@color/green_welcome" />
 
                 <TextView
-                    android:id="@+id/txtDeskSellerName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginRight="5dp"
-                    android:text="Продавец: "
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
-
-                <TextView
                     android:id="@+id/txtDeskSeller"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginRight="5dp"
                     android:text="Ссылка"

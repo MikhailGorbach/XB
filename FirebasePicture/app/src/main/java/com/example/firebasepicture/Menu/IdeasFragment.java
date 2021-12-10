@@ -49,15 +49,15 @@ public class IdeasFragment extends Fragment {
     }
 
     private void initComponents(){
-        links.add("https://homevis.tech/static/users/img/1.png");
-        links.add("https://homevis.tech/static/users/img/2.png");
-        links.add("https://homevis.tech/static/users/img/3.png");
+        links.add("https://homevis.tech/static/sales/sale1.png");
+        links.add("https://homevis.tech/static/sales/sale2.png");
+        links.add("https://homevis.tech/static/sales/sale3.png");
 
         MePicAdapter adapter = new MePicAdapter(links, this, this.getContext());
         LinearLayoutManager lm = new LinearLayoutManager(requireContext());
         lm.setOrientation(LinearLayoutManager.HORIZONTAL);
-        binding.listMyList.setLayoutManager(lm);
         binding.listMyList.setAdapter(adapter);
+        binding.listMyList.setLayoutManager(lm);
     }
 
     class MePicAdapter extends RecyclerView.Adapter<MePicAdapter.MePicAdapterViewHolder>{
@@ -86,14 +86,14 @@ public class IdeasFragment extends Fragment {
                 public void onClick(View v) {
                     String name = "";
                     switch (ulrList.get(position)){
-                        case "https://homevis.tech/static/users/img/1.png":
+                        case "https://homevis.tech/static/sales/sale1.png":
                             name = "sale1";
                             break;
-                        case "https://homevis.tech/static/users/img/2.png":
-                            name = "sale1";
+                        case "https://homevis.tech/static/sales/sale2.png":
+                            name = "sale2";
                             break;
-                        case "https://homevis.tech/static/users/img/3.png":
-                            name = "sale1";
+                        case "https://homevis.tech/static/sales/sale3.png":
+                            name = "sale3";
                             break;
                     }
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton(name, fragment,true) ).commit();
@@ -113,6 +113,7 @@ public class IdeasFragment extends Fragment {
             public MePicAdapterViewHolder(@NonNull View itemView) {
                 super(itemView);
                 image = itemView.findViewById(R.id.pictureImage);
+                image.setClipToOutline(true);
             }
         }
 

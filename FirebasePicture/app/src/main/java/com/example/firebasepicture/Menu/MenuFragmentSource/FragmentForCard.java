@@ -75,8 +75,6 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         ( (TextView) v.findViewById(R.id.txtDeskMaterial) ).setText(model.getMaterial());
         ( (TextView) v.findViewById(R.id.txtDeskColor) ).setText(model.getColour());
         ( (TextView) v.findViewById(R.id.txtDeskContries) ).setText(model.getCountry());
-        ( (TextView) v.findViewById(R.id.txtDeskWeight) ).setText(model.getWeight() + " см");
-        ( (TextView) v.findViewById(R.id.txtDeskVolume) ).setText(model.getVolume() + " м³");
         ( (TextView) v.findViewById(R.id.txtDeskAssembling) ).setText(model.getAssembling());
         ( (TextView) v.findViewById(R.id.txtDeskDelivery) ).setText(model.getDelivery());
         ( (TextView) v.findViewById(R.id.txtDeskCompany) ).setText(model.getCompany());

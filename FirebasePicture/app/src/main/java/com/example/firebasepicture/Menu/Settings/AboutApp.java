@@ -48,7 +48,7 @@ public class AboutApp extends Fragment {
         binding.textView10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/IXBY_bot"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/homevis_bot"));
                 startActivity(browserIntent);
 
             }
