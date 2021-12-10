@@ -1,5 +1,8 @@
 package com.example.firebasepicture.Menu.MenuFragmentSource;
 
+import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
+import android.animation.ValueAnimator;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -14,15 +17,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
-
-import org.w3c.dom.Text;
 
 public class FragmentForCard extends Fragment implements GetDataFromFragment{
     private Model model;
@@ -91,13 +91,29 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         txtMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(txtMore.getText().toString() == "ещё") {
-                    txtDescription.setMaxLines(1000);
+                if(txtMore.getText().toString().equals("ещё")) {
+
+                    ValueAnimator animator = ValueAnimator.ofInt(3,100);
+                    animator.setDuration(900);
+                    animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            txtDescription.setMaxLines((Integer) animator.getAnimatedValue());
+                        }
+                    });
+                    animator.start();
 
                     txtMore.setText("скрыть");
                 }else{
-                    txtDescription.setMaxLines(3);
-
+                    ValueAnimator animator = ValueAnimator.ofInt(txtDescription.getLineCount(),3);
+                    animator.setDuration(300);
+                    animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            txtDescription.setMaxLines((Integer) animator.getAnimatedValue());
+                        }
+                    });
+                    animator.start();
                     txtMore.setText("ещё");
                 }
             }

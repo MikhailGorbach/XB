@@ -55,10 +55,10 @@ public class IdeasFragment extends Fragment {
         links.add("https://homevis.tech/static/sales/sale0.png");
 
         MePicAdapter adapter = new MePicAdapter(links, this, this.getContext());
-        LinearLayoutManager lm = new LinearLayoutManager(requireContext());
-        lm.setOrientation(LinearLayoutManager.HORIZONTAL);
+        LinearLayoutManager lm = new LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false);
         binding.listMyList.setAdapter(adapter);
         binding.listMyList.setLayoutManager(lm);
+
     }
 
     class MePicAdapter extends RecyclerView.Adapter<MePicAdapter.MePicAdapterViewHolder>{
@@ -103,7 +103,6 @@ public class IdeasFragment extends Fragment {
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentForButton(name, fragment,true) ).commit();
                 }
             });
-
         }
 
         @Override
