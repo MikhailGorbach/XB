@@ -120,8 +120,22 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
+                android:maxLines="3"
                 android:text="описание"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/txtMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:maxLines="3"
+                android:text="ещё"
+                android:textColor="@color/blue"
+                android:ellipsize="end"/>
 
             <View
                 android:layout_width="match_parent"

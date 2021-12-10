@@ -128,7 +128,7 @@ public class BrandListFragment extends Fragment {
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Seller card = cardsList.get(position);
 
-            //Glide.with(holder.img3.getContext()).load(card.getLogo()).into(holder.img3);
+            Glide.with(holder.img3.getContext()).load(card.getLogo()).into(holder.img3);
             holder.txtName2.setText(card.getName());
         }
 
@@ -145,7 +145,8 @@ public class BrandListFragment extends Fragment {
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
 
-                img3 = itemView.findViewById(R.id.imgOnCard);
+                img3 = itemView.findViewById(R.id.img3);
+                img3.setClipToOutline(true);
                 txtName2 = itemView.findViewById(R.id.name2);
                 layout = itemView.findViewById(R.id.constrain);
                 layout.setOnClickListener(new View.OnClickListener() {

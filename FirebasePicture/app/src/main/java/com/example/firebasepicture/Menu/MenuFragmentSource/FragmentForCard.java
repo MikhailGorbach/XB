@@ -22,10 +22,14 @@ import com.bumptech.glide.Glide;
 import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
 
+import org.w3c.dom.Text;
+
 public class FragmentForCard extends Fragment implements GetDataFromFragment{
     private Model model;
     private TextView txtDeskSeller;
     private TextView txtDeskArticle;
+    private TextView txtMore;
+    private TextView txtDescription;
 
     private ImageView img;
     private ImageButton btnImgShareIt;
@@ -60,27 +64,44 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         return v;
     }
 
-    void initComponents(View v){
-        txtDeskSeller   = v.findViewById(R.id.txtDeskSeller);
-        txtDeskArticle  = v.findViewById(R.id.txtDeskArticle);
-        img             = v.findViewById(R.id.imgDeskAvatar);
+    void initComponents(View view){
+        txtDeskSeller   = view.findViewById(R.id.txtDeskSeller);
+        txtDeskArticle  = view.findViewById(R.id.txtDeskArticle);
+        img             = view.findViewById(R.id.imgDeskAvatar);
         img.setClipToOutline(true);
-        btnImgShareIt   = v.findViewById(R.id.imgBtnShareIt);
+        btnImgShareIt   = view.findViewById(R.id.imgBtnShareIt);
+        txtMore = ( (TextView) view.findViewById(R.id.txtMore));
+        txtDescription = ( (TextView) view.findViewById(R.id.txtDeskDescription) );
 
-        ( (TextView) v.findViewById(R.id.txtDeskPrice) ).setText(model.getPrice() + " ₽");
-        ( (TextView) v.findViewById(R.id.txtDeskTitle) ).setText(model.getName());
-        ( (TextView) v.findViewById(R.id.txtDeskDescription) ).setText(model.getDescription());
-        ( (TextView) v.findViewById(R.id.txtDeskWidth) ).setText(model.getWidth() + " см");
-        ( (TextView) v.findViewById(R.id.txtDeskDepth) ).setText(model.getDepth() + " см");
-        ( (TextView) v.findViewById(R.id.txtDeskHeight) ).setText(model.getHeight() + " см");
-        ( (TextView) v.findViewById(R.id.txtDeskMaterial) ).setText(model.getMaterial());
-        ( (TextView) v.findViewById(R.id.txtDeskColor) ).setText(model.getColour());
-        ( (TextView) v.findViewById(R.id.txtDeskContries) ).setText(model.getCountry());
-        ( (TextView) v.findViewById(R.id.txtDeskAssembling) ).setText(model.getAssembling());
-        ( (TextView) v.findViewById(R.id.txtDeskDelivery) ).setText(model.getDelivery());
-        ( (TextView) v.findViewById(R.id.txtDeskCompany) ).setText(model.getCompany());
+        ( (TextView) view.findViewById(R.id.txtDeskPrice) ).setText(model.getPrice() + " ₽");
+        ( (TextView) view.findViewById(R.id.txtDeskTitle) ).setText(model.getName());
 
+        txtDescription.setText(model.getDescription());
 
+        ( (TextView) view.findViewById(R.id.txtDeskWidth) ).setText(model.getWidth() + " см");
+        ( (TextView) view.findViewById(R.id.txtDeskDepth) ).setText(model.getDepth() + " см");
+        ( (TextView) view.findViewById(R.id.txtDeskHeight) ).setText(model.getHeight() + " см");
+        ( (TextView) view.findViewById(R.id.txtDeskMaterial) ).setText(model.getMaterial());
+        ( (TextView) view.findViewById(R.id.txtDeskColor) ).setText(model.getColour());
+        ( (TextView) view.findViewById(R.id.txtDeskContries) ).setText(model.getCountry());
+        ( (TextView) view.findViewById(R.id.txtDeskAssembling) ).setText(model.getAssembling());
+        ( (TextView) view.findViewById(R.id.txtDeskDelivery) ).setText(model.getDelivery());
+        ( (TextView) view.findViewById(R.id.txtDeskCompany) ).setText(model.getCompany());
+
+        txtMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(txtMore.getText().toString() == "ещё") {
+                    txtDescription.setMaxLines(1000);
+
+                    txtMore.setText("скрыть");
+                }else{
+                    txtDescription.setMaxLines(3);
+
+                    txtMore.setText("ещё");
+                }
+            }
+        });
 
         txtDeskArticle.setText(model.getArticle());
         txtDeskArticle.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +115,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         });
 
         txtDeskSeller.setText(model.getSeller() == null ? "Нет" : model.getSeller());
-        ((ImageView) v.findViewById(R.id.imgDeskPicture2FragmentForCard)).setOnClickListener(new View.OnClickListener() {
+        ((ImageView) view.findViewById(R.id.imgDeskPicture2FragmentForCard)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager manager = getFragmentManager();
@@ -103,7 +124,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
             }
         });
 
-        ( (TextView) v.findViewById(R.id.txtDeskLink) ).setOnClickListener(new View.OnClickListener() {
+        ( (TextView) view.findViewById(R.id.txtDeskLink) ).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(model.getLink()));
@@ -111,9 +132,9 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
 
             }
         });
-        Glide.with(v.getContext()).load(model.getPhoto()).into(img);
+        Glide.with(view.getContext()).load(model.getPhoto()).into(img);
 
-        ((ImageButton) v.findViewById(R.id.btnBack)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) view.findViewById(R.id.btnBack)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(fragment != null)
@@ -122,7 +143,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
                     getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
             }
         });
-        ((ImageButton) v.findViewById(R.id.btn3D)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) view.findViewById(R.id.btn3D)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GetDataFromFragment listener;
