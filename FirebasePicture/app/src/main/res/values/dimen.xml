@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- InfoFragment -->
+    <dimen name="txtSizeInfoContent">14sp</dimen>
+    <dimen name="txtSizeInfoTitle">14sp</dimen>
+
+    <!-- PrivatePolicy -->
+    <dimen name="txtSizePrivatePolicyHead">20sp</dimen>
+    <dimen name="txtSizePrivatePolicyTitle">16sp</dimen>
+
+
+</resources>

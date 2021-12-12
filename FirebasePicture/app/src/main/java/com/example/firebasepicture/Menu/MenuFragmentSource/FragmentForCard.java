@@ -85,7 +85,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
         ( (TextView) view.findViewById(R.id.txtDeskColor) ).setText(model.getColour());
         ( (TextView) view.findViewById(R.id.txtDeskContries) ).setText(model.getCountry());
         ( (TextView) view.findViewById(R.id.txtDeskAssembling) ).setText(model.getAssembling());
-        ( (TextView) view.findViewById(R.id.txtDeskDelivery) ).setText(model.getDelivery());
+        ( (TextView) view.findViewById(R.id.txtDeskDelivery) ).setText("Доставка и сборка в течение "+model.getDelivery());
         ( (TextView) view.findViewById(R.id.txtDeskCompany) ).setText(model.getCompany());
 
         txtMore.setOnClickListener(new View.OnClickListener() {
@@ -177,7 +177,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
             public void onClick(View v) {
                 final Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                String textToSend="http://share/"+model.getArticle();
+                String textToSend="https://homevis/"+model.getArticle();
                 intent.putExtra(Intent.EXTRA_TEXT, textToSend);
                 try
                 {

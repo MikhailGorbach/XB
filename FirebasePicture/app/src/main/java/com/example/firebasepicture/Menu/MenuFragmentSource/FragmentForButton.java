@@ -450,6 +450,7 @@ public class FragmentForButton extends Fragment{
             holder.txtTitle.setText(model.getName());
             holder.txtCompany.setText(model.getCompany());
             Glide.with(holder.img1.getContext()).load(model.getPhoto()).into(holder.img1);
+            holder.img1.setClipToOutline(true);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -469,7 +470,6 @@ public class FragmentForButton extends Fragment{
             public TextView txtTitle;
             public TextView txtPrice;
             public TextView txtCompany;
-            public RelativeLayout relativeLayout;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);

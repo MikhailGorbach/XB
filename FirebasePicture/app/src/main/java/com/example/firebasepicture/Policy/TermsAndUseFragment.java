@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.firebasepicture.Menu.Settings.ElementA;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.Utility.ExrGroupAdapter;
 import com.example.firebasepicture.databinding.FragmentTermsAndUseBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,7 +35,7 @@ public class TermsAndUseFragment extends Fragment {
     private ArrayList<ElementA> listEl;
     private FirebaseFirestore firebaseFirestore;
     private Fragment f;
-    private PurchaseItemRecyclerViewAdapter mPIAdapter;
+    private myAdapter mPIAdapter;
 
     public TermsAndUseFragment(Fragment fragment) {
         this.fragment = fragment;
@@ -115,42 +116,24 @@ public class TermsAndUseFragment extends Fragment {
 
             }
         });
-        mPIAdapter = new PurchaseItemRecyclerViewAdapter(listEl);
+        ArrayList<String> TitleList = new ArrayList<>();
+
+        TitleList.add("Соглашение");
+        TitleList.add("1. Общие положения");
+        TitleList.add("2. Предмет соглашения");
+        TitleList.add("3. Обязанности сторон соглашения");
+        TitleList.add("4. Права сторон соглашения");
+        TitleList.add("5. Обратная связь и порядок рассмотрения претензий");
+        TitleList.add("6. Заключительные положения");
+
+        mPIAdapter = new myAdapter(TitleList, listEl);
         binding.list.setAdapter(mPIAdapter);
     }
     //adapter
-    public class PurchaseItemRecyclerViewAdapter extends ExpandableRecyclerView.Adapter<PurchaseItemRecyclerViewAdapter.ChildViewHolder,ExpandableRecyclerView.SimpleGroupViewHolder,String,String>
-    {
-        private ArrayList<ElementA> ElementList;
-        private ArrayList<String> TitleList;
+    class myAdapter extends ExrGroupAdapter{
 
-        public PurchaseItemRecyclerViewAdapter(ArrayList<ElementA> ElementList){
-            this.ElementList = ElementList;
-            TitleList = new ArrayList<>();
-
-            TitleList.add("Соглашение");
-            TitleList.add("1. Общие положения");
-            TitleList.add("2. Предмет соглашения");
-            TitleList.add("3. Обязанности сторон соглашения");
-            TitleList.add("4. Права сторон соглашения");
-            TitleList.add("5. Обратная связь и порядок рассмотрения претензий");
-            TitleList.add("6. Заключительные положения");
-
-        }
-
-        @Override
-        public int getGroupItemCount() {
-            return TitleList.size()-1;
-        }
-
-        @Override
-        public int getChildItemCount(int i) {
-            return 1;
-        }
-
-        @Override
-        public String getGroupItem(int i) {
-            return TitleList.get(i);
+        public myAdapter(ArrayList<String> TitleList, ArrayList<ElementA> ElementList) {
+            super(TitleList, ElementList);
         }
 
         @Override
@@ -165,46 +148,6 @@ public class TermsAndUseFragment extends Fragment {
 
             }
             return res;
-        }
-
-        @Override
-        protected ExpandableRecyclerView.SimpleGroupViewHolder onCreateGroupViewHolder(ViewGroup parent)
-        {
-            return new ExpandableRecyclerView.SimpleGroupViewHolder(parent.getContext());
-        }
-
-        @Override
-        protected ChildViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
-            View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.sub_item,parent,false);
-            return new ChildViewHolder(rootView);
-        }
-
-        @Override
-        public void onBindGroupViewHolder(ExpandableRecyclerView.SimpleGroupViewHolder holder, int group) {
-            super.onBindGroupViewHolder(holder, group);
-            holder.setText(getGroupItem(group));
-
-        }
-
-        @Override
-        public void onBindChildViewHolder(PurchaseItemRecyclerViewAdapter.ChildViewHolder holder, int group, int position)
-        {
-            super.onBindChildViewHolder(holder, group, position);
-            holder.name.setText(getChildItem(group,position));
-        }
-
-        @Override
-        public int getChildItemViewType(int i, int i1) {
-            return 1;
-        }
-
-        public class ChildViewHolder extends RecyclerView.ViewHolder
-        {
-            private TextView name;
-            public ChildViewHolder(View itemView) {
-                super(itemView);
-                name = (TextView) itemView.findViewById(R.id.item_name);
-            }
         }
     }
 }

@@ -168,7 +168,13 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         try {
             File file = File.createTempFile(name, "glb");
             StorageTask<FileDownloadTask.TaskSnapshot> taskSnapshotStorageTask = modelRef.getFile(file)
-                    .addOnSuccessListener(taskSnapshot -> buildModel(file))
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Log.d("debug", "Модель найдена");
+                            buildModel(file);
+                        }
+                    })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
@@ -225,18 +231,21 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                     .setRegistryId(file.getPath())
                     .build()
                     .thenAccept(modelRenderable -> {
-                        Toast.makeText(this, "Model built", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Модель загружена", Toast.LENGTH_SHORT).show();
                         renderable = modelRenderable;
+                        Log.d("debug", "Модель загружена");
                     });
         }
         catch (@NonNull Exception e) {
             e.printStackTrace();
-            Toast.makeText(MainActivity.this, "Error Occurred", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Ошибка загрузки", Toast.LENGTH_SHORT).show();
+            Log.d("debug", "Ошибка загрузки");
         }
     }
 
     @Override
-    public void GetData(String data) {//data - имя модели например "blasterH"
+    public void GetData(String data) {
+        Log.d("debug", data);
         modelRef = modelRef.child("models Android/" + data+".glb");
         newModel(data); //Создать по нажатию на экран
         modelRef = FirebaseStorage.getInstance().getReference();
