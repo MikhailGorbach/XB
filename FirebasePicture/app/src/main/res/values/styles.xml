@@ -6,4 +6,18 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="colorAccent">@color/main_color</item>
     </style>
+
+    <style name="expandableRecyclerViewPolicy">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginHorizontal">20dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginBottom">@dimen/heightDisUntilEndOfNav</item>
+        <item name="android:paddingHorizontal">5dp</item>
+        <item name="android:background">@drawable/background_blue_rounded_square</item>
+        <item name="layoutManager">"LinearLayoutManager"</item>
+        <item name="layout_constraintBottom_toBottomOf">"parent"</item>
+        <item name="layout_constraintEnd_toEndOf">"parent"</item>
+        <item name="layout_constraintStart_toStartOf">"parent"</item>
+    </style>
 </resources>

@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Often sizes-->
+    <dimen name="heightDisUntilEndOfNav">70dp</dimen>
 
     <!-- InfoFragment -->
     <dimen name="txtSizeInfoContent">14sp</dimen>
     <dimen name="txtSizeInfoTitle">14sp</dimen>
 
     <!-- PrivatePolicy -->
-    <dimen name="txtSizePrivatePolicyHead">20sp</dimen>
+    <dimen name="txtSizePrivatePolicyHead">18sp</dimen>
     <dimen name="txtSizePrivatePolicyTitle">16sp</dimen>
 
-
+    <!-- TermsAndUse -->
+    <dimen name="txtSizeTermsAndUseHead">18sp</dimen>
+    <dimen name="txtSizeTermsAndUseTitle">16sp</dimen>
 </resources>
