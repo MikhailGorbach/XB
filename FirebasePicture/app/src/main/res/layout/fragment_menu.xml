@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/back_menu">
 
         <ImageView
@@ -11,36 +11,37 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/custom_up" />
 
-        <TextView
-            android:id="@+id/txtSettingName_1"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/editTextTextMultiLine"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="30dp"
-            android:text="Каталог"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/txtSettingName_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtSettingName_1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="5dp"
-            android:text="Выбрать"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_white_rounded_super_little"
+            android:hint="@string/hintTxt"
+            android:inputType="textCapWords"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:textColor="@color/black"
+            android:textColorLink="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listOfItemSetting"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/img_0"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:background="@drawable/background_blue_rounded_square"
-            android:paddingBottom="70dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_0" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

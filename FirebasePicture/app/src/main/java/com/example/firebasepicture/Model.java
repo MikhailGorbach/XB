@@ -31,6 +31,11 @@ public class Model {
 
     }
 
+    public Model(String name) {
+        this.name = name;
+        this.scaleCompensation = -1l;
+    }
+
     public String getSalecategory() {
         return salecategory;
     }

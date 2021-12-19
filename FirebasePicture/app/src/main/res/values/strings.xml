@@ -22,4 +22,5 @@
     <string name="content">2</string>
     <string name="agree">3</string>
     <string name="EmailHomevis">homevis.tech</string>
+    <string name="hintTxt">Поиск на HOMEVIS</string>
 </resources>
