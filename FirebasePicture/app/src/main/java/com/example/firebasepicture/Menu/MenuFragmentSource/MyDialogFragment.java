@@ -31,6 +31,7 @@ public class MyDialogFragment extends DialogFragment {
         dialog.setContentView(R.layout.fragment_dialog);
         ( (TextView) dialog.getWindow().findViewById(R.id.txtDialogSeller)).setText(model.getSeller() == null ? "Нет" : model.getSeller());
         ( (TextView) dialog.getWindow().findViewById(R.id.txtDialogOgrn)).setText("ОГРН " + model.getOgrn());
+        ( (TextView) dialog.getWindow().findViewById(R.id.txtDialogAddress)).setText(getText(R.string.URAddress) + System.getProperty("line.separator") + model.getAddress());
         ( (Button) dialog.getWindow().findViewById(R.id.btnDialogOkey)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

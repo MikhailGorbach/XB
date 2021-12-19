@@ -1,11 +1,13 @@
 package com.example.firebasepicture.Menu.Settings;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -65,7 +67,11 @@ public class BrandListFragment extends Fragment {
         adapter = new SellerRVAdapter(arrayList, f);
         load();
 
-        binding.recyclerViewList.setLayoutManager(new GridLayoutManager(this.getContext(), 1));
+        CustomGridLayoutManager grid = new CustomGridLayoutManager(this.getContext());
+        grid.setScrollEnabled(false);
+        grid.setInitialPrefetchItemCount(1);
+
+        binding.recyclerViewList.setLayoutManager(grid);
         binding.recyclerViewList.setAdapter(adapter);
     }
 
@@ -108,6 +114,23 @@ public class BrandListFragment extends Fragment {
                     Toast.makeText(f.getContext(), "Fail get data from Database.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public class CustomGridLayoutManager extends LinearLayoutManager {
+        private boolean isScrollEnabled = true;
+
+        public CustomGridLayoutManager(Context context) {
+            super(context);
+        }
+
+        public void setScrollEnabled(boolean flag) {
+            this.isScrollEnabled = flag;
+        }
+
+        @Override
+        public boolean canScrollVertically() {
+            return isScrollEnabled && super.canScrollVertically();
+        }
     }
 
     public class SellerRVAdapter extends RecyclerView.Adapter<SellerRVAdapter.ViewHolder>{

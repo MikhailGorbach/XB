@@ -49,6 +49,8 @@ public class IdeasFragment extends Fragment {
     }
 
     private void initComponents(){
+        links.clear();
+
         links.add("https://homevis.tech/static/sales/sale1.png");
         links.add("https://homevis.tech/static/sales/sale2.png");
         links.add("https://homevis.tech/static/sales/sale3.png");

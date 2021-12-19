@@ -25,6 +25,7 @@ public class Model {
     String volume;
     String weight;
     String width;
+    String address;
 
     public Model() {
 
@@ -36,6 +37,33 @@ public class Model {
 
     public void setSalecategory(String salecategory) {
         this.salecategory = salecategory;
+    }
+
+
+    public Model(String article, String assembling, String category, String salecategory, String colour, String company, String country, String delivery, String depth, String description, String height, String link, String material, String name, String ogrn, String photo, String price, Long scaleCompensation, String seller, String volume, String weight, String width, String address) {
+        this.article = article;
+        this.assembling = assembling;
+        this.category = category;
+        this.salecategory = salecategory;
+        this.colour = colour;
+        this.company = company;
+        this.country = country;
+        this.delivery = delivery;
+        this.depth = depth;
+        this.description = description;
+        this.height = height;
+        this.link = link;
+        this.material = material;
+        this.name = name;
+        this.ogrn = ogrn;
+        this.photo = photo;
+        this.price = price;
+        this.scaleCompensation = scaleCompensation;
+        this.seller = seller;
+        this.volume = volume;
+        this.weight = weight;
+        this.width = width;
+        this.address = address;
     }
 
     public Model(String article, String assembling, String category, String salecategory, String colour, String company, String country, String delivery, String depth, String description, String height, String link, String material, String name, String ogrn, String photo, String price, Long scaleCompensation, String seller, String volume, String weight, String width) {
@@ -255,28 +283,40 @@ public class Model {
         this.seller = seller;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Model{" +
-                "photo='" + photo + '\'' +
-                ", price='" + price + '\'' +
-                ", name='" + name + '\'' +
-                ", category='" + category + '\'' +
-                ", article='" + article + '\'' +
-                ", link='" + link + '\'' +
-                ", description='" + description + '\'' +
-                ", width='" + width + '\'' +
-                ", depth='" + depth + '\'' +
-                ", height='" + height + '\'' +
-                ", material='" + material + '\'' +
-                ", country='" + country + '\'' +
-                ", weight='" + weight + '\'' +
-                ", volume='" + volume + '\'' +
+                "article='" + article + '\'' +
                 ", assembling='" + assembling + '\'' +
-                ", delivery='" + delivery + '\'' +
+                ", category='" + category + '\'' +
+                ", salecategory='" + salecategory + '\'' +
                 ", colour='" + colour + '\'' +
                 ", company='" + company + '\'' +
+                ", country='" + country + '\'' +
+                ", delivery='" + delivery + '\'' +
+                ", depth='" + depth + '\'' +
+                ", description='" + description + '\'' +
+                ", height='" + height + '\'' +
+                ", link='" + link + '\'' +
+                ", material='" + material + '\'' +
+                ", name='" + name + '\'' +
                 ", ogrn='" + ogrn + '\'' +
+                ", photo='" + photo + '\'' +
+                ", price='" + price + '\'' +
+                ", scaleCompensation=" + scaleCompensation +
+                ", seller='" + seller + '\'' +
+                ", volume='" + volume + '\'' +
+                ", weight='" + weight + '\'' +
+                ", width='" + width + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

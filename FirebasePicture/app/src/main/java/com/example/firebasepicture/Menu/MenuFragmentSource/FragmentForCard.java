@@ -177,7 +177,7 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
             public void onClick(View v) {
                 final Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                String textToSend="https://homevis/"+model.getArticle();
+                String textToSend="https://homevis.tech/"+model.getArticle();
                 intent.putExtra(Intent.EXTRA_TEXT, textToSend);
                 try
                 {

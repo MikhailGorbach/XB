@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="homevis"
+                    android:host="homevis.tech"
                     android:scheme="https" />
             </intent-filter>
         </activity>

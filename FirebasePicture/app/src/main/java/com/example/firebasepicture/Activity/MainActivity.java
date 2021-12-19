@@ -11,10 +11,15 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -48,8 +53,13 @@ import com.google.firebase.storage.StorageTask;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.List;
+import java.util.function.Function;
 
 public class MainActivity extends AppCompatActivity implements GetDataFromFragment
 {
@@ -184,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         }
         catch (IOException e)
         {
+            Log.d("debug", "error");
             e.printStackTrace();
         }
     }
@@ -217,8 +228,22 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     }
 
     //Создаём модель
+    @SuppressLint("ResourceType")
     private void buildModel(File file) {
         try {
+            ViewGroup layout = (ViewGroup) findViewById(R.id.parentLayout);
+
+            ProgressBar progressBar = new ProgressBar(MainActivity.this,null,android.R.attr.progressBarStyleLarge);
+
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100,100);
+            params.bottomMargin = R.dimen.heightDisUntilEndOfNav;
+            params.addRule(RelativeLayout.CENTER_IN_PARENT);
+
+            progressBar.setLayoutParams(params);
+            layout.addView(progressBar,params);
+
+            progressBar.setVisibility(View.VISIBLE);
+
             RenderableSource renderableSource = RenderableSource
                     .builder()
                     .setSource(this, Uri.parse(file.getPath()), RenderableSource.SourceType.GLB)
@@ -234,7 +259,18 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                         Toast.makeText(this, "Модель загружена", Toast.LENGTH_SHORT).show();
                         renderable = modelRenderable;
                         Log.d("debug", "Модель загружена");
-                    });
+
+                        progressBar.setVisibility(View.GONE);
+                    }).exceptionally(new Function<Throwable, Void>() {
+                @Override
+                public Void apply(Throwable throwable) {
+                    Toast.makeText(context, "Ошибка 246->main = " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d("debug", "Error = " + throwable.getMessage());
+
+                    progressBar.setVisibility(View.GONE);
+                    return null;
+                }
+            });
         }
         catch (@NonNull Exception e) {
             e.printStackTrace();

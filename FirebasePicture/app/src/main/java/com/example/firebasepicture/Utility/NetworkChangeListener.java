@@ -22,6 +22,7 @@ public class NetworkChangeListener extends BroadcastReceiver {
             AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.myFullscreenAlertDialogStyle);
             View layout_dialog = LayoutInflater.from(context).inflate(R.layout.check_internet_dialog, null);
             builder.setView(layout_dialog);
+            layout_dialog.setBackgroundResource(R.color.main_color);
 
             AppCompatButton btnRetry = layout_dialog.findViewById(R.id.btnRetryNoInternetConnection);
 
@@ -32,7 +33,7 @@ public class NetworkChangeListener extends BroadcastReceiver {
             params.height = WindowManager.LayoutParams.MATCH_PARENT;
 
             //dialog.getWindow().addContentView(layout_dialog, params);
-            dialog.getWindow().setGravity( Gravity.FILL_VERTICAL  |Gravity.DISPLAY_CLIP_HORIZONTAL);
+            dialog.getWindow().setGravity( Gravity.FILL_VERTICAL | Gravity.DISPLAY_CLIP_HORIZONTAL);
 
             dialog.show();
             dialog.setCancelable(false);
@@ -43,7 +44,6 @@ public class NetworkChangeListener extends BroadcastReceiver {
                 public void onClick(View v) {
                     dialog.dismiss();
                     onReceive(context, intent);
-
                 }
             });
         }

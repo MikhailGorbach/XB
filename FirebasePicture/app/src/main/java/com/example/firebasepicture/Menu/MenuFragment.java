@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firebasepicture.Menu.MenuFragmentSource.FragmentForButton;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.databinding.FragmentListBinding;
+import com.example.firebasepicture.databinding.FragmentMenuBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,8 @@ import java.util.List;
 public class MenuFragment extends Fragment{
 
     private RecyclerView listOfItemSetting;
+    private ArrayList<String> arrayList;
+    private FragmentMenuBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,14 +34,14 @@ public class MenuFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_menu, container, false);
-        initComponent(v);
-        return v;
+        binding = FragmentMenuBinding.inflate(inflater, container, false);
+        initComponent();
+        return binding.getRoot();
     }
 
-    void initComponent(View v) {
-        listOfItemSetting = v.findViewById(R.id.listOfItemSetting);
-        ArrayList<String> arrayList = new ArrayList<>();
+    void fillDef(){
+        arrayList.clear();
+
         arrayList.add("Диваны");
         arrayList.add("Кресла");
         arrayList.add("Стулья");
@@ -56,10 +60,14 @@ public class MenuFragment extends Fragment{
         arrayList.add("Напольное освещение");
         arrayList.add("Потолочное освещение");
         arrayList.add("Накладные светильники");
-        UsersAdapter adapter = new UsersAdapter(arrayList, this);
+    }
 
-        listOfItemSetting.setLayoutManager(new LinearLayoutManager(getContext()));
-        listOfItemSetting.setAdapter(adapter);
+    void initComponent() {
+        arrayList = new ArrayList<>();
+        fillDef();
+        UsersAdapter adapter = new UsersAdapter(arrayList, this);
+        binding.listOfItemSetting.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.listOfItemSetting.setAdapter(adapter);
     }
 
 

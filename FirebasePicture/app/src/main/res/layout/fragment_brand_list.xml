@@ -7,6 +7,7 @@
     tools:context=".Menu.Settings.BrandListFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -61,45 +62,56 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:ignore="SpeakableTextPresentCheck">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_gradient"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtTitleFragmentSupport"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="Производители на площадке HOMEVIS"
-                    android:textColor="#FFFFFF"
-                    android:textSize="34sp" />
+                    android:background="@drawable/background_gradient"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView3"
+                    <TextView
+                        android:id="@+id/txtTitleFragmentSupport"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="Производители на площадке HOMEVIS"
+                        android:textColor="#FFFFFF"
+                        android:textSize="34sp" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="Список регулярно пополняется"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="Список регулярно пополняется"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+                    android:layout_marginBottom="@dimen/heightDisUntilEndOfNav" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewList"
-                android:layout_width="match_parent"
-                android:layout_height="517dp" />
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
