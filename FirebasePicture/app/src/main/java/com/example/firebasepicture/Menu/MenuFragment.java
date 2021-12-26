@@ -72,15 +72,11 @@ public class MenuFragment extends Fragment{
         //Задвинуть кнопку слева на права
         if(ButtonWithRigth){
             ButtonWithRigth = !ButtonWithRigth;
-
-
             binding.editTextTextMultiLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,0));
             binding.button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,1));
 
         }
 
-        int paddingDp = (int) (getResources().getDimension(R.dimen.heightDisUntilEndOfNav) * getResources().getDisplayMetrics().density);
-        binding.listOfItemSetting.setPadding(0,0,0, paddingDp);
         arrayList.clear();
 
         arrayList.add(new Model("Диваны"));
@@ -138,6 +134,8 @@ public class MenuFragment extends Fragment{
                 query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                        String n = name;
                         if (queryDocumentSnapshots.isEmpty()) {
                             if (fragment.getContext() != null)
 
@@ -166,7 +164,8 @@ public class MenuFragment extends Fragment{
 
                         }
 
-                        adapter.notifyDataSetChanged();
+                        if(ButtonWithRigth)
+                            adapter.notifyDataSetChanged();
 
                         binding.msg.setVisibility((arrayList.size() == 0) ? View.VISIBLE : View.INVISIBLE);
                     }

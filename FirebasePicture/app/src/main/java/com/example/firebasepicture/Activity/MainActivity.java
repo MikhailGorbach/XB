@@ -176,13 +176,27 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     //Собрать новую модель
     private void newModel(String name){
         try {
+
+            ViewGroup layout = (ViewGroup) findViewById(R.id.parentLayout);
+
+            ProgressBar progressBar = new ProgressBar(MainActivity.this,null,android.R.attr.progressBarStyleLarge);
+
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100,100);
+            params.bottomMargin = R.dimen.heightDisUntilEndOfNav;
+            params.addRule(RelativeLayout.CENTER_IN_PARENT);
+
+            progressBar.setLayoutParams(params);
+            layout.addView(progressBar,params);
+
+            progressBar.setVisibility(View.VISIBLE);
+
             File file = File.createTempFile(name, "glb");
             StorageTask<FileDownloadTask.TaskSnapshot> taskSnapshotStorageTask = modelRef.getFile(file)
                     .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                             Log.d("debug", "Модель найдена");
-                            buildModel(file);
+                            buildModel(file,progressBar);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -229,20 +243,8 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
     //Создаём модель
     @SuppressLint("ResourceType")
-    private void buildModel(File file) {
+    private void buildModel(File file,ProgressBar progressBar) {
         try {
-            ViewGroup layout = (ViewGroup) findViewById(R.id.parentLayout);
-
-            ProgressBar progressBar = new ProgressBar(MainActivity.this,null,android.R.attr.progressBarStyleLarge);
-
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100,100);
-            params.bottomMargin = R.dimen.heightDisUntilEndOfNav;
-            params.addRule(RelativeLayout.CENTER_IN_PARENT);
-
-            progressBar.setLayoutParams(params);
-            layout.addView(progressBar,params);
-
-            progressBar.setVisibility(View.VISIBLE);
 
             RenderableSource renderableSource = RenderableSource
                     .builder()
