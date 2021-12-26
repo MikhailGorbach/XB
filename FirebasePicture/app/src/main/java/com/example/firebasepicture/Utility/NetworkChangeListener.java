@@ -9,37 +9,41 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-
-import androidx.appcompat.widget.AppCompatButton;
+import android.widget.LinearLayout;
 
 import com.example.firebasepicture.R;
 
+
 public class NetworkChangeListener extends BroadcastReceiver {
-    @Override
-    public void onReceive(Context context, Intent intent) {
+
+
+
+    void two(Context context, Intent intent){
+
+
+
+    }
+
+    void one(Context context, Intent intent){
         if(!Common.isConnectionToInternet(context)){
-            AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.myFullscreenAlertDialogStyle);
             View layout_dialog = LayoutInflater.from(context).inflate(R.layout.check_internet_dialog, null);
-            builder.setView(layout_dialog);
             layout_dialog.setBackgroundResource(R.color.main_color);
 
-            AppCompatButton btnRetry = layout_dialog.findViewById(R.id.btnRetryNoInternetConnection);
+            //layout_dialog.findViewById(R.id.imageView9).setLayoutParams(new LinearLayout.LayoutParams(M));
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.myFullscreenAlertDialogStyle);
+            builder.setView(layout_dialog);
 
             AlertDialog dialog = builder.create();
 
-            ViewGroup.LayoutParams params = dialog.getWindow().getAttributes();
-            params.width = WindowManager.LayoutParams.MATCH_PARENT;
-            params.height = WindowManager.LayoutParams.MATCH_PARENT;
-
-            //dialog.getWindow().addContentView(layout_dialog, params);
-            dialog.getWindow().setGravity( Gravity.FILL_VERTICAL | Gravity.DISPLAY_CLIP_HORIZONTAL);
+            dialog.getWindow().setBackgroundDrawableResource(R.color.main_color);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
 
             dialog.show();
             dialog.setCancelable(false);
 
-
-            btnRetry.setOnClickListener(new View.OnClickListener() {
+            layout_dialog.findViewById(R.id.btnRetryNoInternetConnection).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
@@ -47,6 +51,11 @@ public class NetworkChangeListener extends BroadcastReceiver {
                 }
             });
         }
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        one(context,intent);
     }
 
     @Override

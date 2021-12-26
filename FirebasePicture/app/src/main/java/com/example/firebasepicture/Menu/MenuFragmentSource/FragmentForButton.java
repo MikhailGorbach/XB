@@ -160,7 +160,7 @@ public class FragmentForButton extends Fragment{
         });
 
         recyclerView = binding.recview;
-        recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
+            recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
         defLoad();
 
         recyclerView.setAdapter(rvAdapter);
