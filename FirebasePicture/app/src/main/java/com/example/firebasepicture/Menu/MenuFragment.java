@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,9 +49,11 @@ public class MenuFragment extends Fragment{
     private FirebaseFirestore firebaseFirestore;
     private Fragment fragment;
     private UsersAdapter adapter;
+    private Boolean ButtonWithRigth;
 
     public MenuFragment() {
         fragment = this;
+        ButtonWithRigth = false;
     }
 
     @Override
@@ -65,6 +69,16 @@ public class MenuFragment extends Fragment{
     }
 
     void fillDef(){
+        //Задвинуть кнопку слева на права
+        if(ButtonWithRigth){
+            ButtonWithRigth = !ButtonWithRigth;
+
+
+            binding.editTextTextMultiLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,0));
+            binding.button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,1));
+
+        }
+
         int paddingDp = (int) (getResources().getDimension(R.dimen.heightDisUntilEndOfNav) * getResources().getDisplayMetrics().density);
         binding.listOfItemSetting.setPadding(0,0,0, paddingDp);
         arrayList.clear();
@@ -88,6 +102,10 @@ public class MenuFragment extends Fragment{
         arrayList.add(new Model("Потолочное освещение"));
         arrayList.add(new Model("Накладные светильники"));
 
+        if(adapter != null)
+            adapter.notifyDataSetChanged();
+
+        binding.msg.setVisibility((arrayList.size() == 0) ? View.VISIBLE : View.INVISIBLE);
     }
 
 //Toast.makeText(MainActivity.bottomNav.getContext(), "1", Toast.LENGTH_SHORT);
@@ -102,10 +120,16 @@ public class MenuFragment extends Fragment{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //Выдвинуть кнопку справа на лева
+                if(!ButtonWithRigth){
+                    ButtonWithRigth = !ButtonWithRigth;
+                    binding.editTextTextMultiLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,10f));
+                    binding.button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,0));
+                }
+
                 String name = binding.editTextTextMultiLine.getText().toString();
                 if(name.length() == 0) {
                     fillDef();
-                    adapter.notifyDataSetChanged();
                     return;
                 }
                 Query query = firebaseFirestore
@@ -143,6 +167,8 @@ public class MenuFragment extends Fragment{
                         }
 
                         adapter.notifyDataSetChanged();
+
+                        binding.msg.setVisibility((arrayList.size() == 0) ? View.VISIBLE : View.INVISIBLE);
                     }
                 });
 
@@ -155,9 +181,17 @@ public class MenuFragment extends Fragment{
             }
 
         });
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.editTextTextMultiLine.setText("");
+                fillDef();
+            }
+        });
 
         arrayList = new ArrayList<>();
         fillDef();
+
         adapter = new UsersAdapter(arrayList, this);
         binding.listOfItemSetting.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.listOfItemSetting.setAdapter(adapter);
