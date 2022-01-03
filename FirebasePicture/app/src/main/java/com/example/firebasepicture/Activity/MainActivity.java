@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     private StorageReference modelRef;  //Директория в БД
     private ArFragment arFragment;      //Фрагмент с изображением
     private Fragment fragment;          //Фрагмент
+    private ProgressBar progressBar;
 
     private NetworkChangeListener networkChangeListener;
     private Context context;
@@ -85,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         setContentView(R.layout.activity_main);
 
         fragmentScreens = findViewById(R.id.fragment_container);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         context = this;
@@ -183,15 +187,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
             ViewGroup layout = (ViewGroup) findViewById(R.id.parentLayout);
 
-            ProgressBar progressBar = new ProgressBar(MainActivity.this,null,android.R.attr.progressBarStyleLarge);
-
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100,100);
-            params.bottomMargin = R.dimen.heightDisUntilEndOfNav;
-            params.addRule(RelativeLayout.CENTER_IN_PARENT);
-
-            progressBar.setLayoutParams(params);
-            layout.addView(progressBar,params);
-
             progressBar.setVisibility(View.VISIBLE);
 
             File file = File.createTempFile(name, "glb");
@@ -200,19 +195,21 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                             Log.d("debug", "Модель найдена");
-                            buildModel(file,progressBar);
+                            buildModel(file);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(MainActivity.this, "Error. Model hasn't founded.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Модель не найдена.", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     });
         }
         catch (IOException e)
         {
             Log.d("debug", "error");
+            progressBar.setVisibility(View.INVISIBLE);
             e.printStackTrace();
         }
     }
@@ -247,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
     //Создаём модель
     @SuppressLint("ResourceType")
-    private void buildModel(File file,ProgressBar progressBar) {
+    private void buildModel(File file) {
         try {
 
             RenderableSource renderableSource = RenderableSource
@@ -266,14 +263,14 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                         renderable = modelRenderable;
                         Log.d("debug", "Модель загружена");
 
-                        progressBar.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.INVISIBLE);
                     }).exceptionally(new Function<Throwable, Void>() {
                 @Override
                 public Void apply(Throwable throwable) {
                     Toast.makeText(context, "Ошибка 246->main = " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.d("debug", "Error = " + throwable.getMessage());
 
-                    progressBar.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.INVISIBLE);
                     return null;
                 }
             });
@@ -282,6 +279,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
             e.printStackTrace();
             Toast.makeText(MainActivity.this, "Ошибка загрузки", Toast.LENGTH_SHORT).show();
             Log.d("debug", "Ошибка загрузки");
+            progressBar.setVisibility(View.INVISIBLE);
         }
     }
 
