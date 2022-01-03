@@ -72,9 +72,8 @@ public class MenuFragment extends Fragment{
         //Задвинуть кнопку слева на права
         if(ButtonWithRigth){
             ButtonWithRigth = !ButtonWithRigth;
-            binding.editTextTextMultiLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,0));
+            binding.editTextTextMultiLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, binding.editTextTextMultiLine.getLayoutParams().height,0));
             binding.button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,1));
-
         }
 
         arrayList.clear();
@@ -119,7 +118,7 @@ public class MenuFragment extends Fragment{
                 //Выдвинуть кнопку справа на лева
                 if(!ButtonWithRigth){
                     ButtonWithRigth = !ButtonWithRigth;
-                    binding.editTextTextMultiLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,10f));
+                    binding.editTextTextMultiLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, binding.editTextTextMultiLine.getLayoutParams().height,10f));
                     binding.button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,0));
                 }
 
@@ -166,11 +165,12 @@ public class MenuFragment extends Fragment{
 
                         if(ButtonWithRigth)
                             adapter.notifyDataSetChanged();
+                        else
+                            fillDef();
 
                         binding.msg.setVisibility((arrayList.size() == 0) ? View.VISIBLE : View.INVISIBLE);
                     }
                 });
-
                 binding.listOfItemSetting.setPadding(0,0,0, 0);
             }
 

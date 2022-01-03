@@ -32,16 +32,19 @@
                 <EditText
                     android:id="@+id/editTextTextMultiLine"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="0"
                     android:background="@drawable/background_white_rounded_super_little"
+                    android:drawableStart="@drawable/glasses_45"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="@color/gray"
                     android:hint="@string/hintTxt"
                     android:inputType="textCapWords"
+                    android:maxLines="1"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="10dp"
                     android:textColor="@color/black"
-                    android:textColorLink="#000000"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:textColorLink="@color/black" />
 
                 <FrameLayout
                     android:id="@+id/button"
