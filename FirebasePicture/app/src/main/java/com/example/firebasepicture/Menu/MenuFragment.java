@@ -106,7 +106,6 @@ public class MenuFragment extends Fragment implements OnBackPressedListener {
         binding.msg.setVisibility((arrayList.size() == 0) ? View.VISIBLE : View.INVISIBLE);
     }
 
-//Toast.makeText(MainActivity.bottomNav.getContext(), "1", Toast.LENGTH_SHORT);
     void initComponent() {
         firebaseFirestore = FirebaseFirestore.getInstance();
 

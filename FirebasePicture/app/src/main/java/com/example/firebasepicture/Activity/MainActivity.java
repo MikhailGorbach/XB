@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     private ArFragment arFragment;      //Фрагмент с изображением
     private Fragment fragment;          //Фрагмент
     private ProgressBar progressBar;
+    private TextView text;
 
     private NetworkChangeListener networkChangeListener;
     private Context context;
@@ -87,7 +89,10 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
 
         fragmentScreens = findViewById(R.id.fragment_container);
         progressBar = findViewById(R.id.progressBar);
+        text = findViewById(R.id.txtUnderOfProgress);
+
         progressBar.setVisibility(View.INVISIBLE);
+        text.setVisibility(View.INVISIBLE);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -188,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
             ViewGroup layout = (ViewGroup) findViewById(R.id.parentLayout);
 
             progressBar.setVisibility(View.VISIBLE);
+            text.setVisibility(View.VISIBLE);
 
             File file = File.createTempFile(name, "glb");
             StorageTask<FileDownloadTask.TaskSnapshot> taskSnapshotStorageTask = modelRef.getFile(file)
@@ -203,6 +209,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(MainActivity.this, "Модель не найдена.", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.INVISIBLE);
+                            text.setVisibility(View.INVISIBLE);
                         }
                     });
         }
@@ -210,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         {
             Log.d("debug", "error");
             progressBar.setVisibility(View.INVISIBLE);
+            text.setVisibility(View.INVISIBLE);
             e.printStackTrace();
         }
     }
@@ -264,6 +272,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                         Log.d("debug", "Модель загружена");
 
                         progressBar.setVisibility(View.INVISIBLE);
+                        text.setVisibility(View.INVISIBLE);
                     }).exceptionally(new Function<Throwable, Void>() {
                 @Override
                 public Void apply(Throwable throwable) {
@@ -271,6 +280,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
                     Log.d("debug", "Error = " + throwable.getMessage());
 
                     progressBar.setVisibility(View.INVISIBLE);
+                    text.setVisibility(View.INVISIBLE);
                     return null;
                 }
             });
@@ -280,6 +290,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
             Toast.makeText(MainActivity.this, "Ошибка загрузки", Toast.LENGTH_SHORT).show();
             Log.d("debug", "Ошибка загрузки");
             progressBar.setVisibility(View.INVISIBLE);
+            text.setVisibility(View.INVISIBLE);
         }
     }
 
