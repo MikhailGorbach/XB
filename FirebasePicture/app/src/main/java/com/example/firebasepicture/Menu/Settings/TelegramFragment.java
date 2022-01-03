@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.Utility.OnBackPressedListener;
 import com.example.firebasepicture.databinding.FragmentTelegramBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TelegramFragment extends Fragment {
+public class TelegramFragment extends Fragment implements OnBackPressedListener {
     private Fragment fragment;
     private FragmentTelegramBinding binding;
     public TelegramFragment(Fragment fragment) {
@@ -53,4 +55,14 @@ public class TelegramFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Log.d("debug", "Нажатие на кнопку назад в " + this.toString());
+        if(fragment != null)
+            getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        else
+            getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+
+
+    }
 }

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,9 @@ import androidx.fragment.app.FragmentManager;
 import com.bumptech.glide.Glide;
 import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.Utility.OnBackPressedListener;
 
-public class FragmentForCard extends Fragment implements GetDataFromFragment{
+public class FragmentForCard extends Fragment implements GetDataFromFragment, OnBackPressedListener {
     private Model model;
     private TextView txtDeskSeller;
     private TextView txtDeskArticle;
@@ -194,5 +196,14 @@ public class FragmentForCard extends Fragment implements GetDataFromFragment{
     @Override
     public void GetData(String data) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("debug", "Нажатие на кнопку назад в " + this.toString());
+        if(fragment != null)
+            getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        else
+            getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
     }
 }

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ import com.example.firebasepicture.Model;
 import com.example.firebasepicture.Policy.PolicyFragment;
 import com.example.firebasepicture.R;
 import com.example.firebasepicture.Utility.NetworkChangeListener;
+import com.example.firebasepicture.Utility.OnBackPressedListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.ar.core.Anchor;
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
     public static final String PrivatePolicyKey = "unique";
     public static SharedPreferences mySharedPreferences;  //Объект для работы с внутренней бд
     public static ChipNavigationBar bottomNav;
+    private static FrameLayout fragmentScreens;
 
     private FragmentManager fragmentManager;
     private ModelRenderable renderable; //Переменная для работы с моделями
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fragmentScreens = findViewById(R.id.fragment_container);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         context = this;
@@ -281,6 +285,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         }
     }
 
+    //Данные из фрагментов
     @Override
     public void GetData(String data) {
         Log.d("debug", data);
@@ -293,6 +298,7 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         bottomNav.setItemEnabled(R.id.bottom_nav_main, true);
     }
 
+    //Запуск проверки интернета
     @Override
     protected void onStart() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -300,9 +306,34 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         super.onStart();
     }
 
+    //Остановка проверки интернета
     @Override
     protected void onStop() {
         unregisterReceiver(networkChangeListener);
         super.onStop();
+    }
+
+    static public void clear(){
+        fragmentScreens.setBackgroundColor(Color.TRANSPARENT);
+        bottomNav.setItemEnabled(R.id.bottom_nav_main, false);
+        bottomNav.setItemEnabled(R.id.bottom_nav_main, true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm = getSupportFragmentManager();
+        OnBackPressedListener backPressedListener = null;
+        for (Fragment fragment: fm.getFragments()) {
+            if (fragment instanceof  OnBackPressedListener) {
+                backPressedListener = (OnBackPressedListener) fragment;
+                break;
+            }
+        }
+
+        if (backPressedListener != null) {
+            backPressedListener.onBackPressed();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

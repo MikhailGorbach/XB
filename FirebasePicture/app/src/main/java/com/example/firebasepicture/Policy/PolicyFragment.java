@@ -3,6 +3,7 @@ package com.example.firebasepicture.Policy;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,10 @@ import androidx.fragment.app.Fragment;
 import com.example.firebasepicture.Activity.MainActivity;
 import com.example.firebasepicture.Policy.Welcome.WelcomeFragment;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.Utility.OnBackPressedListener;
 import com.example.firebasepicture.databinding.FragmentPolicyBinding;
 
-public class PolicyFragment extends Fragment {
+public class PolicyFragment extends Fragment{
 
     private Boolean btnPrivatePolicyStatus;
     private Boolean btnTermsAndPolicyStatus;
@@ -111,4 +113,5 @@ public class PolicyFragment extends Fragment {
             }
         });
     }
+
 }

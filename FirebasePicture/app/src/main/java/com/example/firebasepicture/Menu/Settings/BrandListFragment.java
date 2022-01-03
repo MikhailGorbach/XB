@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.Utility.OnBackPressedListener;
 import com.example.firebasepicture.databinding.FragmentBrandListBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,7 +32,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BrandListFragment extends Fragment {
+public class BrandListFragment extends Fragment  implements OnBackPressedListener {
     private Fragment back;
     private FragmentBrandListBinding binding;
     private FirebaseFirestore firebaseFirestore;
@@ -114,6 +115,17 @@ public class BrandListFragment extends Fragment {
                     Toast.makeText(f.getContext(), "Fail get data from Database.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("debug", "Нажатие на кнопку назад в " + this.toString());
+        if(back != null)
+            getFragmentManager().beginTransaction().replace(R.id.fragment_container, back).commit();
+        else
+            getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+
+
     }
 
     public class CustomGridLayoutManager extends LinearLayoutManager {

@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.Utility.OnBackPressedListener;
 import com.example.firebasepicture.databinding.FragmentListBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,7 +37,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class FragmentForButton extends Fragment{
+public class FragmentForButton extends Fragment implements OnBackPressedListener {
     private final int limit = 16;
 
     private FirebaseFirestore firebaseFirestore;
@@ -482,4 +483,12 @@ public class FragmentForButton extends Fragment{
             }
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("debug", "Нажатие на кнопку назад в " + this.toString());
+        getFragmentManager().beginTransaction().replace(R.id.fragment_container, back).commit();
+        //getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+    }
+
 }

@@ -8,14 +8,16 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.Utility.OnBackPressedListener;
 import com.example.firebasepicture.databinding.FragmentAboutAppBinding;
 
-public class AboutApp extends Fragment {
+public class AboutApp extends Fragment implements OnBackPressedListener {
     private Fragment back;
     private FragmentAboutAppBinding binding;
 
@@ -53,5 +55,16 @@ public class AboutApp extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("debug", "Нажатие на кнопку назад в " + this.toString());
+        if(back != null)
+            getFragmentManager().beginTransaction().replace(R.id.fragment_container, back).commit();
+        else
+            getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+
+
     }
 }

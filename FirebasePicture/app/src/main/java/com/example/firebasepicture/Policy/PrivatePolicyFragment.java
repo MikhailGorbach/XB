@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.firebasepicture.Menu.Settings.ElementA;
 import com.example.firebasepicture.R;
 import com.example.firebasepicture.Utility.ExrGroupAdapter;
+import com.example.firebasepicture.Utility.OnBackPressedListener;
 import com.example.firebasepicture.databinding.FragmentPrivatePolicyBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,7 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrivatePolicyFragment extends Fragment {
+public class PrivatePolicyFragment extends Fragment implements OnBackPressedListener {
 
     private Fragment fragment;
     private FragmentPrivatePolicyBinding binding;
@@ -156,5 +157,14 @@ public class PrivatePolicyFragment extends Fragment {
             }
             return res;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("debug", "Нажатие на кнопку назад в " + this.toString());
+        if(fragment != null)
+            getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        else
+            getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
     }
 }

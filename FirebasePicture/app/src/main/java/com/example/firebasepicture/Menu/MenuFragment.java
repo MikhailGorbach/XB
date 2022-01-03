@@ -2,6 +2,7 @@ package com.example.firebasepicture.Menu;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Layout;
@@ -29,6 +30,7 @@ import com.example.firebasepicture.Menu.MenuFragmentSource.FragmentForButton;
 import com.example.firebasepicture.Menu.MenuFragmentSource.FragmentForCard;
 import com.example.firebasepicture.Model;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.Utility.OnBackPressedListener;
 import com.example.firebasepicture.databinding.FragmentListBinding;
 import com.example.firebasepicture.databinding.FragmentMenuBinding;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -41,7 +43,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuFragment extends Fragment{
+public class MenuFragment extends Fragment implements OnBackPressedListener {
 
     private RecyclerView listOfItemSetting;
     private ArrayList<Model> arrayList;
@@ -196,6 +198,16 @@ public class MenuFragment extends Fragment{
         binding.listOfItemSetting.setAdapter(adapter);
     }
 
+    @Override
+    public void onBackPressed() {
+        Log.d("debug", "Нажатие на кнопку назад в " + this.toString());
+        getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+
+        MainActivity.clear();
+
+        MainActivity.bottomNav.setItemEnabled(R.id.bottom_nav_main, false);
+        MainActivity.bottomNav.setItemEnabled(R.id.bottom_nav_main, true);
+    }
 }
 
 

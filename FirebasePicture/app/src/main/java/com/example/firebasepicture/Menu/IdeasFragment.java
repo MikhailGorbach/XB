@@ -2,7 +2,9 @@ package com.example.firebasepicture.Menu;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +22,11 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.firebasepicture.Activity.MainActivity;
 import com.example.firebasepicture.Menu.MenuFragmentSource.FragmentForButton;
 import com.example.firebasepicture.Policy.Welcome.Adapter.PageAdapter;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.Utility.OnBackPressedListener;
 import com.example.firebasepicture.databinding.FragmentIdeasBinding;
 import com.example.firebasepicture.databinding.FragmentPageBinding;
 import com.example.firebasepicture.databinding.PageAdapterIdeasCardBinding;
@@ -32,7 +36,7 @@ import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IdeasFragment extends Fragment {
+public class IdeasFragment extends Fragment implements OnBackPressedListener {
     private FragmentIdeasBinding binding;
     private ArrayList<String> links;
 
@@ -123,5 +127,14 @@ public class IdeasFragment extends Fragment {
         }
 
     }
+    @Override
+    public void onBackPressed() {
+        Log.d("debug", "Нажатие на кнопку назад в " + this.toString());
+        getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
 
+        MainActivity.clear();
+
+        MainActivity.bottomNav.setItemEnabled(R.id.bottom_nav_main, false);
+        MainActivity.bottomNav.setItemEnabled(R.id.bottom_nav_main, true);
+    }
 }

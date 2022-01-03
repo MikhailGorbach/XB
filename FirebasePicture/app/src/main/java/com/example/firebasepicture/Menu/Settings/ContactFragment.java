@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,10 @@ import android.widget.Toast;
 
 import com.example.firebasepicture.Menu.MenuFragmentSource.GetDataFromFragment;
 import com.example.firebasepicture.R;
+import com.example.firebasepicture.Utility.OnBackPressedListener;
 import com.example.firebasepicture.databinding.FragmentContactBinding;
 
-public class ContactFragment extends Fragment {
+public class ContactFragment extends Fragment implements OnBackPressedListener {
     private Fragment fragment;
     private FragmentContactBinding binding;
     private Fragment context;
@@ -49,5 +51,16 @@ public class ContactFragment extends Fragment {
                 Toast.makeText(context.getContext(), "Почта скопирована в буфер обмена", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("debug", "Нажатие на кнопку назад в " + this.toString());
+        if(fragment != null)
+            getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        else
+            getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+
+
     }
 }
