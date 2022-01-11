@@ -41,6 +41,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.ar.core.Anchor;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.assets.RenderableSource;
+import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
@@ -186,11 +187,38 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
         });
     }
 
+    //Работа с фрагментами
+    private void initFragment(){
+        //Инициализицая фрагмента для камеры
+        arFragment = (ArFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.arFragment);
+
+        //При нажатии создать новую сцену с renderable обектом
+        assert arFragment != null;
+        arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
+            if (renderable == null){
+                return;
+            }
+
+            Anchor anchor = hitResult.createAnchor();
+            AnchorNode anchorNode = new AnchorNode(anchor);
+            anchorNode.setParent(arFragment.getArSceneView().getScene());
+
+            TransformableNode lamp = new TransformableNode(arFragment.getTransformationSystem());
+            lamp.setParent(anchorNode);
+            lamp.setRenderable(renderable);
+            lamp.getScaleController().setEnabled(false);
+            lamp.setLocalScale(new Vector3(0.3937f,0.3937f,0.3937f));
+            lamp.select();
+
+            renderable = null;
+        });
+
+    }
+
     //Собрать новую модель
     private void newModel(String name){
         try {
-
-            ViewGroup layout = (ViewGroup) findViewById(R.id.parentLayout);
 
             progressBar.setVisibility(View.VISIBLE);
             text.setVisibility(View.VISIBLE);
@@ -220,34 +248,6 @@ public class MainActivity extends AppCompatActivity implements GetDataFromFragme
             text.setVisibility(View.INVISIBLE);
             e.printStackTrace();
         }
-    }
-
-    //Работа с фрагментами
-    private void initFragment(){
-        //Инициализицая фрагмента для камеры
-        arFragment = (ArFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.arFragment);
-
-        //При нажатии создать новую сцену с renderable обектом
-        assert arFragment != null;
-        arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
-            if (renderable == null){
-                return;
-            }
-
-            Anchor anchor = hitResult.createAnchor();
-            AnchorNode anchorNode = new AnchorNode(anchor);
-            anchorNode.setParent(arFragment.getArSceneView().getScene());
-
-            TransformableNode lamp = new TransformableNode(arFragment.getTransformationSystem());
-            lamp.setParent(anchorNode);
-            lamp.setRenderable(renderable);
-            lamp.getScaleController().setEnabled(false);
-            lamp.select();
-
-            renderable = null;
-        });
-
     }
 
     //Создаём модель
