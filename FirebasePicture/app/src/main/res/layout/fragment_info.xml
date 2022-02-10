@@ -32,8 +32,8 @@
 
                 <ImageButton
                     android:id="@+id/btnBackFragmentInfo"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="@dimen/btnBckSize_height"
+                    android:layout_height="@dimen/btnBckSize_height"
                     android:background="@drawable/goback"
                     android:scaleType="centerInside"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -48,7 +48,7 @@
                 android:text="Информация"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="@dimen/headTxtSize_hight"
+                android:textSize="@dimen/headTxtSize_height"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

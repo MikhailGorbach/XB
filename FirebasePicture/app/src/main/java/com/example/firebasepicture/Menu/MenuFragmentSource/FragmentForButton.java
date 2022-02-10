@@ -153,7 +153,7 @@ public class FragmentForButton extends Fragment implements OnBackPressedListener
                 showBottomSheetDialog();
             }
         });
-        binding.btnBackFragmentList.setOnClickListener(new View.OnClickListener() {
+        binding.btnBackFragmentContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, back).commit();

@@ -26,8 +26,8 @@
 
             <ImageButton
                 android:id="@+id/btnBackFragmentTermsAndUse"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="@dimen/btnBckSize_height"
+                android:layout_height="@dimen/btnBckSize_height"
                 android:background="@drawable/goback"
                 android:scaleType="centerInside"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
