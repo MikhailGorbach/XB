@@ -45,6 +45,8 @@ public class SettingsFragment extends Fragment implements OnBackPressedListener 
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, new TelegramFragment(f)).commit();
                 }
             });
+       /*
+
        binding.layoutListFragmentSetting.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -52,6 +54,8 @@ public class SettingsFragment extends Fragment implements OnBackPressedListener 
                     getFragmentManager().beginTransaction().replace(R.id.fragment_container, new BrandListFragment(f)).commit();
                 }
             });
+
+       */
        binding.layoutInfoFragmentSetting.setOnClickListener(new View.OnClickListener()
             {
                 @Override

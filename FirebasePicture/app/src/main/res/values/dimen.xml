@@ -2,6 +2,9 @@
 <resources>
     <!-- Often sizes-->
     <dimen name="heightDisUntilEndOfNav">70dp</dimen>
+    <dimen name="headTxtSize_hight">18sp</dimen>
+    <dimen name="headTxtSize_low">16sp</dimen>
+    <dimen name="normalTxtSize_low">14sp</dimen>
 
     <!-- InfoFragment -->
     <dimen name="txtSizeInfoContent">14sp</dimen>
